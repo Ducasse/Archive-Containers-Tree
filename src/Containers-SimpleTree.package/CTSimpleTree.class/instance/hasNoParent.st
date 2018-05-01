@@ -1,0 +1,3 @@
+testing
+hasNoParent
+	^ parent isNil 

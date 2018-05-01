@@ -1,0 +1,3 @@
+testing
+hasNoChildren
+	^ children isEmpty

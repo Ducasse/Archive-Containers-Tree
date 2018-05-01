@@ -1,0 +1,4 @@
+operation
+noParent
+
+	parent := nil.
