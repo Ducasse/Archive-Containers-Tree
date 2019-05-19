@@ -1,5 +1,5 @@
 "
-TreeNode is a recursive defintion for a node object in a tree.
+TreeNode is a recursive definition for a node object in a tree.
 As a root node, its parent is nil.
 If a node has no children, children is nil or empty collection.
 		
@@ -24,7 +24,7 @@ Class {
 		'children',
 		'object'
 	],
-	#category : 'Containers-Tree'
+	#category : #'Containers-Tree'
 }
 
 { #category : #'instance creation' }

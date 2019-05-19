@@ -1,8 +1,8 @@
 "
 A TreeNodeTest is a test class for testing the behavior of TreeNode
 
-	TreeNode is a recursive defintion for a node object in a tree.
-	As a root node, it's parent is nil.
+	TreeNode is a recursive definition for a node object in a tree.
+	As a root node, its parent is nil.
 	If a node has no child, children is nil or empty collection.
 		
 Instance Variables:
@@ -18,7 +18,7 @@ Class {
 		'sub1',
 		'sub2'
 	],
-	#category : 'Containers-Tree'
+	#category : #'Containers-Tree'
 }
 
 { #category : #setup }
