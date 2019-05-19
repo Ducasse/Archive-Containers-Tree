@@ -29,7 +29,7 @@ Metacello new
 
 ```
 spec 
-   baseline: 'ContainersLinkedList' 
+   baseline: 'ContainersTree' 
    with: [ spec repository: 'github://Ducasse/Containers-Tree/src' ].
 ```
 
