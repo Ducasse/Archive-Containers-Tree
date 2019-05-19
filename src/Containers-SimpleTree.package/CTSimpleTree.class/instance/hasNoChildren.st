@@ -1,3 +1,0 @@
-testing
-hasNoChildren
-	^ children isEmpty

@@ -1,4 +1,0 @@
-operation
-noParent
-
-	parent := nil.
