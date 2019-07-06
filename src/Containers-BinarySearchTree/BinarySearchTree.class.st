@@ -7,6 +7,39 @@ Class {
 	#category : #'Containers-BinarySearchTree'
 }
 
+{ #category : #examples }
+BinarySearchTree class >> bsTree [
+	<sampleInstance>
+	| tree node1 node2 node3 node4 node5 node6 node7 node8 |
+	tree := self new.
+	node1 := BinaryNode new.
+	node1 key: 8.
+	node2 := BinaryNode new.
+	node2 key: 3.
+	node3 := BinaryNode new.
+	node3 key: 10.
+	node4 := BinaryNode new.
+	node4 key: 1.
+	node5 := BinaryNode new.
+	node5 key: 6.
+	node6 := BinaryNode new.
+	node6 key: 4.
+	node7 := BinaryNode new.
+	node7 key: 7.
+	node8 := BinaryNode new.
+	node8 key: 14.
+	tree root: node1.
+	tree root leftChild: node2.
+	tree root rightChild: node3.
+	tree root leftChild leftChild: node4.
+	tree root leftChild rightChild: node5.
+	tree root leftChild rightChild leftChild: node6.
+	tree root leftChild rightChild rightChild: node7.
+	tree root rightChild rightChild: node8.
+	^tree.
+	
+]
+
 { #category : #accessing }
 BinarySearchTree >> depth [
 	"Depth of a binary tree is length of longest path from an arbirary node to a root. It the three is empty the depth is -1. If a three only has a root element its depth is 1 "
@@ -30,6 +63,34 @@ BinarySearchTree >> depth:aNode [
 	( leftDepth > rightDepth )
 	ifTrue: [ ^ (1 + leftDepth) ]
 	ifFalse: [^ (1 + rightDepth ) ].
+]
+
+{ #category : #accessing }
+BinarySearchTree >> dfs: info [
+	"Depth fisrt search for an information. If there is no key containing given infomration returns nil. If the info is found returns a node containing it"
+	self isEmpty 
+	ifTrue: [ ^nil ].
+	^self dfs: info node: self root.
+	
+]
+
+{ #category : #accessing }
+BinarySearchTree >> dfs: info node: aNode [
+	| node |
+	aNode key == info
+		ifTrue: [ ^ aNode ].
+		
+	aNode leftChild isNotNil
+		ifFalse: [ ^ nil ].
+	node := self dfs: info node: aNode leftChild.
+	node isNotNil
+		ifTrue: [ ^ node ].
+		
+	aNode rightChild isNotNil
+		ifFalse: [ ^ nil ].
+	node := self dfs: info node: aNode rightChild.
+	node isNotNil
+		ifTrue: [ ^ node ].
 ]
 
 { #category : #testing }

@@ -54,6 +54,31 @@ BinarySearchTreeTest >> testDepthTree [
 ]
 
 { #category : #tests }
+BinarySearchTreeTest >> testDfs [
+	"look for info using dfs"
+
+	| tree node |
+   tree := BinarySearchTree  bsTree.
+	node := tree dfs: 6. 
+	
+	self assert: node equals: (tree root leftChild rightChild).
+	
+]
+
+{ #category : #tests }
+BinarySearchTreeTest >> testDfsRoot [
+	"look for info that is contained in root using dfs"
+
+	| tree node |
+	tree := BinarySearchTree  new. 
+	node := BinaryNode new.
+	node key: 8.
+	tree root: node.
+	self assert: tree root equals: (tree dfs: 8).
+	
+]
+
+{ #category : #tests }
 BinarySearchTreeTest >> testEmptyTreeRoot [
 	"test that the root is nil in an empty binary tree"
 
