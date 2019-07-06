@@ -18,6 +18,31 @@ BinarySearchTreeTest >> testAddingRoot [
 ]
 
 { #category : #tests }
+BinarySearchTreeTest >> testBfs [
+	"look for info using bfs"
+
+	| tree node |
+   tree := BinarySearchTree  bsTree.
+	node := tree bfs: 4. 
+	
+	self assert: node equals: (tree root leftChild rightChild leftChild).
+	
+]
+
+{ #category : #tests }
+BinarySearchTreeTest >> testBfsRoot [
+	"look for info that is contained in root using bfs"
+
+	| tree node |
+	tree := BinarySearchTree  new. 
+	node := BinaryNode new.
+	node key: 8.
+	tree root: node.
+	self assert: tree root equals: (tree bfs: 8).
+	
+]
+
+{ #category : #tests }
 BinarySearchTreeTest >> testDepthEmptyTree [
 	"test that depth for empty tree is -1"
 

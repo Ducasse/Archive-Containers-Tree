@@ -41,6 +41,31 @@ BinarySearchTree class >> bsTree [
 ]
 
 { #category : #accessing }
+BinarySearchTree >> bfs: info [
+	"Breadth fisrt search for an information. If there is no key containing given infomration returns nil. If the info is found returns a node containing it"
+	| queue |
+	self isEmpty 
+	ifTrue: [ ^nil ].
+	queue := LinkedList new.
+	queue addLast: self root.
+	
+	[ queue isNotEmpty ] whileTrue: [ 
+		| node |
+		node := queue removeFirst.
+		node key == info  
+		ifTrue: [ ^node ].
+		node leftChild isNotNil 
+		ifTrue: [ queue addLast: node leftChild ].
+		node rightChild isNotNil
+		ifTrue: [ queue addLast: node rightChild ].
+		 ].
+		^nil.
+	
+	
+	
+]
+
+{ #category : #accessing }
 BinarySearchTree >> depth [
 	"Depth of a binary tree is length of longest path from an arbirary node to a root. It the three is empty the depth is -1. If a three only has a root element its depth is 1 "
 	self isEmpty 
