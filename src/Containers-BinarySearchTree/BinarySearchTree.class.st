@@ -41,6 +41,29 @@ BinarySearchTree class >> bsTree [
 ]
 
 { #category : #accessing }
+BinarySearchTree >> add:aKey [
+	"Add a node with passed key to a binary search tree"
+	self isEmpty
+	ifTrue: [^(self root: (self add: aKey node: self root ))].
+	 ^ self add: aKey node: self root
+
+]
+
+{ #category : #accessing }
+BinarySearchTree >> add: aKey node: aNode [
+	"Add a node with passed key to a binary search tree"
+
+	aNode isNil
+		ifTrue: [ ^ (BinaryNode new key: aKey) ].
+	aKey < (aNode key)
+		ifTrue: [ ^(aNode leftChild: (self add: aKey node: aNode leftChild)) ].
+	aKey > (aNode key)
+		ifTrue: [ ^(aNode rightChild: (self add: aKey node: aNode rightChild))].
+	aKey == (aNode key)
+		ifTrue: [self error: 'key already exists'].
+]
+
+{ #category : #accessing }
 BinarySearchTree >> bfs: info [
 	"Breadth fisrt search for an information. If there is no key containing given infomration returns nil. If the info is found returns a node containing it"
 	| queue |
@@ -133,7 +156,7 @@ BinarySearchTree >> root [
 { #category : #accessing }
 BinarySearchTree >> root: rootNode [
 	"Set a root node"
-	root := rootNode
+	^root := rootNode
 ]
 
 { #category : #accessing }

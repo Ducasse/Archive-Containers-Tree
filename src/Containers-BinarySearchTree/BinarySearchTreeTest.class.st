@@ -5,6 +5,77 @@ Class {
 }
 
 { #category : #tests }
+BinarySearchTreeTest >> testAdd [
+	"test adding a key with value greater than root will be added as a rightChild"
+
+	| tree |
+   tree := BinarySearchTree  new.
+	tree add: 8. 
+	tree add: 3.
+	tree add: 10.
+	tree add: 1.
+	
+	self assert: tree root key equals: 8.
+	self assert: tree root leftChild key equals: 3.
+	self assert: tree root rightChild key equals: 10.
+	self assert: tree root leftChild leftChild key equals: 1.
+	
+]
+
+{ #category : #tests }
+BinarySearchTreeTest >> testAddBiggerElement [
+	"test adding a key with value greater than root will be added as a rightChild"
+
+	| tree node |
+   tree := BinarySearchTree  new.
+	node := BinaryNode new key: 8.
+	tree root: node.
+	tree add: 10. 
+	
+	self assert: tree root rightChild key equals: 10.
+	
+]
+
+{ #category : #tests }
+BinarySearchTreeTest >> testAddNodeAlreadyExists [
+	"test adding a key that already exists into tree will raise an error"
+
+	| tree |
+   tree := BinarySearchTree  new.
+   tree add: 8. 
+	tree add: 3. 
+	self should: [tree add: 3] raise: Error.
+
+	
+]
+
+{ #category : #tests }
+BinarySearchTreeTest >> testAddRoot [
+	"test adding a key to an empty tree"
+
+	| tree |
+   tree := BinarySearchTree  new.
+	tree add: 8. 
+	
+	self assert: tree root key equals: 8.
+	
+]
+
+{ #category : #tests }
+BinarySearchTreeTest >> testAddSmallerElement [
+	"test adding a key with value smaller than root will be added as a leftChild"
+
+	| tree node |
+   tree := BinarySearchTree  new.
+	node := BinaryNode new key: 8.
+	tree root: node.
+	tree add: 3. 
+	
+	self assert: tree root leftChild key equals: 3.
+	
+]
+
+{ #category : #tests }
 BinarySearchTreeTest >> testAddingRoot [
 	"test that a node is added to root"
 
