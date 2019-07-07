@@ -1,7 +1,7 @@
 Class {
 	#name : #BinarySearchTreeTest,
 	#superclass : #TestCase,
-	#category : #'Containers-BinarySearchTree'
+	#category : #'Containers-BinarySearchTree-Tests'
 }
 
 { #category : #tests }
