@@ -123,11 +123,11 @@ CTTreeNodeTest >> testBeChildless [
 	self assert: (newTreeNode children isEmpty).
 	newTreeNode addChildNode: sub1.
 	sub1 addChildNode: sub2.
-	self assert: (newTreeNode children size = 1).
-	self assert: (sub1 children size = 1).
+	self assert: (newTreeNode children size equals: 1).
+	self assert: (sub1 children size equals: 1).
 	sub1 beChildless.
-	self assert: (sub1 children size = 0).
-	self assert: (newTreeNode children size = 1).
+	self assert: (sub1 children size equals: 0).
+	self assert: (newTreeNode children size equals: 1).
 	
 ]
 
