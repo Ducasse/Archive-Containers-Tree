@@ -63,12 +63,12 @@ BinarySearchTree >> add: aKey node: aNode [
 		ifTrue: [self error: 'key already exists'].
 ]
 
-{ #category : #accessing }
+{ #category : #walking }
 BinarySearchTree >> bfs: info [
 	"Breadth fisrt search for an information. If there is no key containing given infomration returns nil. If the info is found returns a node containing it"
 	| queue |
 	self isEmpty 
-	ifTrue: [ ^nil ].
+		ifTrue: [ ^ nil ].
 	queue := LinkedList new.
 	queue addLast: self root.
 	
@@ -76,13 +76,13 @@ BinarySearchTree >> bfs: info [
 		| node |
 		node := queue removeFirst.
 		node key == info  
-		ifTrue: [ ^node ].
+			ifTrue: [ ^node ].
 		node leftChild isNotNil 
-		ifTrue: [ queue addLast: node leftChild ].
+			ifTrue: [ queue addLast: node leftChild ].
 		node rightChild isNotNil
-		ifTrue: [ queue addLast: node rightChild ].
+			ifTrue: [ queue addLast: node rightChild ].
 		 ].
-		^nil.
+		^ nil.
 	
 	
 	
@@ -108,22 +108,22 @@ BinarySearchTree >> depth:aNode [
 	rightDepth := -1.
 	aNode rightChild isNotNil 
 		ifTrue: [ rightDepth := self depth: aNode rightChild ].
-	
 	^ leftDepth > rightDepth 
 		ifTrue: [ 1 + leftDepth ]
 		ifFalse: [ 1 + rightDepth ]
 ]
 
-{ #category : #accessing }
+{ #category : #walking }
 BinarySearchTree >> dfs: info [
 	"Depth fisrt search for an information. If there is no key containing given infomration returns nil. If the info is found returns a node containing it"
+	
 	self isEmpty 
-	ifTrue: [ ^nil ].
-	^self dfs: info node: self root.
+		ifTrue: [ ^nil ].
+	^ self dfs: info node: self root
 	
 ]
 
-{ #category : #accessing }
+{ #category : #walking }
 BinarySearchTree >> dfs: info node: aNode [
 	| node |
 	aNode key == info
