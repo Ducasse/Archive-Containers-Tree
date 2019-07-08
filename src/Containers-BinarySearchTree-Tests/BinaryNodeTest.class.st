@@ -5,8 +5,9 @@ Class {
 }
 
 { #category : #initialization }
-BinaryNodeTest >> testSetingKey [
-	"check if setting a key value returns a correct key value"
+BinaryNodeTest >> testSettingKey [
+	"Check if setting a key value returns a correct key value"
+	
 	| aNode |
 	aNode := BinaryNode new.
 	aNode key: 5.

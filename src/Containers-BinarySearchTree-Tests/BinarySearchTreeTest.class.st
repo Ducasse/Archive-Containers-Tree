@@ -6,10 +6,10 @@ Class {
 
 { #category : #tests }
 BinarySearchTreeTest >> testAdd [
-	"test adding a key with value greater than root will be added as a rightChild"
+	"Test adding a key with value greater than root will be added as a rightChild"
 
 	| tree |
-   tree := BinarySearchTree  new.
+   tree := BinarySearchTree new.
 	tree add: 8. 
 	tree add: 3.
 	tree add: 10.
@@ -27,10 +27,10 @@ BinarySearchTreeTest >> testAddBiggerElement [
 	"test adding a key with value greater than root will be added as a rightChild"
 
 	| tree node |
-   tree := BinarySearchTree  new.
+   tree := BinarySearchTree new.
 	node := BinaryNode new key: 8.
 	tree root: node.
-	tree add: 10. 
+	tree add: 10.
 	
 	self assert: tree root rightChild key equals: 10.
 	

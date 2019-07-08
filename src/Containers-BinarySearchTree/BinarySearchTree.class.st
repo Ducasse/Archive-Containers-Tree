@@ -40,7 +40,7 @@ BinarySearchTree class >> bsTree [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 BinarySearchTree >> add:aKey [
 	"Add a node with passed key to a binary search tree"
 	self isEmpty
@@ -49,7 +49,7 @@ BinarySearchTree >> add:aKey [
 
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 BinarySearchTree >> add: aKey node: aNode [
 	"Add a node with passed key to a binary search tree"
 
@@ -91,9 +91,10 @@ BinarySearchTree >> bfs: info [
 { #category : #accessing }
 BinarySearchTree >> depth [
 	"Depth of a binary tree is length of longest path from an arbirary node to a root. It the three is empty the depth is -1. If a three only has a root element its depth is 1 "
+	
 	self isEmpty 
-	ifTrue: [ ^-1 ].
-	^self depth: self root.
+		ifTrue: [ ^ -1 ].
+	^ self depth: self root
 	
 ]
 
@@ -103,14 +104,14 @@ BinarySearchTree >> depth:aNode [
 	| leftDepth rightDepth |
 	leftDepth := -1.
 	aNode leftChild isNotNil 
-	ifTrue: [ leftDepth := self depth: aNode leftChild ].
+		ifTrue: [ leftDepth := self depth: aNode leftChild ].
 	rightDepth := -1.
 	aNode rightChild isNotNil 
-	ifTrue: [ rightDepth := self depth: aNode rightChild ].
+		ifTrue: [ rightDepth := self depth: aNode rightChild ].
 	
-	( leftDepth > rightDepth )
-	ifTrue: [ ^ (1 + leftDepth) ]
-	ifFalse: [^ (1 + rightDepth ) ].
+	^ leftDepth > rightDepth 
+		ifTrue: [ 1 + leftDepth ]
+		ifFalse: [ 1 + rightDepth ]
 ]
 
 { #category : #accessing }
@@ -144,7 +145,8 @@ BinarySearchTree >> dfs: info node: aNode [
 { #category : #testing }
 BinarySearchTree >> isEmpty [
 	"Returns true if root is nil, false otherwise"
-	^root isNil
+	
+	^ root isNil
 ]
 
 { #category : #accessing }
@@ -155,30 +157,32 @@ BinarySearchTree >> root [
 
 { #category : #accessing }
 BinarySearchTree >> root: rootNode [
-	"Set a root node"
-	^root := rootNode
+
+	root := rootNode
 ]
 
 { #category : #accessing }
 BinarySearchTree >> size [
 	"Returns size of a tree - number of nodes in a tree"
+
 	self root isNil 
-	ifTrue: [ ^0 ].
-	^self size: self root.
+		ifTrue: [ ^ 0 ].
+	^ self size: self root
 	
 ]
 
 { #category : #accessing }
-BinarySearchTree >> size:aNode [
-	"returns size of a tree starting from a given node"
+BinarySearchTree >> size: aNode [
+	"Returns size of a tree starting from a given node"
+	
 	| leftSize rightSize |
 	leftSize := 0.
 	rightSize := 0.
 	aNode leftChild isNotNil 
-	ifTrue: [ leftSize := (self size: (aNode leftChild)) ].
+		ifTrue: [ leftSize := self size: aNode leftChild ].
 	aNode rightChild isNotNil
-	ifTrue: [ rightSize := (self size: (aNode rightChild ) )].
-	^ 1 + leftSize + rightSize.
+		ifTrue: [ rightSize := self size: aNode rightChild ].
+	^ 1 + leftSize + rightSize
 	 
 	
 ]
