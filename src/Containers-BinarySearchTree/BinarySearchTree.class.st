@@ -146,7 +146,7 @@ BinarySearchTree >> dfs: info node: aNode [
 BinarySearchTree >> hasChildren [
 	"Answer whether the receiver contains any elements."
 	
-	^root isNil
+	^ root isNil
 ]
 
 { #category : #testing }
