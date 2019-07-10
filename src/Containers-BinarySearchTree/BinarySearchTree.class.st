@@ -143,6 +143,13 @@ BinarySearchTree >> dfs: info node: aNode [
 ]
 
 { #category : #testing }
+BinarySearchTree >> hasChildren [
+	"Answer whether the receiver contains any elements."
+	
+	^root isNil
+]
+
+{ #category : #testing }
 BinarySearchTree >> isEmpty [
 	"Returns true if root is nil, false otherwise"
 	
