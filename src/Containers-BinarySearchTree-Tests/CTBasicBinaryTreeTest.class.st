@@ -91,3 +91,12 @@ CTBasicBinaryTreeTest >> testInitialize [
 	self assert: aTree leftChild isNil.
 	self assert: aTree rightChild isNil.
 ]
+
+{ #category : #'tests - instance creation' }
+CTBasicBinaryTreeTest >> testInstantiateWith [
+
+	| aTree |
+	aTree := CTBasicBinaryTree with: 5.
+	self assert: aTree object equals: 5.
+
+]
