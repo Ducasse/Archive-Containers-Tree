@@ -100,3 +100,40 @@ CTBasicBinaryTreeTest >> testInstantiateWith [
 	self assert: aTree object equals: 5.
 
 ]
+
+{ #category : #'test accessing' }
+CTBasicBinaryTreeTest >> testLeftChild [ 
+
+	| aTree |
+	aTree := CTBasicBinaryTree with: 1.
+	aTree leftChild: (CTBasicBinaryTree with: 2).
+	self assert: aTree leftChild object equals: 2.
+]
+
+{ #category : #'test accessing' }
+CTBasicBinaryTreeTest >> testObject [
+
+	| aTree |
+	aTree := CTBasicBinaryTree new.
+	aTree object: 7.
+	self assert: aTree object equals: 7.
+]
+
+{ #category : #'test accessing' }
+CTBasicBinaryTreeTest >> testParent [
+
+	| aTree |
+	aTree := CTBasicBinaryTree with: 1.
+	aTree rightChild: (CTBasicBinaryTree with: 3).
+	aTree rightChild parent: aTree.
+	self assert: aTree rightChild parent object equals: 1.
+]
+
+{ #category : #'test accessing' }
+CTBasicBinaryTreeTest >> testRightChild [ 
+
+	| aTree |
+	aTree := CTBasicBinaryTree with: 1.
+	aTree rightChild: (CTBasicBinaryTree with: 3).
+	self assert: aTree rightChild object equals: 3.
+]
