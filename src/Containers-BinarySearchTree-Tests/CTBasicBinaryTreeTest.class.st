@@ -44,6 +44,17 @@ CTBasicBinaryTreeTest >> testCreationHasNoRightChild [
 	self assert: aTree hasRightChild equals: false.
 ]
 
+{ #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testFindDeepFirst [
+	"comment stating purpose of message"
+	
+	| aTree node |
+	aTree := CTBasicBinaryTree  binaryTreeEmpty. 
+	
+	node := aTree findDeepFirst: 7 startingFromANode: aTree.
+	self assert: node isNil.
+]
+
 { #category : #'tests - testing' }
 CTBasicBinaryTreeTest >> testHasLeftChild [
 

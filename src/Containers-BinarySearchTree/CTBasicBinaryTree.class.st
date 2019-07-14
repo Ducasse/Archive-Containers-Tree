@@ -10,12 +10,54 @@ Class {
 	#category : #'Containers-BinarySearchTree'
 }
 
+{ #category : #examples }
+CTBasicBinaryTree class >> binaryTree [
+	<sampleInstance>
+	| aTree  |
+	aTree := CTBasicBinaryTree with: 1.
+	aTree leftChild: (CTBasicBinaryTree with: 2).
+	aTree rightChild: (CTBasicBinaryTree with: 3).
+	aTree leftChild leftChild: (CTBasicBinaryTree with: 4).
+	aTree leftChild rightChild: (CTBasicBinaryTree with: 5).
+	^ aTree
+]
+
+{ #category : #examples }
+CTBasicBinaryTree class >> binaryTreeEmpty [
+	<sampleInstance>
+ 	^ self new
+]
+
 { #category : #'instance creation' }
 CTBasicBinaryTree class >> with: anObject [
 	"Return a new tree with one node whose object is anObject and which does not have any children"
 
 	^ self new 
 		object: anObject
+]
+
+{ #category : #traversing }
+CTBasicBinaryTree >> findDeepFirst: anObject startingFromANode: aNode [
+	"comment stating purpose of message"
+	
+	| node |
+	
+	aNode object == anObject
+		ifTrue: [ node := aNode ].
+	
+	aNode leftChild isNotNil & node isNil
+		ifTrue: [node := self findDeepFirst: anObject startingFromANode: aNode leftChild].
+		
+	aNode rightChild isNotNil & node isNil
+		ifTrue: [node := self findDeepFirst: anObject startingFromANode: aNode rightChild].
+	
+	^ node
+		
+	
+
+	
+	
+	
 ]
 
 { #category : #testing }
