@@ -45,6 +45,26 @@ CTBasicBinaryTreeTest >> testCreationHasNoRightChild [
 ]
 
 { #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testDepth [
+	"comment stating purpose of message"
+	
+	| aTree |
+	aTree := CTBasicBinaryTree  binaryTree. 
+	
+	self assert: aTree depth equals: 2.
+]
+
+{ #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testDepthOnEmptyTree [
+	"comment stating purpose of message"
+	
+	| aTree |
+	aTree := CTBasicBinaryTree  binaryTreeEmpty. 
+	
+	self assert: aTree depth equals: 0.
+]
+
+{ #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testFindBreadthFirst [
 	"comment stating purpose of message"
 	
@@ -143,6 +163,16 @@ CTBasicBinaryTreeTest >> testInstantiateWith [
 	aTree := CTBasicBinaryTree with: 5.
 	self assert: aTree object equals: 5.
 
+]
+
+{ #category : #'tests - testing' }
+CTBasicBinaryTreeTest >> testIsLeaf [
+	"comment stating purpose of message"
+
+	| aTree aNode |
+	aTree := CTBasicBinaryTree binaryTree.
+	aNode := aTree findDeepFirst: 5 startingFromANode: aTree.
+	self assert: aNode isLeaf equals: true.
 ]
 
 { #category : #'test accessing' }

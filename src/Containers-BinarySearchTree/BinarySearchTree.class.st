@@ -88,7 +88,7 @@ BinarySearchTree >> bfs: info [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #walking }
 BinarySearchTree >> depth [
 	"Depth of a binary tree is length of longest path from an arbirary node to a root. It the three is empty the depth is -1. If a three only has a root element its depth is 1 "
 	
