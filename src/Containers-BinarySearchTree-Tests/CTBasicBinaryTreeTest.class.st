@@ -45,13 +45,46 @@ CTBasicBinaryTreeTest >> testCreationHasNoRightChild [
 ]
 
 { #category : #'test - traversing' }
-CTBasicBinaryTreeTest >> testFindDeepFirst [
+CTBasicBinaryTreeTest >> testFindBreadthFirst [
+	"comment stating purpose of message"
+	
+	| aTree node |
+	aTree := CTBasicBinaryTree  binaryTree. 
+	
+	node := aTree findBreadthFirst: 2 startingFromANode: aTree.
+	self assert: node object equals: 2.
+]
+
+{ #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testFindBreadthFirstOnEmptyTree [
 	"comment stating purpose of message"
 	
 	| aTree node |
 	aTree := CTBasicBinaryTree  binaryTreeEmpty. 
 	
-	node := aTree findDeepFirst: 7 startingFromANode: aTree.
+	node := aTree findBreadthFirst: 2 startingFromANode: aTree.
+	self assert: node isNil.
+]
+
+{ #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testFindDeepFirst [
+	"comment stating purpose of message"
+	
+	| aTree node |
+	aTree := CTBasicBinaryTree  binaryTree. 
+	
+	node := aTree findDeepFirst: 4 startingFromANode: aTree.
+	self assert: node object equals: 4.
+]
+
+{ #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testFindDeepFirstOnEmptyTree [
+	"comment stating purpose of message"
+	
+	| aTree node |
+	aTree := CTBasicBinaryTree  binaryTreeEmpty. 
+	
+	node := aTree findDeepFirst: 4 startingFromANode: aTree.
 	self assert: node isNil.
 ]
 

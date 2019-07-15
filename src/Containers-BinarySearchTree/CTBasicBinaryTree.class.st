@@ -37,9 +37,31 @@ CTBasicBinaryTree class >> with: anObject [
 ]
 
 { #category : #traversing }
+CTBasicBinaryTree >> findBreadthFirst: anObject startingFromANode: aNode [
+	""
+	| queue foundNode |
+	
+	queue := OrderedCollection new.
+	aNode isNotNil
+	 ifTrue: [ queue addLast: aNode ].
+	
+	[ queue isNotEmpty ] whileTrue: [ 
+		| node |
+		node := queue removeFirst.
+		node object == anObject 
+			ifTrue: [ foundNode := node ].
+			
+		node leftChild isNotNil 
+			ifTrue: [ queue addLast: node leftChild ].
+		node rightChild isNotNil
+			ifTrue: [ queue addLast: node rightChild ].
+	  	 ].
+	^ foundNode 
+]
+
+{ #category : #traversing }
 CTBasicBinaryTree >> findDeepFirst: anObject startingFromANode: aNode [
 	"comment stating purpose of message"
-	
 	| node |
 	
 	aNode object == anObject
@@ -52,10 +74,6 @@ CTBasicBinaryTree >> findDeepFirst: anObject startingFromANode: aNode [
 		ifTrue: [node := self findDeepFirst: anObject startingFromANode: aNode rightChild].
 	
 	^ node
-		
-	
-
-	
 	
 	
 ]
