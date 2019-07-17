@@ -63,21 +63,23 @@ CTBasicBinaryTree >> depth [
 { #category : #traversing }
 CTBasicBinaryTree >> findBreadthFirst: anObject startingFromANode: aNode [
 	""
-	| queue foundNode |
-	
+	| queue foundNode |	
 	queue := OrderedCollection new.
+	
 	aNode isNotNil
 	 ifTrue: [ queue addLast: aNode ].
 	
 	[ queue isNotEmpty ] whileTrue: [ 
 		| node |
 		node := queue removeFirst.
+		
 		node object == anObject 
 			ifTrue: [ foundNode := node ].
 			
-		node leftChild isNotNil 
+		node hasLeftChild 
 			ifTrue: [ queue addLast: node leftChild ].
-		node rightChild isNotNil
+			
+		node hasRightChild
 			ifTrue: [ queue addLast: node rightChild ].
 	  	 ].
 	^ foundNode 
@@ -91,10 +93,10 @@ CTBasicBinaryTree >> findDeepFirst: anObject startingFromANode: aNode [
 	aNode object == anObject
 		ifTrue: [ node := aNode ].
 	
-	aNode leftChild isNotNil & node isNil
+	aNode hasLeftChild  & node isNil
 		ifTrue: [node := self findDeepFirst: anObject startingFromANode: aNode leftChild].
 		
-	aNode rightChild isNotNil & node isNil
+	aNode hasRightChild & node isNil
 		ifTrue: [node := self findDeepFirst: anObject startingFromANode: aNode rightChild].
 	
 	^ node
