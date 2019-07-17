@@ -44,7 +44,7 @@ CTBasicBinaryTreeTest >> testCreationHasNoRightChild [
 	self assert: aTree hasRightChild equals: false.
 ]
 
-{ #category : #'test - traversing' }
+{ #category : #'test operations' }
 CTBasicBinaryTreeTest >> testDepth [
 	"comment stating purpose of message"
 	
@@ -54,7 +54,7 @@ CTBasicBinaryTreeTest >> testDepth [
 	self assert: aTree depth equals: 2.
 ]
 
-{ #category : #'test - traversing' }
+{ #category : #'test operations' }
 CTBasicBinaryTreeTest >> testDepthOnEmptyTree [
 	"comment stating purpose of message"
 	
@@ -62,6 +62,18 @@ CTBasicBinaryTreeTest >> testDepthOnEmptyTree [
 	aTree := CTBasicBinaryTree  binaryTreeEmpty. 
 	
 	self assert: aTree depth equals: 0.
+]
+
+{ #category : #'test operations' }
+CTBasicBinaryTreeTest >> testDepthOnTreeWithOnlyLeftChild [
+	"comment stating purpose of message"
+	
+	| aTree |
+
+	aTree := CTBasicBinaryTree with: 1.
+	aTree leftChild: (CTBasicBinaryTree with: 2).
+	
+	self assert: aTree depth equals: 1.
 ]
 
 { #category : #'test - traversing' }
@@ -173,6 +185,17 @@ CTBasicBinaryTreeTest >> testIsLeaf [
 	aTree := CTBasicBinaryTree binaryTree.
 	aNode := aTree findDeepFirst: 5 startingFromANode: aTree.
 	self assert: aNode isLeaf equals: true.
+]
+
+{ #category : #'tests - testing' }
+CTBasicBinaryTreeTest >> testIsLeafHasOnlyLeftChild [
+	"comment stating purpose of message"
+
+	| aTree aNode |
+	aTree := CTBasicBinaryTree with: 1.
+	aTree leftChild: (CTBasicBinaryTree with: 2).
+	aNode := aTree findDeepFirst: 1 startingFromANode: aTree.
+	self assert: aNode isLeaf equals: false.
 ]
 
 { #category : #'test accessing' }

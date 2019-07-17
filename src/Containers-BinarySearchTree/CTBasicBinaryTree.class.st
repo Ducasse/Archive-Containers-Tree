@@ -39,9 +39,25 @@ CTBasicBinaryTree class >> with: anObject [
 { #category : #operations }
 CTBasicBinaryTree >> depth [
 	"comment stating purpose of message"
+	| leftDepth rightDepth |
+	
+	leftDepth := 0.
+	rightDepth := 0.
+	
 	self isLeaf 
 		ifTrue: [ ^ 0 ].
-    ^ leftChild depth + 1 max: rightChild depth + 1
+	
+	self hasLeftChild 
+	ifTrue: 
+		[ leftDepth := leftChild depth + 1 ].	
+	
+	self hasRightChild 
+	ifTrue: 
+		[ 	rightDepth := rightChild depth + 1 ].
+
+    ^ leftDepth max: rightDepth
+
+	
 ]
 
 { #category : #traversing }
@@ -118,7 +134,7 @@ CTBasicBinaryTree >> initialize [
 { #category : #testing }
 CTBasicBinaryTree >> isLeaf [
 
-	^ (self hasLeftChild & self hasRightChild) not
+	^ self hasLeftChild not & self hasRightChild not
 ]
 
 { #category : #accessing }
