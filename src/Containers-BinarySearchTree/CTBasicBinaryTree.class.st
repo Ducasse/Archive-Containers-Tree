@@ -176,3 +176,24 @@ CTBasicBinaryTree >> rightChild [
 CTBasicBinaryTree >> rightChild: aTree [
 	rightChild := aTree
 ]
+
+{ #category : #operations }
+CTBasicBinaryTree >> sizeOfTree [
+	""
+	| leftSize rightSize |
+	leftSize := 0.
+	rightSize := 0.
+	
+	self isLeaf
+		ifTrue: [ ^ 1 ].
+		
+	self hasLeftChild 
+		ifTrue: [ leftSize := leftChild sizeOfTree ].
+	
+	self hasRightChild
+		ifTrue: [ rightSize := rightChild sizeOfTree ].
+			
+
+	
+	^ 1 + leftSize + rightSize
+]

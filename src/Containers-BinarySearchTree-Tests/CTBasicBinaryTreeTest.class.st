@@ -234,3 +234,34 @@ CTBasicBinaryTreeTest >> testRightChild [
 	aTree rightChild: (CTBasicBinaryTree with: 3).
 	self assert: aTree rightChild object equals: 3.
 ]
+
+{ #category : #'test operations' }
+CTBasicBinaryTreeTest >> testSizeOfTree [
+	"comment stating purpose of message"
+	
+	| aTree |
+	aTree := CTBasicBinaryTree  binaryTree. 
+	
+	self assert: aTree sizeOfTree equals: 5.
+]
+
+{ #category : #'test operations' }
+CTBasicBinaryTreeTest >> testSizeOfTreeOnEmptyTree [
+	"comment stating purpose of message"
+	
+	| aTree |
+	aTree := CTBasicBinaryTree  binaryTreeEmpty. 
+	
+	self assert: aTree sizeOfTree equals: 1.
+]
+
+{ #category : #'test operations' }
+CTBasicBinaryTreeTest >> testSizeOfTreeWithOnlyLeftChild [
+	"comment stating purpose of message"
+	
+	| aTree |
+	aTree := CTBasicBinaryTree with: 1.
+	aTree leftChild: (CTBasicBinaryTree with: 2).
+	
+	self assert: aTree sizeOfTree equals: 2.
+]
