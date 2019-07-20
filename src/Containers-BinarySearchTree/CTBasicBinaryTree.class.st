@@ -36,6 +36,42 @@ CTBasicBinaryTree class >> with: anObject [
 		object: anObject
 ]
 
+{ #category : #traversing }
+CTBasicBinaryTree >> at: aNode inOrderDo: aBlock [
+
+	aNode isNotNil
+		ifFalse: [ ^ self ].
+		
+	self at: aNode leftChild inOrderDo: aBlock.
+	aBlock value: aNode.
+	self at: aNode rightChild inOrderDo: aBlock
+	
+	
+]
+
+{ #category : #traversing }
+CTBasicBinaryTree >> at: aNode postOrderDo: aBlock [
+
+	aNode isNotNil
+		ifFalse: [ ^ self ].
+		
+	self at: aNode leftChild postOrderDo: aBlock.
+	self at: aNode rightChild postOrderDo: aBlock.
+	aBlock value: aNode.
+	
+]
+
+{ #category : #traversing }
+CTBasicBinaryTree >> at: aNode preOrderDo: aBlock [
+
+	aNode isNotNil
+		ifFalse: [ ^ self ].
+	aBlock value: aNode.
+	self at: aNode leftChild preOrderDo: aBlock.
+	self at: aNode rightChild preOrderDo: aBlock
+	
+]
+
 { #category : #operations }
 CTBasicBinaryTree >> depth [
 	"comment stating purpose of message"

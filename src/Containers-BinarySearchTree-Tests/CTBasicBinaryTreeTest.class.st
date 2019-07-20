@@ -4,6 +4,63 @@ Class {
 	#category : #'Containers-BinarySearchTree-Tests'
 }
 
+{ #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testAtInOrderDo [
+	"comment stating purpose of message"
+
+	| aTree result testResult|
+	aTree := CTBasicBinaryTree binaryTree.
+	result:= OrderedCollection new.
+	testResult := #(4 2 5 1 3) asOrderedCollection. 
+	
+	aTree at: aTree inOrderDo: [:node | result add: node object].
+	
+	1 to: 5 do:
+		[:i | self assert: (testResult at:i) equals: (result at:i) ].
+
+	
+
+"	self assert: result size = aTree size."
+]
+
+{ #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testAtPostOrderDo [
+	"comment stating purpose of message"
+
+	| aTree result testResult|
+	aTree := CTBasicBinaryTree binaryTree.
+	result:= OrderedCollection new.
+	testResult := #(4 5 2 3 1) asOrderedCollection. 
+	
+	aTree at: aTree postOrderDo: [:node | result add: node object].
+	
+	1 to: 5 do:
+		[:i | self assert: (testResult at:i) equals: (result at:i) ].
+
+	
+
+"	self assert: result size = aTree size."
+]
+
+{ #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testAtPreOrderDo [
+	"comment stating purpose of message"
+
+	| aTree result testResult|
+	aTree := CTBasicBinaryTree binaryTree.
+	result:= OrderedCollection new.
+	testResult := #(1 2 4 5 3) asOrderedCollection. 
+	
+	aTree at: aTree preOrderDo: [:node | result add: node object].
+	
+	1 to: 5 do:
+		[:i | self assert: (testResult at:i) equals: (result at:i) ].
+
+	
+
+"	self assert: result size = aTree size."
+]
+
 { #category : #'tests - testing' }
 CTBasicBinaryTreeTest >> testCreationHasNoChildren [
 
@@ -77,17 +134,6 @@ CTBasicBinaryTreeTest >> testDepthOnTreeWithOnlyLeftChild [
 ]
 
 { #category : #'test - traversing' }
-CTBasicBinaryTreeTest >> testFindBreadthFirst [
-	"comment stating purpose of message"
-	
-	| aTree node |
-	aTree := CTBasicBinaryTree  binaryTree. 
-	
-	node := aTree findBreadthFirst: 2 startingFromANode: aTree.
-	self assert: node object equals: 2.
-]
-
-{ #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testFindBreadthFirstOnEmptyTree [
 	"comment stating purpose of message"
 	
@@ -99,14 +145,14 @@ CTBasicBinaryTreeTest >> testFindBreadthFirstOnEmptyTree [
 ]
 
 { #category : #'test - traversing' }
-CTBasicBinaryTreeTest >> testFindDeepFirst [
+CTBasicBinaryTreeTest >> testFindBreadthFirstStartingFromANode [
 	"comment stating purpose of message"
 	
 	| aTree node |
 	aTree := CTBasicBinaryTree  binaryTree. 
 	
-	node := aTree findDeepFirst: 4 startingFromANode: aTree.
-	self assert: node object equals: 4.
+	node := aTree findBreadthFirst: 2 startingFromANode: aTree.
+	self assert: node object equals: 2.
 ]
 
 { #category : #'test - traversing' }
@@ -118,6 +164,17 @@ CTBasicBinaryTreeTest >> testFindDeepFirstOnEmptyTree [
 	
 	node := aTree findDeepFirst: 4 startingFromANode: aTree.
 	self assert: node isNil.
+]
+
+{ #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testFindDeepFirstStartingFromANode [
+	"comment stating purpose of message"
+	
+	| aTree node |
+	aTree := CTBasicBinaryTree  binaryTree. 
+	
+	node := aTree findDeepFirst: 4 startingFromANode: aTree.
+	self assert: node object equals: 4.
 ]
 
 { #category : #'tests - testing' }
