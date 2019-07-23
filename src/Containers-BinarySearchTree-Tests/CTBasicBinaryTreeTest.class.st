@@ -4,6 +4,28 @@ Class {
 	#category : #'Containers-BinarySearchTree-Tests'
 }
 
+{ #category : #'test adding/removing' }
+CTBasicBinaryTreeTest >> testAddNode [
+	"comment stating purpose of message"
+
+	| aTree |
+	aTree := CTBasicBinaryTree with: 5.
+	aTree addNode: (CTBasicBinaryTree with: 6).
+	self assert: aTree leftChild object equals: 6.
+
+]
+
+{ #category : #'test adding/removing' }
+CTBasicBinaryTreeTest >> testAddNodeWithObject [
+	"comment stating purpose of message"
+
+	| aTree |
+	aTree := CTBasicBinaryTree with: 5.
+	aTree addNodeWithObject: 7.
+	self assert: aTree leftChild object equals: 7.
+	
+]
+
 { #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testAtInOrderDo [
 	"comment stating purpose of message"
@@ -177,6 +199,17 @@ CTBasicBinaryTreeTest >> testFindDeepFirstStartingFromANode [
 	self assert: node object equals: 4.
 ]
 
+{ #category : #'test - traversing' }
+CTBasicBinaryTreeTest >> testFindNodeBreadthFirstStartingFromANode [
+	"comment stating purpose of message"
+
+	| aTree leafNode |
+	aTree := CTBasicBinaryTree  binaryTree. 
+	
+	leafNode := aTree findNodeBreadthFirst: [ :node | node isLeaf ] startingFromANode: aTree.
+	self assert: leafNode object equals: 3.
+]
+
 { #category : #'tests - testing' }
 CTBasicBinaryTreeTest >> testHasLeftChild [
 
@@ -281,6 +314,35 @@ CTBasicBinaryTreeTest >> testParent [
 	aTree rightChild: (CTBasicBinaryTree with: 3).
 	aTree rightChild parent: aTree.
 	self assert: aTree rightChild parent object equals: 1.
+]
+
+{ #category : #'test adding/removing' }
+CTBasicBinaryTreeTest >> testRemoveNodeWithObjectIfAbsent [
+	"comment stating purpose of message"
+
+	| aTree isDeleted node |
+	aTree := CTBasicBinaryTree binaryTree.
+	isDeleted := aTree removeNodeWithObject: 2 ifAbsent: [ false ].
+	self assert: isDeleted equals: true.
+	self assert: aTree leftChild object equals: 5.
+	node := aTree findBreadthFirst: 4 startingFromANode: aTree.
+	self assert: node rightChild isNil.
+	
+]
+
+{ #category : #'test adding/removing' }
+CTBasicBinaryTreeTest >> testRemoveSingleNodeIfAbsent [
+	"comment stating purpose of message"
+
+	| aTree isDeleted node |
+	aTree := CTBasicBinaryTree with: 1.
+	aTree leftChild: (CTBasicBinaryTree with: 2).
+	node := aTree findBreadthFirst: 2 startingFromANode: aTree.
+	isDeleted := aTree removeSingleNode: node ifAbsent: [ false ].
+	
+	self assert: isDeleted equals: true.
+
+	
 ]
 
 { #category : #'test accessing' }

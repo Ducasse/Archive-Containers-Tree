@@ -36,6 +36,40 @@ CTBasicBinaryTree class >> with: anObject [
 		object: anObject
 ]
 
+{ #category : #'adding/removing' }
+CTBasicBinaryTree >> addNode: aNode [
+	"comment stating purpose of message"
+
+	| aParent addedNode |
+	aParent := self
+		findNodeBreadthFirst: [ :x | x hasLeftChild not or: x hasRightChild not ]
+		startingFromANode: self.
+	aParent hasLeftChild
+		ifFalse: [ aParent leftChild: aNode.
+			addedNode := aParent leftChild ].
+	aParent hasRightChild not & addedNode isNil
+		ifTrue: [ aParent rightChild: aNode.
+			addedNode := aParent rightChild ].
+	^ addedNode
+]
+
+{ #category : #'adding/removing' }
+CTBasicBinaryTree >> addNodeWithObject: anObject [
+	"comment stating purpose of message"
+
+	| aParent addedNode |
+	aParent := self
+		findNodeBreadthFirst: [ :x | x hasLeftChild not or: x hasRightChild not ]
+		startingFromANode: self.
+	aParent hasLeftChild
+		ifFalse: [ aParent leftChild: (CTBasicBinaryTree with: anObject).
+			addedNode := aParent leftChild ].
+	aParent hasRightChild not & addedNode isNil
+		ifTrue: [ aParent rightChild: (CTBasicBinaryTree with: anObject).
+			addedNode := aParent rightChild ].
+	^ addedNode
+]
+
 { #category : #traversing }
 CTBasicBinaryTree >> at: aNode inOrderDo: aBlock [
 
@@ -109,13 +143,13 @@ CTBasicBinaryTree >> findBreadthFirst: anObject startingFromANode: aNode [
 		| node |
 		node := queue removeFirst.
 		
-		node object == anObject 
+		node object == anObject
 			ifTrue: [ foundNode := node ].
 			
-		node hasLeftChild 
+		node hasLeftChild & foundNode isNil
 			ifTrue: [ queue addLast: node leftChild ].
 			
-		node hasRightChild
+		node hasRightChild & foundNode isNil
 			ifTrue: [ queue addLast: node rightChild ].
 	  	 ].
 	^ foundNode 
@@ -138,6 +172,31 @@ CTBasicBinaryTree >> findDeepFirst: anObject startingFromANode: aNode [
 	^ node
 	
 	
+]
+
+{ #category : #traversing }
+CTBasicBinaryTree >> findNodeBreadthFirst: aBlock startingFromANode: aNode [
+	""
+	| queue foundNode |	
+	queue := OrderedCollection new.
+	
+	aNode isNotNil
+	 ifTrue: [ queue addLast: aNode ].
+	
+	[ queue isNotEmpty ] whileTrue: [ 
+		| node |
+		node := queue removeFirst.
+		
+		(aBlock value: node )
+			ifTrue: [ ^ foundNode := node ].
+			
+		node hasLeftChild & foundNode isNil
+			ifTrue: [ queue addLast: node leftChild ].
+			
+		node hasRightChild & foundNode isNil
+			ifTrue: [ queue addLast: node rightChild ].
+	  	 ].
+	^ foundNode 
 ]
 
 { #category : #testing }
@@ -205,6 +264,45 @@ CTBasicBinaryTree >> parent: aParent [
 	parent := aParent
 ]
 
+{ #category : #'adding/removing' }
+CTBasicBinaryTree >> removeNodeWithObject: anObject ifAbsent: aBlock [
+	| node deepestRightNode nodeToBeDeleted queue temporaryObject |
+	queue := OrderedCollection new.
+	queue addLast: self.
+	
+	[ queue isNotEmpty ]
+		whileTrue: [ node := queue removeFirst.
+			node object == anObject
+				ifTrue: [ nodeToBeDeleted := node ].
+			node hasLeftChild
+				ifTrue: [ queue addLast: node leftChild ].
+			node hasRightChild
+				ifTrue: [ queue addLast: node rightChild ] ].
+			
+	deepestRightNode := node.
+	nodeToBeDeleted isNotNil
+		ifTrue: aBlock
+		ifFalse: [ ^ self ].
+		
+	temporaryObject := deepestRightNode object.
+	nodeToBeDeleted object: temporaryObject.
+	^ self removeSingleNode: deepestRightNode ifAbsent: [ false ]
+]
+
+{ #category : #'adding/removing' }
+CTBasicBinaryTree >> removeSingleNode: aNode ifAbsent: aBlock [
+	| nodeToBeDeleted isDeleted |
+	nodeToBeDeleted := self findNodeBreadthFirst: [ :node | node == aNode ] startingFromANode: self.
+	nodeToBeDeleted isNil 
+		ifTrue: [ aBlock. 
+					isDeleted := false ]
+		ifFalse: [ nodeToBeDeleted object: nil.
+					  isDeleted := true ].
+	^ isDeleted
+	
+
+]
+
 { #category : #accessing }
 CTBasicBinaryTree >> rightChild [
 	^ rightChild
@@ -231,7 +329,5 @@ CTBasicBinaryTree >> sizeOfTree [
 	self hasRightChild
 		ifTrue: [ rightSize := rightChild sizeOfTree ].
 			
-
-	
 	^ 1 + leftSize + rightSize
 ]
