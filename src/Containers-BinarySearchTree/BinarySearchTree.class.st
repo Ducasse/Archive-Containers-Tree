@@ -137,7 +137,8 @@ BinarySearchTree >> dfs: info node: aNode [
 		ifTrue: [ ^ self ].
 	node := self dfs: info node: aNode rightChild.
 	node isNotNil
-		ifTrue: [ ^ node ]
+		ifTrue: [ ^ node ].
+	^ node
 ]
 
 { #category : #testing }
