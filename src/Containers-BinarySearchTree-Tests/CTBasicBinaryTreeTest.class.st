@@ -6,7 +6,6 @@ Class {
 
 { #category : #'test adding/removing' }
 CTBasicBinaryTreeTest >> testAddNode [
-	"comment stating purpose of message"
 
 	| aTree |
 	aTree := CTBasicBinaryTree with: 5.
@@ -17,7 +16,6 @@ CTBasicBinaryTreeTest >> testAddNode [
 
 { #category : #'test adding/removing' }
 CTBasicBinaryTreeTest >> testAddNodeWithObject [
-	"comment stating purpose of message"
 
 	| aTree |
 	aTree := CTBasicBinaryTree with: 5.
@@ -28,7 +26,6 @@ CTBasicBinaryTreeTest >> testAddNodeWithObject [
 
 { #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testAtInOrderDo [
-	"comment stating purpose of message"
 
 	| aTree result testResult|
 	aTree := CTBasicBinaryTree binaryTree.
@@ -47,7 +44,6 @@ CTBasicBinaryTreeTest >> testAtInOrderDo [
 
 { #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testAtPostOrderDo [
-	"comment stating purpose of message"
 
 	| aTree result testResult|
 	aTree := CTBasicBinaryTree binaryTree.
@@ -66,7 +62,6 @@ CTBasicBinaryTreeTest >> testAtPostOrderDo [
 
 { #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testAtPreOrderDo [
-	"comment stating purpose of message"
 
 	| aTree result testResult|
 	aTree := CTBasicBinaryTree binaryTree.
@@ -125,7 +120,6 @@ CTBasicBinaryTreeTest >> testCreationHasNoRightChild [
 
 { #category : #'test operations' }
 CTBasicBinaryTreeTest >> testDepth [
-	"comment stating purpose of message"
 	
 	| aTree |
 	aTree := CTBasicBinaryTree  binaryTree. 
@@ -135,7 +129,6 @@ CTBasicBinaryTreeTest >> testDepth [
 
 { #category : #'test operations' }
 CTBasicBinaryTreeTest >> testDepthOnEmptyTree [
-	"comment stating purpose of message"
 	
 	| aTree |
 	aTree := CTBasicBinaryTree  binaryTreeEmpty. 
@@ -145,7 +138,6 @@ CTBasicBinaryTreeTest >> testDepthOnEmptyTree [
 
 { #category : #'test operations' }
 CTBasicBinaryTreeTest >> testDepthOnTreeWithOnlyLeftChild [
-	"comment stating purpose of message"
 	
 	| aTree |
 
@@ -157,8 +149,7 @@ CTBasicBinaryTreeTest >> testDepthOnTreeWithOnlyLeftChild [
 
 { #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testFindBreadthFirstOnEmptyTree [
-	"comment stating purpose of message"
-	
+
 	| aTree node |
 	aTree := CTBasicBinaryTree  binaryTreeEmpty. 
 	
@@ -168,7 +159,6 @@ CTBasicBinaryTreeTest >> testFindBreadthFirstOnEmptyTree [
 
 { #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testFindBreadthFirstStartingFromANode [
-	"comment stating purpose of message"
 	
 	| aTree node |
 	aTree := CTBasicBinaryTree  binaryTree. 
@@ -179,7 +169,6 @@ CTBasicBinaryTreeTest >> testFindBreadthFirstStartingFromANode [
 
 { #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testFindDeepFirstOnEmptyTree [
-	"comment stating purpose of message"
 	
 	| aTree node |
 	aTree := CTBasicBinaryTree  binaryTreeEmpty. 
@@ -190,7 +179,6 @@ CTBasicBinaryTreeTest >> testFindDeepFirstOnEmptyTree [
 
 { #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testFindDeepFirstStartingFromANode [
-	"comment stating purpose of message"
 	
 	| aTree node |
 	aTree := CTBasicBinaryTree  binaryTree. 
@@ -201,7 +189,6 @@ CTBasicBinaryTreeTest >> testFindDeepFirstStartingFromANode [
 
 { #category : #'test - traversing' }
 CTBasicBinaryTreeTest >> testFindNodeBreadthFirstStartingFromANode [
-	"comment stating purpose of message"
 
 	| aTree leafNode |
 	aTree := CTBasicBinaryTree  binaryTree. 
@@ -239,7 +226,6 @@ CTBasicBinaryTreeTest >> testHasParent [
 
 { #category : #'tests - testing' }
 CTBasicBinaryTreeTest >> testHasRightChild [
-	"comment stating purpose of message"
 
 	| aTree |
 	aTree := CTBasicBinaryTree with: 1.
@@ -269,7 +255,6 @@ CTBasicBinaryTreeTest >> testInstantiateWith [
 
 { #category : #'tests - testing' }
 CTBasicBinaryTreeTest >> testIsLeaf [
-	"comment stating purpose of message"
 
 	| aTree aNode |
 	aTree := CTBasicBinaryTree binaryTree.
@@ -279,7 +264,6 @@ CTBasicBinaryTreeTest >> testIsLeaf [
 
 { #category : #'tests - testing' }
 CTBasicBinaryTreeTest >> testIsLeafHasOnlyLeftChild [
-	"comment stating purpose of message"
 
 	| aTree aNode |
 	aTree := CTBasicBinaryTree with: 1.
@@ -317,8 +301,21 @@ CTBasicBinaryTreeTest >> testParent [
 ]
 
 { #category : #'test adding/removing' }
+CTBasicBinaryTreeTest >> testRemoveNodeObjectIfAbsent [
+
+	| aTree isDeleted node |
+	aTree := CTBasicBinaryTree with: 1.
+	aTree leftChild: (CTBasicBinaryTree with: 2).
+	node := aTree findBreadthFirst: 2 startingFromANode: aTree.
+	isDeleted := aTree removeNodeObject: node ifAbsent: [ false ].
+	
+	self assert: isDeleted equals: true.
+
+	
+]
+
+{ #category : #'test adding/removing' }
 CTBasicBinaryTreeTest >> testRemoveNodeWithObjectIfAbsent [
-	"comment stating purpose of message"
 
 	| aTree isDeleted node |
 	aTree := CTBasicBinaryTree binaryTree.
@@ -327,21 +324,6 @@ CTBasicBinaryTreeTest >> testRemoveNodeWithObjectIfAbsent [
 	self assert: aTree leftChild object equals: 5.
 	node := aTree findBreadthFirst: 4 startingFromANode: aTree.
 	self assert: node rightChild isNil.
-	
-]
-
-{ #category : #'test adding/removing' }
-CTBasicBinaryTreeTest >> testRemoveSingleNodeIfAbsent [
-	"comment stating purpose of message"
-
-	| aTree isDeleted node |
-	aTree := CTBasicBinaryTree with: 1.
-	aTree leftChild: (CTBasicBinaryTree with: 2).
-	node := aTree findBreadthFirst: 2 startingFromANode: aTree.
-	isDeleted := aTree removeSingleNode: node ifAbsent: [ false ].
-	
-	self assert: isDeleted equals: true.
-
 	
 ]
 
@@ -356,7 +338,6 @@ CTBasicBinaryTreeTest >> testRightChild [
 
 { #category : #'test operations' }
 CTBasicBinaryTreeTest >> testSizeOfTree [
-	"comment stating purpose of message"
 	
 	| aTree |
 	aTree := CTBasicBinaryTree  binaryTree. 
@@ -366,8 +347,7 @@ CTBasicBinaryTreeTest >> testSizeOfTree [
 
 { #category : #'test operations' }
 CTBasicBinaryTreeTest >> testSizeOfTreeOnEmptyTree [
-	"comment stating purpose of message"
-	
+
 	| aTree |
 	aTree := CTBasicBinaryTree  binaryTreeEmpty. 
 	
@@ -376,7 +356,6 @@ CTBasicBinaryTreeTest >> testSizeOfTreeOnEmptyTree [
 
 { #category : #'test operations' }
 CTBasicBinaryTreeTest >> testSizeOfTreeWithOnlyLeftChild [
-	"comment stating purpose of message"
 	
 	| aTree |
 	aTree := CTBasicBinaryTree with: 1.
