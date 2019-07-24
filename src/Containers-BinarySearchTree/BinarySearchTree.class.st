@@ -88,7 +88,7 @@ BinarySearchTree >> bfs: info [
 	
 ]
 
-{ #category : #accessing }
+{ #category : #walking }
 BinarySearchTree >> depth [
 	"Depth of a binary tree is length of longest path from an arbirary node to a root. It the three is empty the depth is -1. If a three only has a root element its depth is 1 "
 	
@@ -128,18 +128,17 @@ BinarySearchTree >> dfs: info node: aNode [
 	| node |
 	aNode key == info
 		ifTrue: [ ^ aNode ].
-		
-	aNode leftChild isNotNil
-		ifFalse: [ ^ nil ].
-	node := self dfs: info node: aNode leftChild.
-	node isNotNil
-		ifTrue: [ ^ node ].
-		
-	aNode rightChild isNotNil
-		ifFalse: [ ^ nil ].
+	node := aNode.
+	node leftChild isNil
+		ifFalse: [ node := self dfs: info node: aNode leftChild.
+			node isNotNil
+				ifTrue: [ ^ node ] ].
+	node rightChild isNil
+		ifTrue: [ ^ self ].
 	node := self dfs: info node: aNode rightChild.
 	node isNotNil
 		ifTrue: [ ^ node ].
+	^ node
 ]
 
 { #category : #testing }

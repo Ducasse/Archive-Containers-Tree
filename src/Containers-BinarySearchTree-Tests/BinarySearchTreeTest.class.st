@@ -150,18 +150,6 @@ BinarySearchTreeTest >> testDepthTree [
 ]
 
 { #category : #tests }
-BinarySearchTreeTest >> testDfs [
-	"look for info using dfs"
-
-	| tree node |
-   tree := BinarySearchTree  bsTree.
-	node := tree dfs: 6. 
-	
-	self assert: node equals: (tree root leftChild rightChild).
-	
-]
-
-{ #category : #tests }
 BinarySearchTreeTest >> testDfsRoot [
 	"look for info that is contained in root using dfs"
 
