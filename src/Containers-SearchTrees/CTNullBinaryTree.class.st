@@ -19,6 +19,12 @@ CTNullBinaryTree >> add: aData [
 	^ CTBinarySearchTree with: aData
 ]
 
+{ #category : #operations }
+CTNullBinaryTree >> depth [ 
+
+	^ 0
+]
+
 { #category : #testing }
 CTNullBinaryTree >> isLeaf [
 
@@ -40,4 +46,10 @@ CTNullBinaryTree >> leftmostNode: aNode [
 CTNullBinaryTree >> remove: aData [
 
 	^ self
+]
+
+{ #category : #operations }
+CTNullBinaryTree >> sizeOfTree [
+
+	^ 0
 ]

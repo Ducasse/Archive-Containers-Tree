@@ -43,6 +43,93 @@ CTBinarySearchTreeTest >> testAddToEmptyTree [
 
 ]
 
+{ #category : #'test - accessing' }
+CTBinarySearchTreeTest >> testData [ 
+
+	| aTree |
+	aTree := CTBinarySearchTree new.
+	aTree data: 1.
+	self assert: aTree data equals: 1.
+]
+
+{ #category : #'test - operations' }
+CTBinarySearchTreeTest >> testDepth [
+
+	| aTree |
+	aTree := CTBinarySearchTree binarySearchTree.
+	self assert: aTree depth equals: 2.
+]
+
+{ #category : #'test testing' }
+CTBinarySearchTreeTest >> testHasBothChildren [
+
+	| aTree |
+	aTree := CTBinarySearchTree with: 5.
+	aTree add: 7.
+	aTree add: 2.
+	self assert: aTree hasBothChildren 
+]
+
+{ #category : #'test testing' }
+CTBinarySearchTreeTest >> testHasOnlyLeftChild [
+
+	| aTree |
+	aTree := CTBinarySearchTree with: 5.
+	aTree add: 2.
+	self assert: aTree hasOnlyLeftChild 
+]
+
+{ #category : #'test testing' }
+CTBinarySearchTreeTest >> testHasOnlyRightChild [
+
+	| aTree |
+	aTree := CTBinarySearchTree with: 5.
+	aTree add: 7.
+	self assert: aTree hasOnlyRightChild 
+]
+
+{ #category : #'test testing' }
+CTBinarySearchTreeTest >> testIsLeaf [
+	
+	| aTree |
+	aTree := CTBinarySearchTree with: 1.
+	self assert: aTree isLeaf.
+]
+
+{ #category : #'test testing' }
+CTBinarySearchTreeTest >> testIsNotLeaf [
+	
+	| aTree |
+	aTree := CTBinarySearchTree with: 1.
+	aTree add: 2.
+	self deny: aTree isLeaf.
+]
+
+{ #category : #'test testing' }
+CTBinarySearchTreeTest >> testIsNullNode [
+	
+	| aTree |
+	aTree := CTBinarySearchTree with: 1.
+	self deny: aTree isNullNode.
+]
+
+{ #category : #'test - accessing' }
+CTBinarySearchTreeTest >> testLeftChild [
+	
+	| aTree |
+	aTree := CTBinarySearchTree with: 5.
+	aTree add: 3.
+	self assert: aTree leftChild data equals: 3.
+]
+
+{ #category : #'test - accessing' }
+CTBinarySearchTreeTest >> testLeftmostNode [
+
+	| aTree |
+	aTree := CTBinarySearchTree binarySearchTree.
+	self assert: (aTree leftmostNode: aTree) data equals: 1.
+]
+
 { #category : #'test adding/removing' }
 CTBinarySearchTreeTest >> testRemove [
 
@@ -98,4 +185,21 @@ CTBinarySearchTreeTest >> testRemoveRoot [
 	aTree := aTree remove: 3.
 		
 	self assert: aTree isNullNode
+]
+
+{ #category : #'test - accessing' }
+CTBinarySearchTreeTest >> testRightChild [
+	
+	| aTree |
+	aTree := CTBinarySearchTree with: 5.
+	aTree add: 7.
+	self assert: aTree rightChild data equals: 7.
+]
+
+{ #category : #'test - operations' }
+CTBinarySearchTreeTest >> testSizeOfTree [
+
+	| aTree |
+	aTree := CTBinarySearchTree binarySearchTree.
+	self assert: aTree sizeOfTree equals: 5.
 ]

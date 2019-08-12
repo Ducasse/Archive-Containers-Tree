@@ -50,6 +50,13 @@ CTBinarySearchTree >> data: newData [
 	data := newData 
 ]
 
+{ #category : #operations }
+CTBinarySearchTree >> depth [
+	"Answer depth of a tree"
+
+	^ self leftChild depth max: self rightChild  depth + 1
+]
+
 { #category : #testing }
 CTBinarySearchTree >> hasBothChildren [
 	
@@ -64,6 +71,8 @@ CTBinarySearchTree >> hasOnlyLeftChild [
 
 { #category : #testing }
 CTBinarySearchTree >> hasOnlyRightChild [
+
+	^ leftChild isNullNode & rightChild isNullNode not
 ]
 
 { #category : #initialize }
@@ -130,4 +139,11 @@ CTBinarySearchTree >> remove: aData [
 CTBinarySearchTree >> rightChild [
 
 	^rightChild
+]
+
+{ #category : #operations }
+CTBinarySearchTree >> sizeOfTree [
+	"Answer number of nodes in a tree"
+
+	^ 1 + leftChild sizeOfTree + rightChild sizeOfTree 
 ]
