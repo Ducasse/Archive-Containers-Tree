@@ -5,12 +5,32 @@ Class {
 }
 
 { #category : #accessing }
-CTAbstractBinarySearchTree >> add: arg1 [ 
+CTAbstractBinarySearchTree >> add: aData [
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
 CTAbstractBinarySearchTree >> depth [
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+CTAbstractBinarySearchTree >> findBreadthFirst: aBlock [
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+CTAbstractBinarySearchTree >> findDeepFirst: aBlock [
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+CTAbstractBinarySearchTree >> findNode: aData [
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+CTAbstractBinarySearchTree >> inOrderDo: aBlock [
 	^ self subclassResponsibility
 ]
 
@@ -25,12 +45,37 @@ CTAbstractBinarySearchTree >> isNullNode [
 ]
 
 { #category : #accessing }
-CTAbstractBinarySearchTree >> leftmostNode: arg1 [ 
+CTAbstractBinarySearchTree >> leftmostNode: aNode [
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-CTAbstractBinarySearchTree >> remove: arg1 [ 
+CTAbstractBinarySearchTree >> maximumValue [
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+CTAbstractBinarySearchTree >> minimumValue [
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+CTAbstractBinarySearchTree >> postOrderDo: aBlock [
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+CTAbstractBinarySearchTree >> preOrderDo: aBlock [
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+CTAbstractBinarySearchTree >> remove: aData [
+	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+CTAbstractBinarySearchTree >> rightmostNode: aNode [
 	^ self subclassResponsibility
 ]
 

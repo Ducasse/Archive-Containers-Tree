@@ -60,6 +60,50 @@ CTBinarySearchTreeTest >> testDepth [
 	self assert: aTree depth equals: 2.
 ]
 
+{ #category : #'test - traversing' }
+CTBinarySearchTreeTest >> testFindBreadthFirst [
+
+	| aTree node |
+	aTree := CTBinarySearchTree binarySearchTree.
+
+	node := aTree findBreadthFirst: [ :n| n data == 10 ].
+	self assert: node data equals: 10.
+]
+
+{ #category : #'test - traversing' }
+CTBinarySearchTreeTest >> testFindDeepFirst [
+
+	| aTree node |
+	aTree := CTBinarySearchTree binarySearchTree.
+
+	node := aTree findDeepFirst: [ :n| n data == 6 ].
+	self assert: node data equals: 6.
+]
+
+{ #category : #'test lookup' }
+CTBinarySearchTreeTest >> testFindNode [
+
+	| aTree |
+	aTree := CTBinarySearchTree binarySearchTree.
+	self assert: (aTree findNode: 6) data equals: 6.
+]
+
+{ #category : #'test lookup' }
+CTBinarySearchTreeTest >> testFindNonExistingNode [
+
+	| aTree |
+	aTree := CTBinarySearchTree binarySearchTree.
+	self assert: (aTree findNode: 7) isNullNode
+]
+
+{ #category : #'test lookup' }
+CTBinarySearchTreeTest >> testFindRoot [
+
+	| aTree |
+	aTree := CTBinarySearchTree with: 1.
+	self assert: (aTree findNode: 1) data equals: 1.
+]
+
 { #category : #'test testing' }
 CTBinarySearchTreeTest >> testHasBothChildren [
 
@@ -86,6 +130,20 @@ CTBinarySearchTreeTest >> testHasOnlyRightChild [
 	aTree := CTBinarySearchTree with: 5.
 	aTree add: 7.
 	self assert: aTree hasOnlyRightChild 
+]
+
+{ #category : #'test - traversing' }
+CTBinarySearchTreeTest >> testInOrderDo [
+
+	| aTree result testResult|
+	aTree := CTBinarySearchTree binarySearchTree.
+	result:= OrderedCollection new.
+	testResult := #(1 3 6 8 10) asOrderedCollection. 
+	
+	aTree inOrderDo: [:node | result add: node data].
+	
+	1 to: 5 do:
+		[:i | self assert: (testResult at:i) equals: (result at:i) ].
 ]
 
 { #category : #'test testing' }
@@ -128,6 +186,52 @@ CTBinarySearchTreeTest >> testLeftmostNode [
 	| aTree |
 	aTree := CTBinarySearchTree binarySearchTree.
 	self assert: (aTree leftmostNode: aTree) data equals: 1.
+]
+
+{ #category : #'test - operations' }
+CTBinarySearchTreeTest >> testMaximumValue [
+
+	| aTree |
+	aTree := CTBinarySearchTree binarySearchTree.
+	self assert: aTree maximumValue equals: 10.
+	
+]
+
+{ #category : #'test - operations' }
+CTBinarySearchTreeTest >> testMinimumValue [
+
+	| aTree |
+	aTree := CTBinarySearchTree binarySearchTree.
+	self assert: aTree minimumValue equals: 1.
+	
+]
+
+{ #category : #'test - traversing' }
+CTBinarySearchTreeTest >> testPostOrderDo [
+
+	| aTree result testResult|
+	aTree := CTBinarySearchTree binarySearchTree.
+	result:= OrderedCollection new.
+	testResult := #(1 6 3 10 8) asOrderedCollection. 
+	
+	aTree postOrderDo: [:node | result add: node data].
+	
+	1 to: 5 do:
+		[:i | self assert: (testResult at:i) equals: (result at:i) ].
+]
+
+{ #category : #'test - traversing' }
+CTBinarySearchTreeTest >> testPreOrderDo [
+
+	| aTree result testResult|
+	aTree := CTBinarySearchTree binarySearchTree.
+	result:= OrderedCollection new.
+	testResult := #(8 3 1 6 10) asOrderedCollection. 
+	
+	aTree preOrderDo: [:node | result add: node data].
+	
+	1 to: 5 do:
+		[:i | self assert: (testResult at:i) equals: (result at:i) ].
 ]
 
 { #category : #'test adding/removing' }
@@ -194,6 +298,14 @@ CTBinarySearchTreeTest >> testRightChild [
 	aTree := CTBinarySearchTree with: 5.
 	aTree add: 7.
 	self assert: aTree rightChild data equals: 7.
+]
+
+{ #category : #'test - accessing' }
+CTBinarySearchTreeTest >> testRightmostNode [
+
+	| aTree |
+	aTree := CTBinarySearchTree binarySearchTree.
+	self assert: (aTree rightmostNode: aTree) data equals: 10.
 ]
 
 { #category : #'test - operations' }
