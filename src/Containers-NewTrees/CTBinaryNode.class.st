@@ -34,11 +34,11 @@ CTBinaryNode class >> with: anObject [
 
 { #category : #'adding/removing' }
 CTBinaryNode >> addNode: aData [
-	"Add node in level order making a tree balanced. Answer entire tree with a node added."
+	"Add node in level order making a tree balanced. Modify receiver to contain entire tree with a node added."
 
 	| aParent added |
 	added := false.
-	aParent := self findBreadthFirst: [ :n | n leftChild isNullNode or: n rightChild isNullNode ].
+	aParent := self findBreadthFirst: [ :n | n leftChild isNullNode | n rightChild isNullNode ].
 	aParent leftChild isNullNode
 		ifTrue: [  aParent leftChild: (CTBinaryNode with: aData). added := true ].
 	aParent rightChild isNullNode & added not
