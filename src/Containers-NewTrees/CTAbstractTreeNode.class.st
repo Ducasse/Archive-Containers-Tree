@@ -35,11 +35,6 @@ CTAbstractTreeNode >> isLeaf [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
-CTAbstractTreeNode >> isNullNode [
-	^ self subclassResponsibility
-]
-
 { #category : #traversing }
 CTAbstractTreeNode >> postOrderDo: arg1 [ 
 	^ self subclassResponsibility
