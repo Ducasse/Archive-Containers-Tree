@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #'adding/removing' }
-CTAbstractTreeNode >> addNode: arg1 [ 
+CTAbstractTreeNode >> addNode: aData [
 	^ self subclassResponsibility
 ]
 
@@ -16,17 +16,17 @@ CTAbstractTreeNode >> depth [
 ]
 
 { #category : #traversing }
-CTAbstractTreeNode >> findBreadthFirst: arg1 [ 
+CTAbstractTreeNode >> findBreadthFirst: aBlock [
 	^ self subclassResponsibility
 ]
 
 { #category : #traversing }
-CTAbstractTreeNode >> findDeepFirst: arg1 [ 
+CTAbstractTreeNode >> findDeepFirst: aBlock [
 	^ self subclassResponsibility
 ]
 
 { #category : #traversing }
-CTAbstractTreeNode >> inOrderDo: arg1 [ 
+CTAbstractTreeNode >> inOrderDo: aBlock [
 	^ self subclassResponsibility
 ]
 
@@ -36,17 +36,17 @@ CTAbstractTreeNode >> isLeaf [
 ]
 
 { #category : #traversing }
-CTAbstractTreeNode >> postOrderDo: arg1 [ 
+CTAbstractTreeNode >> postOrderDo: aBlock [
 	^ self subclassResponsibility
 ]
 
 { #category : #traversing }
-CTAbstractTreeNode >> preOrderDo: arg1 [ 
+CTAbstractTreeNode >> preOrderDo: aBlock [
 	^ self subclassResponsibility
 ]
 
 { #category : #'adding/removing' }
-CTAbstractTreeNode >> remove: arg1 [ 
+CTAbstractTreeNode >> remove: aData [ 
 	^ self subclassResponsibility
 ]
 
