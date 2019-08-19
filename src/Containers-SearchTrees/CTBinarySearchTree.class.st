@@ -57,6 +57,60 @@ CTBinarySearchTree >> depth [
 	^ self leftChild depth max: self rightChild  depth + 1
 ]
 
+{ #category : #traversing }
+CTBinarySearchTree >> findBreadthFirst: aBlock [
+	"Answer a node that matches condition from passed block. The lookup is done in level order manner"
+	
+	| queue |	
+	queue := OrderedCollection new.
+	
+	queue addLast: self.
+	
+	[ queue isNotEmpty ] whileTrue: [ 
+		| node |
+		node := queue removeFirst.
+		
+		node isNullNode
+			ifTrue: [ ^ node ].
+			
+		(aBlock value: node )
+			ifTrue: [^ node ].
+			
+		queue addLast: node leftChild.
+		queue addLast: node rightChild ].
+	
+
+]
+
+{ #category : #traversing }
+CTBinarySearchTree >> findDeepFirst: aBlock [
+	"Answer a node that matches condition specified in a block. The lookup is done in depth first search manner."
+	
+	| node |
+	(aBlock value: self)
+		ifTrue: [ ^ self ].
+
+	node := self leftChild findDeepFirst: aBlock.
+
+	(node isNullNode)
+		ifTrue: [ node := self rightChild findDeepFirst: aBlock ].
+		
+	^ node
+
+]
+
+{ #category : #lookup }
+CTBinarySearchTree >> findNode: aData [
+
+	aData == data   
+		ifTrue: [ ^ self ].
+	aData < data  
+		ifTrue: [ ^ (leftChild findNode: aData) ].
+	aData > data   
+		ifTrue: [ ^ (rightChild findNode: aData) ].
+
+]
+
 { #category : #testing }
 CTBinarySearchTree >> hasBothChildren [
 	
@@ -73,6 +127,16 @@ CTBinarySearchTree >> hasOnlyLeftChild [
 CTBinarySearchTree >> hasOnlyRightChild [
 
 	^ leftChild isNullNode & rightChild isNullNode not
+]
+
+{ #category : #traversing }
+CTBinarySearchTree >> inOrderDo: aBlock [
+	"In-order traversing  executing a block on each node"
+
+	self leftChild inOrderDo: aBlock.
+	aBlock value: self.
+	self rightChild inOrderDo: aBlock.
+	
 ]
 
 { #category : #initialize }
@@ -104,6 +168,37 @@ CTBinarySearchTree >> leftChild [
 { #category : #accessing }
 CTBinarySearchTree >> leftmostNode: aNode [
 	^ leftChild leftmostNode: self
+]
+
+{ #category : #operations }
+CTBinarySearchTree >> maximumValue [
+
+	^ (self rightmostNode: self) data
+]
+
+{ #category : #operations }
+CTBinarySearchTree >> minimumValue [
+
+	^ (self leftmostNode: self) data
+]
+
+{ #category : #traversing }
+CTBinarySearchTree >> postOrderDo: aBlock [
+	"Post-order traversing  executing a block on each node"
+
+	self leftChild postOrderDo: aBlock.
+	self rightChild postOrderDo: aBlock.
+	aBlock value: self.
+]
+
+{ #category : #traversing }
+CTBinarySearchTree >> preOrderDo: aBlock [
+	"Pre-order traversing  executing a block on each node"
+
+	aBlock value: self.
+	self leftChild preOrderDo: aBlock.
+	self rightChild preOrderDo: aBlock.
+	
 ]
 
 { #category : #'adding/removing' }
@@ -139,6 +234,11 @@ CTBinarySearchTree >> remove: aData [
 CTBinarySearchTree >> rightChild [
 
 	^rightChild
+]
+
+{ #category : #accessing }
+CTBinarySearchTree >> rightmostNode: aNode [
+	^ rightChild rightmostNode: self
 ]
 
 { #category : #operations }

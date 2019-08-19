@@ -21,6 +21,41 @@ CTNullBinaryTreeTest >> testDepth [
 	self assert: aTree depth equals: 0.
 ]
 
+{ #category : #'test - traversing' }
+CTNullBinaryTreeTest >> testFindBreadthFirst [ 
+
+	| aTree |
+	aTree := CTNullBinaryTree uniqueInstance.
+	self assert: (aTree findBreadthFirst: [ :n| n data == 6 ]) isNullNode
+]
+
+{ #category : #'test - traversing' }
+CTNullBinaryTreeTest >> testFindDeepFirst [ 
+
+	| aTree |
+	aTree := CTNullBinaryTree uniqueInstance.
+	self assert: (aTree findDeepFirst: [ :n| n data == 6 ]) isNullNode
+]
+
+{ #category : #'test lookup' }
+CTNullBinaryTreeTest >> testFindNode [
+
+	| aTree |
+	aTree := CTNullBinaryTree uniqueInstance.
+	self assert: (aTree findNode: 2) isNullNode.
+]
+
+{ #category : #'test - traversing' }
+CTNullBinaryTreeTest >> testInOrderDo [
+
+	| aTree result |
+	aTree :=  CTNullBinaryTree uniqueInstance.
+	result:= OrderedCollection new.
+	
+	aTree inOrderDo: [:node | result add: node data].
+	self assert: result isEmpty. 
+]
+
 { #category : #'test testing' }
 CTNullBinaryTreeTest >> testIsLeaf [ 
 
@@ -45,6 +80,44 @@ CTNullBinaryTreeTest >> testLeftmostNode [
 	self assert: (aTree leftmostNode: aTree) isNullNode
 ]
 
+{ #category : #'test operations' }
+CTNullBinaryTreeTest >> testMaximumValue [
+
+	| aTree |
+	aTree := CTNullBinaryTree uniqueInstance.
+	self assert: aTree maximumValue isNil
+]
+
+{ #category : #'test operations' }
+CTNullBinaryTreeTest >> testMinimumValue [
+
+	| aTree |
+	aTree := CTNullBinaryTree uniqueInstance.
+	self assert: aTree minimumValue isNil
+]
+
+{ #category : #'test - traversing' }
+CTNullBinaryTreeTest >> testPostOrderDo [
+
+	| aTree result |
+	aTree :=  CTNullBinaryTree uniqueInstance.
+	result:= OrderedCollection new.
+	
+	aTree postOrderDo: [:node | result add: node data].
+	self assert: result isEmpty. 
+]
+
+{ #category : #'test - traversing' }
+CTNullBinaryTreeTest >> testPreOrderDo [
+
+	| aTree result |
+	aTree :=  CTNullBinaryTree uniqueInstance.
+	result:= OrderedCollection new.
+	
+	aTree preOrderDo: [:node | result add: node data].
+	self assert: result isEmpty. 
+]
+
 { #category : #'test adding/removing' }
 CTNullBinaryTreeTest >> testRemove [
 	| aTree |
@@ -52,6 +125,14 @@ CTNullBinaryTreeTest >> testRemove [
 	aTree := aTree remove: 4.
 	
 	self assert: aTree isNullNode
+]
+
+{ #category : #'test accessing' }
+CTNullBinaryTreeTest >> testRightmostNode [ 
+
+	| aTree |
+	aTree := CTNullBinaryTree uniqueInstance.
+	self assert: (aTree rightmostNode: aTree) isNullNode
 ]
 
 { #category : #'test operations' }

@@ -25,6 +25,30 @@ CTNullBinaryTree >> depth [
 	^ 0
 ]
 
+{ #category : #traversing }
+CTNullBinaryTree >> findBreadthFirst: aBlock [
+
+	^ self
+]
+
+{ #category : #traversing }
+CTNullBinaryTree >> findDeepFirst: aBlock [
+
+	^ self
+]
+
+{ #category : #lookup }
+CTNullBinaryTree >> findNode: aData [
+
+	^ self
+]
+
+{ #category : #traversing }
+CTNullBinaryTree >> inOrderDo: aBlock [
+
+	^ nil
+]
+
 { #category : #testing }
 CTNullBinaryTree >> isLeaf [
 
@@ -42,10 +66,39 @@ CTNullBinaryTree >> leftmostNode: aNode [
 	^ aNode
 ]
 
+{ #category : #operations }
+CTNullBinaryTree >> maximumValue [
+
+	^ nil
+]
+
+{ #category : #operations }
+CTNullBinaryTree >> minimumValue [
+
+	^ nil
+]
+
+{ #category : #traversing }
+CTNullBinaryTree >> postOrderDo: aBlock [
+
+	^ nil
+]
+
+{ #category : #traversing }
+CTNullBinaryTree >> preOrderDo: aBlock [
+
+	^ nil
+]
+
 { #category : #'adding/removing' }
 CTNullBinaryTree >> remove: aData [
 
 	^ self
+]
+
+{ #category : #accessing }
+CTNullBinaryTree >> rightmostNode: aNode [
+	^ aNode
 ]
 
 { #category : #operations }
