@@ -1,3 +1,31 @@
+"
+I represent n-ary tree. My nodes can have arbiraty number of children.
+
+I implement API defined in CTAbstractTreeNode: adding/removing nodes, traversing and finding elements in a tree. I allow multiple nodes to hold same value. 
+
+Public API and Key Messages
+
+- addNode: aCTNaryNode
+- remove: aCTNaryNode
+- findBreadthFirst: aBlock
+- CTNaryTree with: 'A'
+
+   |aTree |
+   aTree := CTNaryTree with: 1. 
+ 	aTree addNode: (CTNaryTree with: 2).
+	aTree sizeOfTree == 2.
+	
+ 
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	children:		<OrderedCollection>
+	data:		   <Object>
+	parent:		<CTNaryTree>
+
+
+ My child nodes are represented as OrderCollection. My nodes hold references to their parents.
+"
 Class {
 	#name : #CTNaryTree,
 	#superclass : #CTAbstractTreeNode,
@@ -63,12 +91,11 @@ CTNaryTree >> data: anObject [
 
 { #category : #operations }
 CTNaryTree >> depth [
+	"Answer depth of a tree"
 	
 	| maxDepth |
-	
 	self isLeaf
 		ifTrue: [ ^ 0 ].
-	
 	maxDepth := 0.
 	
 	1 to: (self children size) do: 
@@ -140,7 +167,7 @@ CTNaryTree >> hasChildren [
 
 { #category : #traversing }
 CTNaryTree >> inOrderDo: aBlock [
-	"In-order traversing  executing a block on each node.For traversing in-order, since there are more than two children per node for m > 2, a notion of left and right subtrees is introduced. One common method to establish left/right subtrees is to divide the list of children nodes into two groups"
+	"In-order traversing  executing a block on each node. For traversing in-order, since there are more than two children per node for m > 2, a notion of left and right subtrees by dividing the list of children nodes into two groups"
 
 	| numberOfChildren leftChildren rightChildren |
 	numberOfChildren := children size.
@@ -207,7 +234,7 @@ CTNaryTree >> preOrderDo: aBlock [
 
 { #category : #'adding/removing' }
 CTNaryTree >> remove: aCTNaryTree [
-	"should we return NullNode if we are deleting root? "
+	" Remove passed node from a receiver"
 
 	| leafNode |
 	self sizeOfTree == 1
@@ -229,6 +256,7 @@ CTNaryTree >> remove: aCTNaryTree [
 
 { #category : #operations }
 CTNaryTree >> sizeOfTree [
+	"Answer number of nodes in a tree"
 	
 	| queue sum |	
 	queue := OrderedCollection new.
