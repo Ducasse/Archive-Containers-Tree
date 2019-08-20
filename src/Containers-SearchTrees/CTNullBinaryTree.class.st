@@ -1,3 +1,14 @@
+"
+Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:
+
+I represent Null object pattern for binary search tree. 
+
+I am singleton. My responsibilities are to provide default behavior for an empty binary search tree node. I usally respond with returning self, nil or 0.
+
+I answer a CTBinarySearchTree when add method is called.
+
+
+"
 Class {
 	#name : #CTNullBinaryTree,
 	#superclass : #CTAbstractBinarySearchTree,
@@ -15,6 +26,7 @@ CTNullBinaryTree class >> uniqueInstance [
 
 { #category : #'adding/removing' }
 CTNullBinaryTree >> add: aData [
+	"Answer a binary search tree with passed data"
 
 	^ CTBinarySearchTree with: aData
 ]
@@ -63,6 +75,7 @@ CTNullBinaryTree >> isNullNode [
 
 { #category : #accessing }
 CTNullBinaryTree >> leftmostNode: aNode [
+	"Answer passed node"
 	^ aNode
 ]
 
@@ -98,6 +111,8 @@ CTNullBinaryTree >> remove: aData [
 
 { #category : #accessing }
 CTNullBinaryTree >> rightmostNode: aNode [
+	"Answer passed node"
+	
 	^ aNode
 ]
 

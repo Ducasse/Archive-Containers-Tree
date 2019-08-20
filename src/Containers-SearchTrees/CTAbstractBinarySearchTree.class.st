@@ -1,3 +1,8 @@
+"
+I represent common API for the CTBinarySearchTree and CTNUllBinaryTree
+
+
+"
 Class {
 	#name : #CTAbstractBinarySearchTree,
 	#superclass : #Object,
