@@ -1,3 +1,29 @@
+"
+I represent binary search tree.
+
+I keep my node data in sorted order. For each node data in left children is smaller  and data in right children is greater than the value in the given node. I implement API specified in CTAbstractBinarySearchTree: adding/removing nodes, traversing, finding nodes and doing basic opeartions upon nodes.
+
+Public API and Key Messages
+
+- add: aData
+- remove: aData
+- findNode: aData
+- CTBinarySearchTree with: 3 >>> 'a CTBinarySearchTree' 
+
+   | aTree |
+	aTree := CTBinarySearchTree binarySearchTree.
+	aTree minimumValue >>> '1'.
+	aTree maximumValue >>> '10'.
+	aTree add: 11.
+ 
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	data:		<Object>
+	leftChild:		<Object>
+	rightChild:		<Object>
+
+"
 Class {
 	#name : #CTBinarySearchTree,
 	#superclass : #CTAbstractBinarySearchTree,
@@ -30,6 +56,7 @@ CTBinarySearchTree class >> with: anObject [
 
 { #category : #'adding/removing' }
 CTBinarySearchTree >> add: aData [
+	"add node with data to receiver"
 
 	data isNil 
 		ifTrue: [ data := aData ].
@@ -101,6 +128,7 @@ CTBinarySearchTree >> findDeepFirst: aBlock [
 
 { #category : #lookup }
 CTBinarySearchTree >> findNode: aData [
+	"Answer a node with aData if it exists"
 
 	aData == data   
 		ifTrue: [ ^ self ].
@@ -167,17 +195,21 @@ CTBinarySearchTree >> leftChild [
 
 { #category : #accessing }
 CTBinarySearchTree >> leftmostNode: aNode [
+	"answer deepest left node"
+	
 	^ leftChild leftmostNode: self
 ]
 
 { #category : #operations }
 CTBinarySearchTree >> maximumValue [
+	"Answer biggest data value held in a tree"
 
 	^ (self rightmostNode: self) data
 ]
 
 { #category : #operations }
 CTBinarySearchTree >> minimumValue [
+	"Answer smallest data value held in tree"
 
 	^ (self leftmostNode: self) data
 ]
@@ -203,8 +235,9 @@ CTBinarySearchTree >> preOrderDo: aBlock [
 
 { #category : #'adding/removing' }
 CTBinarySearchTree >> remove: aData [
-	| smallestNodeInRightSubtree |
+	"remove a node with passed data from the reciever"
 	
+	| smallestNodeInRightSubtree |
 	aData < data
 		ifTrue: [ leftChild := leftChild remove: aData ].
 	aData > data
@@ -216,7 +249,6 @@ CTBinarySearchTree >> remove: aData [
 	self isLeaf
 		ifTrue: [ ^ CTNullBinaryTree uniqueInstance ].
 		
-	 "leftChild isNullNode not & rightChild isNullNode"
 	self hasOnlyLeftChild 
 		ifTrue: [ ^ leftChild ].
 	self hasOnlyLeftChild
@@ -238,6 +270,8 @@ CTBinarySearchTree >> rightChild [
 
 { #category : #accessing }
 CTBinarySearchTree >> rightmostNode: aNode [
+	"answer deepest right node"
+
 	^ rightChild rightmostNode: self
 ]
 
