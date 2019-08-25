@@ -57,7 +57,6 @@ CTBinarySearchTree class >> with: anObject [
 { #category : #'adding/removing' }
 CTBinarySearchTree >> add: aData [
 	"add node with data to receiver"
-
 	data isNil 
 		ifTrue: [ data := aData ].
 
@@ -65,6 +64,19 @@ CTBinarySearchTree >> add: aData [
 		ifTrue: [  leftChild := leftChild add: aData ].
 	aData > data
 		ifTrue: [ rightChild := rightChild add: aData ].
+]
+
+{ #category : #'adding/removing' }
+CTBinarySearchTree >> addNode: aNode [
+	"Add node to receiver"
+	
+	data isNil 
+		ifTrue: [ data := aNode data ].
+		
+	aNode data < data
+		ifTrue: [ leftChild := leftChild addNode: aNode ].
+	aNode data > data
+		ifTrue: [ rightChild := rightChild addNode: aNode ].
 ]
 
 { #category : #accessing }
@@ -193,6 +205,12 @@ CTBinarySearchTree >> leftChild [
 	^ leftChild
 ]
 
+{ #category : #private }
+CTBinarySearchTree >> leftChild: aNode [
+
+	leftChild := aNode
+]
+
 { #category : #accessing }
 CTBinarySearchTree >> leftmostNode: aNode [
 	"answer deepest left node"
@@ -265,7 +283,13 @@ CTBinarySearchTree >> remove: aData [
 { #category : #accessing }
 CTBinarySearchTree >> rightChild [
 
-	^rightChild
+	^ rightChild
+]
+
+{ #category : #private }
+CTBinarySearchTree >> rightChild: aNode [
+
+	rightChild := aNode
 ]
 
 { #category : #accessing }

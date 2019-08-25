@@ -13,6 +13,15 @@ CTNullBinaryTreeTest >> testAdd [
 	self assert: aTree data equals: 4.
 ]
 
+{ #category : #'test adding/removing' }
+CTNullBinaryTreeTest >> testAddNode [ 
+	| aTree |
+	aTree := CTNullBinaryTree new.
+	aTree := aTree addNode: (CTBinarySearchTree with: 4).
+	
+	self assert: aTree data equals: 4.
+]
+
 { #category : #'test operations' }
 CTNullBinaryTreeTest >> testDepth [ 
 
@@ -43,6 +52,14 @@ CTNullBinaryTreeTest >> testFindNode [
 	| aTree |
 	aTree := CTNullBinaryTree uniqueInstance.
 	self assert: (aTree findNode: 2) isNullNode.
+]
+
+{ #category : #'test operations' }
+CTNullBinaryTreeTest >> testHeight [ 
+
+	| aTree |
+	aTree := CTNullBinaryTree uniqueInstance.
+	self assert: aTree height equals: -1.
 ]
 
 { #category : #'test - traversing' }

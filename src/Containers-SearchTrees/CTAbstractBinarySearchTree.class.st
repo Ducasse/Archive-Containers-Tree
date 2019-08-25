@@ -10,11 +10,6 @@ Class {
 }
 
 { #category : #accessing }
-CTAbstractBinarySearchTree >> add: aData [
-	^ self subclassResponsibility
-]
-
-{ #category : #accessing }
 CTAbstractBinarySearchTree >> depth [
 	^ self subclassResponsibility
 ]
