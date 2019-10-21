@@ -1,3 +1,6 @@
+"
+Should probably rename sizeOfTree into numberOfNode?
+"
 Class {
 	#name : #CTAbstractTreeNode,
 	#superclass : #Object,
@@ -52,5 +55,7 @@ CTAbstractTreeNode >> remove: aData [
 
 { #category : #operations }
 CTAbstractTreeNode >> sizeOfTree [
+	"Answer the number of nodes in a tree"
+	
 	^ self subclassResponsibility
 ]

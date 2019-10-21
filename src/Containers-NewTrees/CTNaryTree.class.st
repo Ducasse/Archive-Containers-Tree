@@ -237,7 +237,7 @@ CTNaryTree >> remove: aCTNaryTree [
 	" Remove passed node from a receiver"
 
 	| leafNode |
-	self sizeOfTree == 1
+	self sizeOfTree = 1
 		ifTrue: [ ^ self data: nil ].
 	
 	aCTNaryTree isLeaf

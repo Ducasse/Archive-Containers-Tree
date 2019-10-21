@@ -1,7 +1,7 @@
 "
-I represent a binary tree. I can be consisted of CTBinaryNode and CTNullNode nodes.
+I represent a binary tree. I composed of CTBinaryNode and CTNullNode nodes.
 
-I can be created using addNode methods and be balanced or I could be created by adding nodes to root by leftChild: and rightChild: methods to have an arbitarty structure. There are no restrictions on if elements can appear multiple times. I provide methods for a node lookup and traversing.
+I can be created using addNode: methods and be balanced or I could be created by adding nodes to root using leftChild: and rightChild: methods to have an arbitarty structure. There are no restrictions on if elements can appear multiple times. I provide methods for a node lookup and traversing.
 
 My main responsibility is for my root variable to represent state of a tree. That state can be empty or non-empty and can be changed with methods addNode and remove.
 
@@ -18,6 +18,15 @@ Internal Representation and Key Implementation Points.
     Instance Variables
 	root:		<Object>
 
+
+Note from Stephane Ducasse: 
+This design with a root looks super strange. 
+Why a tree would have a pointer to the root?
+
+root
+	""root represents state of a Tree,it can be either CTNullNode for empty tree or CTBinaryNode for non-empty tree. Value of root can be changed by addNode and remove methods""
+	
+	^ root
 
 
 "
