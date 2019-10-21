@@ -1,5 +1,6 @@
 "
-No idea what is the difference with NodeTree. To be investigated
+A simpleTree is a tree with a list of children and a value.
+The current implementation does not offer iteration over the structure.
 "
 Class {
 	#name : #CTSimpleTree,
@@ -23,10 +24,10 @@ CTSimpleTree class >> for: anObject [
 ]
 
 { #category : #'adding/removing' }
-CTSimpleTree >> addChildNode: aCTTreeNode [ 
+CTSimpleTree >> addChildNode: aTreeNode [ 
 	"Add a node in the receiver and return the added node. Set the parent of the added node to be the receiver."
-	aCTTreeNode parent: self. 
-	^ children add: aCTTreeNode 
+	aTreeNode parent: self. 
+	^ children add: aTreeNode 
 ]
 
 { #category : #'adding/removing' }
@@ -37,7 +38,8 @@ CTSimpleTree >> addChildren: aCollectionOfNode [
 
 { #category : #'adding/removing' }
 CTSimpleTree >> beChildless [
-
+	"Reset the parent link to children and reset the children link from the receiver"
+	
 	self children do: [ :each | each noParent ].
 	self initializeChildren
 
@@ -86,7 +88,7 @@ CTSimpleTree >> hasParent [
 { #category : #initialize }
 CTSimpleTree >> initialize [
 	super initialize.
-	self initializeChildren.
+	self initializeChildren
 
 ]
 
@@ -99,7 +101,7 @@ CTSimpleTree >> initializeChildren [
 { #category : #operation }
 CTSimpleTree >> noParent [
 
-	parent := nil.
+	parent := nil
 ]
 
 { #category : #accessing }
