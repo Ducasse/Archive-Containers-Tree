@@ -1,6 +1,4 @@
 # Containers-Tree
-underway...
-
 
 This package is part of the Containers project: This project is to collect, clean, 
 test and document alternate collection datastructures. Each package is modular so that users 
