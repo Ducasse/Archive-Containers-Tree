@@ -9,6 +9,10 @@ Instance Variables:
 	parent	<TreeNode>  parent of this node in the tree.
 	children	<OrderedCollection>   containing the children of this node.
 	object	<Object>  an object which is at this node position in the tree.
+		
+Why this class is a simple duplicate of SimpleTree?
+
+
 "
 Class {
 	#name : #CTTreeNodeTest,
@@ -21,9 +25,9 @@ Class {
 	#category : #'Containers-Tree'
 }
 
-{ #category : #setup }
+{ #category : #running }
 CTTreeNodeTest >> setUp [
-
+	super setUp.
 	newTreeNode :=  CTTreeNode for: 'node'.
 	sub1 := (CTTreeNode for: 'subnode1').
 	sub2 := (CTTreeNode for: 'subnode2').

@@ -1,3 +1,18 @@
+"
+I'm a strangely design tree. 
+Apparently the GSOC student did not look at my comments!
+
+Why a tree would have a have a root?
+Why a BinaryTree is not just an inductive structure 
+
+tree 
+| value tree tree 
+| nullNode 
+
+This class should be fully rewritten!
+
+Stephane Ducasse
+"
 Class {
 	#name : #BinarySearchTree,
 	#superclass : #Object,
