@@ -31,6 +31,13 @@ CTNullBinaryTree >> add: aData [
 	^ CTBinarySearchTree with: aData
 ]
 
+{ #category : #'adding/removing' }
+CTNullBinaryTree >> addNode: aNode [
+	"Answer a binary search tree with passed data"
+
+	^ aNode
+]
+
 { #category : #operations }
 CTNullBinaryTree >> depth [ 
 
@@ -53,6 +60,12 @@ CTNullBinaryTree >> findDeepFirst: aBlock [
 CTNullBinaryTree >> findNode: aData [
 
 	^ self
+]
+
+{ #category : #operations }
+CTNullBinaryTree >> height [ 
+
+	^ -1
 ]
 
 { #category : #traversing }

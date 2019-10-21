@@ -33,6 +33,20 @@ CTBinarySearchTreeTest >> testAddDuplicates [
 ]
 
 { #category : #'test adding/removing' }
+CTBinarySearchTreeTest >> testAddNode [
+
+	| aTree |
+	aTree := CTBinarySearchTree with: 8.
+	aTree addNode: (CTBinarySearchTree with: 3).
+	aTree addNode: (CTBinarySearchTree with: 10).
+	aTree addNode: (CTBinarySearchTree with: 6).
+
+	self assert: aTree leftChild data equals: 3.
+	self assert: aTree rightChild data equals: 10.
+	self assert: aTree leftChild rightChild data equals: 6.
+]
+
+{ #category : #'test adding/removing' }
 CTBinarySearchTreeTest >> testAddToEmptyTree [
 
 	| aTree |
