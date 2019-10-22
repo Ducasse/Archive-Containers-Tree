@@ -11,7 +11,6 @@ BaselineOfContainersTree >> baseline: spec [
 		for: #pharo
 		do: [
 			spec package: 'Containers-SimpleTree'.
-			spec package: 'Containers-Tree'.
 			spec package: 'Containers-BinarySearchTree'.
 			spec package: 'Containers-NewTrees'.
 			spec package: 'Containers-SearchTrees'.
@@ -22,7 +21,6 @@ BaselineOfContainersTree >> baseline: spec [
 		spec
 				group: 'All' with: #('Containers-BinarySearchTree' 
 										'Containers-SimpleTree' 
-										'Containers-Tree' 
 										'Containers-NewTrees' 'Containers-NewTrees-Tests'
 										'Containers-SearchTrees' 'Containers-SearchTrees-Tests')
 		

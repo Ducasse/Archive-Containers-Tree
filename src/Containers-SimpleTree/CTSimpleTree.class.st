@@ -1,6 +1,16 @@
 "
 A simpleTree is a tree with a list of children and a value.
 The current implementation does not offer iteration over the structure.
+
+SimpleTree is a recursive definition for a node object in a tree.
+As a root node, its parent is nil.
+If a node has no children, children is nil or empty collection.
+		
+
+Instance Variables:
+	parent	<TreeNode>  parent of this node in the tree.
+	children	<OrderedCollection>   containing the children of this node.
+	object	<Object>  an object which is at this node position in the tree.
 "
 Class {
 	#name : #CTSimpleTree,
