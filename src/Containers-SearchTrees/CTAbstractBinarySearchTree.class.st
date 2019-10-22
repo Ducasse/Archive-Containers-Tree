@@ -14,37 +14,37 @@ CTAbstractBinarySearchTree >> depth [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #query }
 CTAbstractBinarySearchTree >> findBreadthFirst: aBlock [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #query }
 CTAbstractBinarySearchTree >> findDeepFirst: aBlock [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #query }
 CTAbstractBinarySearchTree >> findNode: aData [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #iteration }
 CTAbstractBinarySearchTree >> inOrderDo: aBlock [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 CTAbstractBinarySearchTree >> isLeaf [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 CTAbstractBinarySearchTree >> isNullNode [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #query }
 CTAbstractBinarySearchTree >> leftmostNode: aNode [
 	^ self subclassResponsibility
 ]
@@ -59,22 +59,22 @@ CTAbstractBinarySearchTree >> minimumValue [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #iteration }
 CTAbstractBinarySearchTree >> postOrderDo: aBlock [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #iteration }
 CTAbstractBinarySearchTree >> preOrderDo: aBlock [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #'adding/removing' }
 CTAbstractBinarySearchTree >> remove: aData [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #query }
 CTAbstractBinarySearchTree >> rightmostNode: aNode [
 	^ self subclassResponsibility
 ]
