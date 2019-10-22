@@ -5,7 +5,7 @@ Class {
 	#category : #'Containers-BTree'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #query }
 BTreeInteriorNode >> childForKey: aMagnitude [
 	| index |
 	index := keys findIndexForKey: aMagnitude.
@@ -17,12 +17,12 @@ BTreeInteriorNode >> childForKey: aMagnitude [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 BTreeInteriorNode >> childrenDo: aBlock [
 	self valuesDo: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 BTreeInteriorNode >> commonKeysWith: aNode keysAndValuesDo: aBlock flip: aBoolean [
 	| index |
 	aNode firstKey < self firstKey ifTrue: [^ aNode commonKeysWith: self keysAndValuesDo: aBlock flip: aBoolean not].
@@ -32,12 +32,12 @@ BTreeInteriorNode >> commonKeysWith: aNode keysAndValuesDo: aBlock flip: aBoolea
 		(self at: i) ifNotNilDo: [:c | c commonKeysWith: aNode keysAndValuesDo: aBlock flip: aBoolean]]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeInteriorNode >> depth [
 	^ 1 + self firstChild depth
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #query }
 BTreeInteriorNode >> existingChildForKey: aMagnitude [
        "Unlike #childForKey:, this method looks for a child, but doesn't mess with the tree if it doesn't exist."
        | index |
@@ -47,7 +47,7 @@ BTreeInteriorNode >> existingChildForKey: aMagnitude [
                ifFalse: [^ self at: index].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #query }
 BTreeInteriorNode >> existingLeafForKey: aMagnitude [
        "Unlike #leafForKey:, this method looks for a leaf but doesn't mess with the tree if it doesn't exist."
        | child |
@@ -55,30 +55,30 @@ BTreeInteriorNode >> existingLeafForKey: aMagnitude [
        ^ child ifNotNil: [child existingLeafForKey: aMagnitude]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeInteriorNode >> first [
 	self childrenDo: [ :node | ^ node first ].
 	self error: 'this tree is empty'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeInteriorNode >> firstChild [
 	self childrenDo: [:ea | ^ ea].
 	self error: 'No children'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 BTreeInteriorNode >> insertKey: aMagnitude value: anObject at: index [
 	super insertKey: aMagnitude value: anObject at: index.
 	anObject parent: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 BTreeInteriorNode >> isLeaf [
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeInteriorNode >> last [
 	| child |
 	child := nil.
@@ -87,12 +87,12 @@ BTreeInteriorNode >> last [
 	^ child last
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #query }
 BTreeInteriorNode >> leafForKey: aMagnitude [
 	^ (self childForKey: aMagnitude) leafForKey: aMagnitude
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 BTreeInteriorNode >> leavesFrom: start to: end do: aBlock [
 	| startIndex endIndex |
 	startIndex := start ifNil: [1] ifNotNil: [(keys findIndexForKey: start) max: 1].
@@ -100,7 +100,7 @@ BTreeInteriorNode >> leavesFrom: start to: end do: aBlock [
 	startIndex to: endIndex do: [:i | (self at: i) leavesFrom: start to: end do: aBlock]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #query }
 BTreeInteriorNode >> nextSiblingForChild: aNode [
 	| index |
 	index := keys findIndexForKey: aNode firstKey.

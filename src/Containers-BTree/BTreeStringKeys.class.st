@@ -19,12 +19,12 @@ BTreeStringKeys class >> new: aNumber [
 	^ self basicNew initializeWithSize: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeStringKeys >> abbreviationSize [
 	^ 3
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 BTreeStringKeys >> abbreviationsAndIndicesDo: aBlock [
 	| stream |
 	stream := abbreviations readStream.
@@ -35,18 +35,18 @@ BTreeStringKeys >> abbreviationsAndIndicesDo: aBlock [
 			ifTrue: [aBlock value: nil value: i]]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeStringKeys >> at: aNumber [
 	^ keys at: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeStringKeys >> at: aNumber put: aString [
 	keys at: aNumber put: aString.
 	prefix := self nilPrefix.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #building }
 BTreeStringKeys >> buildAbbreviationsFrom: readStreams [
 	| nextChars |
 	1 to: self abbreviationSize do:
@@ -58,7 +58,7 @@ BTreeStringKeys >> buildAbbreviationsFrom: readStreams [
 	^ abbreviations
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #building }
 BTreeStringKeys >> extractPrefixFrom: readStreams [
 	| prefixStream nextChars |
 	prefixStream := String new writeStream.
@@ -72,7 +72,7 @@ BTreeStringKeys >> extractPrefixFrom: readStreams [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 BTreeStringKeys >> findIndexForKey: aString [
 	| stream str diff |
 	prefix = self nilPrefix ifTrue: [self rebuildAbbreviations].
@@ -88,18 +88,18 @@ BTreeStringKeys >> findIndexForKey: aString [
 	^ self size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 BTreeStringKeys >> initializeWithSize: aNumber [
 	keys := Array new: aNumber.
 	prefix := self nilPrefix.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeStringKeys >> nilPrefix [
 	^ '^^^'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #building }
 BTreeStringKeys >> rebuildAbbreviations [
 	| keyStreams filled |
 	filled := keys count: [:ea | ea notNil].
@@ -112,7 +112,7 @@ BTreeStringKeys >> rebuildAbbreviations [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeStringKeys >> size [
 	^ keys size
 ]

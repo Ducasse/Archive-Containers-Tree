@@ -5,12 +5,12 @@ Class {
 	#category : #'Containers-BTree'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 BTreeLeafNode >> childrenDo: aBlock [
 	"no children"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 BTreeLeafNode >> commonKeysWith: aNode keysAndValuesDo: aBlock flip: aBoolean [
 	| index key block leaf advanceKey last |
 
@@ -40,37 +40,37 @@ BTreeLeafNode >> commonKeysWith: aNode keysAndValuesDo: aBlock flip: aBoolean [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeLeafNode >> depth [
 	^ 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #query }
 BTreeLeafNode >> existingLeafForKey: aMagnitude [
        ^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeLeafNode >> first [
 	^ self values first
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 BTreeLeafNode >> isLeaf [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeLeafNode >> keys [
 	^ Array streamContents: [:s | self keysDo: [:ea | s nextPut: ea]]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeLeafNode >> last [
 	^ self values last
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeLeafNode >> lastKey [
 	| last |
 	last := nil.
@@ -78,17 +78,17 @@ BTreeLeafNode >> lastKey [
 	^ last
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #query }
 BTreeLeafNode >> leafForKey: aMagnitude [
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 BTreeLeafNode >> leavesFrom: start to: end do: aBlock [
 	aBlock value: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #query }
 BTreeLeafNode >> valueForKey: aMagnitude ifAbsent: errorBlock [
 	| i |
 	i := keys findIndexForKey: aMagnitude.
@@ -98,7 +98,7 @@ BTreeLeafNode >> valueForKey: aMagnitude ifAbsent: errorBlock [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #query }
 BTreeLeafNode >> valueForKey: aMagnitude ifPresent: aBlock [
 	^ aBlock value: (self valueForKey: aMagnitude ifAbsent: [^ nil])
 ]

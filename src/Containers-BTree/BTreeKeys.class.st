@@ -4,37 +4,37 @@ Class {
 	#category : #'Containers-BTree'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 BTreeKeys >> canGrow [
 	^ (self at: self size) isNil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 BTreeKeys >> canShrink [
 	^  (self at: self size // 2 + 1) notNil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #copying }
 BTreeKeys >> emptyCopy [
 	^ self class new: self size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 BTreeKeys >> findIndexForKey: aMagnitude [
 	self withIndexDo:
 		[:key :i |
-		(key isNil or: [key > aMagnitude]) ifTrue:
-			[^ i - 1]].
+		(key isNil or: [key > aMagnitude]) 
+			ifTrue: [^ i - 1]].
 	^ self size
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeKeys >> first [
 	^ self at: 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 BTreeKeys >> lastIndex [
 	self withIndexDo:
 		[:key :i |
@@ -44,7 +44,7 @@ BTreeKeys >> lastIndex [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 BTreeKeys >> shiftLeftTo: index [
 	index to: self size - 1 by: 1 do:
 		[:i |
@@ -52,7 +52,7 @@ BTreeKeys >> shiftLeftTo: index [
 	self at: self size put: nil.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 BTreeKeys >> shiftRightFrom: index [
 	self size to: index+1 by: -1 do:
 		[:i |
@@ -60,7 +60,7 @@ BTreeKeys >> shiftRightFrom: index [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 BTreeKeys >> withIndexDo: aBlock [
 	1 to: self size do: [:i | aBlock value: (self at: i) value: i]
 ]
