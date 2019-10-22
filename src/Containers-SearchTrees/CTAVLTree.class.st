@@ -1,9 +1,7 @@
 "
-Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:
+I represent an AVL (Adelson-Velsky and Landis) tree.
 
-I represent AVL (Adelson-Velsky and Landis) tree.
-
-I am a self balancing binary search tree. Heights of the two child subtrees of any node differ by at most one, if at any time they differ by more than one, rebalancing is done to restore this property. Rebalancing is done by node rotations.
+I am a self-balancing binary search tree. Heights of the two child subtrees of any node differ by at most one, if at any time they differ by more than one, rebalancing is done to restore this property. Rebalancing is done by node rotations.
 
 I collaborate with CTNullBinaryTree and use it as a null node. I'm a subclass of CTBinarySearchTree and can use methods defined there.
 

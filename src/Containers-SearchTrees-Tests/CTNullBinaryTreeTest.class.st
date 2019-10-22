@@ -18,7 +18,6 @@ CTNullBinaryTreeTest >> testAddNode [
 	| aTree |
 	aTree := CTNullBinaryTree new.
 	aTree := aTree addNode: (CTBinarySearchTree with: 4).
-	
 	self assert: aTree data equals: 4.
 ]
 

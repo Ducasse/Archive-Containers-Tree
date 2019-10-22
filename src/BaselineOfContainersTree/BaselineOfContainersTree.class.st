@@ -14,12 +14,11 @@ BaselineOfContainersTree >> baseline: spec [
 			spec package: 'Containers-BinarySearchTree'.
 			spec package: 'Containers-NewTrees'.
 			spec package: 'Containers-SearchTrees'.
-			spec package: 'Containers-BinarySearchTree-Tests' with: [ spec requires: 'Containers-BinarySearchTree' ].
 			spec package: 'Containers-NewTrees-Tests' with: [ spec requires: 'Containers-NewTrees' ].
 			spec package: 'Containers-SearchTrees-Tests' with: [ spec requires: 'Containers-SearchTrees' ].
 		
 		spec
-				group: 'All' with: #('Containers-BinarySearchTree' 
+				group: 'All' with: #(
 										'Containers-SimpleTree' 
 										'Containers-NewTrees' 'Containers-NewTrees-Tests'
 										'Containers-SearchTrees' 'Containers-SearchTrees-Tests')
