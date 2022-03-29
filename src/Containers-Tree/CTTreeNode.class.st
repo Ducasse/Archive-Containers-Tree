@@ -39,6 +39,7 @@ CTTreeNode class >> for: anObject [
 { #category : #'adding/removing' }
 CTTreeNode >> addChildNode: aCTTreeNode [ 
 	"Add a node in the receiver and return the added node. Set the parent of the added node to be the receiver."
+	
 	aCTTreeNode parent: self. 
 	^ children add: aCTTreeNode 
 ]
@@ -46,6 +47,7 @@ CTTreeNode >> addChildNode: aCTTreeNode [
 { #category : #'adding/removing' }
 CTTreeNode >> addChildren: aCollectionOfNode [ 
 	"Add the collection of nodes in the receiver and return the added node. Set the parent of each added node to be the receiver."
+	
 	aCollectionOfNode do: [ :each | self addChildNode: each ]
 ]
 
@@ -60,18 +62,21 @@ CTTreeNode >> beChildless [
 { #category : #accessing }
 CTTreeNode >> children [
 	"Returns the children of a node. Return an empty collection when no children."
+	
 	^ children
 ]
 
 { #category : #accessing }
 CTTreeNode >> children: aCollection [
 	"Set aCollection as a collection of children of the receiver. Each child parent is the receiver."
+	
 	aCollection do: [ :child | child parent: self ].
 	children := aCollection
 ]
 
 { #category : #accessing }
 CTTreeNode >> degree [
+
 	^ self hasNoParent
 		ifTrue: [ 0 ]
 		ifFalse: [ 1 + self parent degree ]
@@ -79,26 +84,31 @@ CTTreeNode >> degree [
 
 { #category : #testing }
 CTTreeNode >> hasChildren [
+
 	^ children isEmpty not
 ]
 
 { #category : #testing }
 CTTreeNode >> hasNoChildren [
+
 	^ children isEmpty
 ]
 
 { #category : #testing }
 CTTreeNode >> hasNoParent [
+
 	^ parent isNil 
 ]
 
 { #category : #testing }
 CTTreeNode >> hasParent [
+
 	^ parent isNil not
 ]
 
 { #category : #initialize }
 CTTreeNode >> initialize [
+
 	super initialize.
 	self initializeChildren.
 
@@ -106,6 +116,7 @@ CTTreeNode >> initialize [
 
 { #category : #initialize }
 CTTreeNode >> initializeChildren [
+
 	children := OrderedCollection new.
 
 ]
