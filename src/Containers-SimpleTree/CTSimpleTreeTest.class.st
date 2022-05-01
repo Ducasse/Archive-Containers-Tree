@@ -29,7 +29,7 @@ CTSimpleTreeTest >> setUp [
 	sub2 := self treeClass for: 'subnode2'
 ]
 
-{ #category : #'test - working on that one' }
+{ #category : #'test - accessing' }
 CTSimpleTreeTest >> testAccessObject [
 	"A tree is composed of an object (kind of node value) and children"
 	
@@ -37,24 +37,7 @@ CTSimpleTreeTest >> testAccessObject [
 	
 ]
 
-{ #category : #'test - working on that one' }
-CTSimpleTreeTest >> testAccessParent [
-	"Verify that a treeNode parent access methods"
-
-	sub1 parent: newTreeNode.
-	newTreeNode children add: sub1.
-	
-	self assert: newTreeNode hasNoParent.  "root's parent is nil"
-	self assert: sub1 parent equals: newTreeNode.
-	
-	newTreeNode := self treeClass for: 'node'.
-	newTreeNode addChildNode: sub1. 		"add child and auto assign me as its parent "
-	
-	self assert: newTreeNode hasNoParent.
-	self assert: sub1 parent equals: newTreeNode
-]
-
-{ #category : #'test accessing' }
+{ #category : #'test - children' }
 CTSimpleTreeTest >> testAddChildNode [
 	
 	| collection  |
@@ -69,9 +52,10 @@ CTSimpleTreeTest >> testAddChildNode [
 
 ]
 
-{ #category : #'test adding' }
+{ #category : #'test - adding' }
 CTSimpleTreeTest >> testAddChildrenSet [
-	"test addChildrenSet: aaTreeNodeSet"
+	"test addChildrenSet: aTreeNodeSet"
+	
 	| aSet |
 	aSet := Set new.
 	aSet add: sub1; add: sub2.
@@ -88,15 +72,32 @@ CTSimpleTreeTest >> testAddChildrenSet [
 	
 ]
 
-{ #category : #'test - working on that one' }
-CTSimpleTreeTest >> testBasicCreation [
+{ #category : #'test - basic node' }
+CTSimpleTreeTest >> testAddingAChildSetTheParentLink [
 	"Verify that a treeNode parent access methods"
+
+	sub1 parent: newTreeNode.
+	newTreeNode children add: sub1.
+	
+	self assert: newTreeNode hasNoParent.  "root's parent is nil"
+	self assert: sub1 parent equals: newTreeNode.
+	
+	newTreeNode := self treeClass for: 'node'.
+	newTreeNode addChildNode: sub1. 		"add child and auto assign me as its parent "
+	
+	self assert: newTreeNode hasNoParent.
+	self assert: sub1 parent equals: newTreeNode
+]
+
+{ #category : #'test - basic node' }
+CTSimpleTreeTest >> testBasicNodeDoesNotHaveParentOrChildren [
+	"Verify that a single node does not have parent or children before being added to a tree."
 
 	self assert: sub1 parent isNil.  
 	self assert: sub1 hasNoChildren
 ]
 
-{ #category : #'test removing' }
+{ #category : #'test - adding' }
 CTSimpleTreeTest >> testBeChildless [
 
 	self assert: newTreeNode children isEmpty.
@@ -110,7 +111,7 @@ CTSimpleTreeTest >> testBeChildless [
 	
 ]
 
-{ #category : #'test accessing' }
+{ #category : #'test - children' }
 CTSimpleTreeTest >> testChildren [
 	"test a treeNode has children?" 
 	"Answers an <OrderedCollection> of the child nodes or empty collection"
@@ -125,33 +126,27 @@ CTSimpleTreeTest >> testChildren [
 	
 ]
 
-{ #category : #'test adding' }
-CTSimpleTreeTest >> testCreateNewInstance [
-	"test - TreeNode for: anObject. Create a new TreeNode instance."
+{ #category : #'test - traversal' }
+CTSimpleTreeTest >> testCountNodes [
 
-	| aTreeNode root |
+	self assert: CTSimpleTree example count equals: 8
+	
+]
+
+{ #category : #'test - basic node' }
+CTSimpleTreeTest >> testCreateNewInstance [
+	"test - for: anObject. Create a new simple tree instance."
+
+	| aTreeNode |
 	aTreeNode := self treeClass for: 'node'.
 	self assert: aTreeNode object equals: 'node'.
 	self assert: aTreeNode parent isNil.
 	self assert: aTreeNode hasNoChildren.
 	self assert: aTreeNode children isEmpty.
-	root := self treeClass new.
-	root object: 'node'.
-	self assert: root object equals: aTreeNode object
+
 ]
 
-{ #category : #'test - working on that one' }
-CTSimpleTreeTest >> testCreation [
-	"Verify that a treeNode parent access methods"
-
-	self treeClass for: 'subnode1'.
-	self deny: newTreeNode hasParent.
-	self assert: newTreeNode hasNoParent.
-	self deny: newTreeNode hasChildren.
-	self assert: newTreeNode hasNoChildren
-]
-
-{ #category : #'test accessing' }
+{ #category : #'test - accessing' }
 CTSimpleTreeTest >> testDegree [
 	"new method added"
 
@@ -165,17 +160,30 @@ CTSimpleTreeTest >> testDegree [
 	self assert: sub3 degree equals: 3
 ]
 
-{ #category : #'test - working on that one' }
+{ #category : #'test - traversal' }
+CTSimpleTreeTest >> testNodesDo [
+
+	| res |
+	res := 0. 
+	CTSimpleTree example nodesDo: [ :each | res := res + 1 ].
+	self assert: res equals: 8
+	
+]
+
+{ #category : #'test - basic node' }
 CTSimpleTreeTest >> testObjectEquality [
 	"A tree is composed of an object (kind of node value) and children"
 
-	self assert: newTreeNode object equals: newTreeNode object.
+	self 
+		assert: newTreeNode object 
+		equals: newTreeNode object.
 	self
-		deny: (self treeClass new object: #node) equals: (self treeClass for: #node)
-	"this is normal since was not overloaded."
+		deny: (self treeClass new object: #node) 
+		equals: (self treeClass for: #node)
+	
 ]
 
-{ #category : #'test removing' }
+{ #category : #'test - adding' }
 CTSimpleTreeTest >> testRemoveChildNode [
 	"test - aTreeNoe removeChildNode: aTreeNode "
 
@@ -188,9 +196,10 @@ CTSimpleTreeTest >> testRemoveChildNode [
 	self assert: newTreeNode children size equals: 1
 ]
 
-{ #category : #'test accessing' }
+{ #category : #'test - children' }
 CTSimpleTreeTest >> testSetChildrenShouldSetParent [
 	"test- treeNode children: anOrderedCollection"
+	
 	| collection|
 	newTreeNode children: OrderedCollection new.
 	self assert: newTreeNode hasNoChildren.
