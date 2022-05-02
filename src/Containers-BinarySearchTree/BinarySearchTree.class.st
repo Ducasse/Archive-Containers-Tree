@@ -1,8 +1,9 @@
 "
-I'm a strangely design tree. 
+I'm a strangely designed tree. 
 Apparently the GSOC student did not look at my comments!
 
 Why a tree would have a have a root?
+Why dfs would start from the root of the receiver?
 Why a BinaryTree is not just an inductive structure 
 
 tree 
@@ -130,7 +131,7 @@ BinarySearchTree >> depth:aNode [
 
 { #category : #walking }
 BinarySearchTree >> dfs: info [
-	"Depth fisrt search for an information. If there is no key containing given infomration returns nil. If the info is found returns a node containing it"
+	"Depth fisrt search for an information. If there is no key containing given information returns nil. If the info is found returns a node containing it"
 	
 	self isEmpty 
 		ifTrue: [ ^nil ].

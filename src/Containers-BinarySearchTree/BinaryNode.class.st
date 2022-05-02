@@ -1,3 +1,6 @@
+"
+Probably to be fully thrown and rewritten too. 
+"
 Class {
 	#name : #BinaryNode,
 	#superclass : #Object,

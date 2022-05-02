@@ -10,15 +10,16 @@ Public API and Key Messages
 - addNode: aNode
 - remove: aData
 - isBalanced
-- CTAVLTree with: 3 >>> 'a CTAVLTree'
+- Instance creation: CTAVLTree with: 3 >>> 'a CTAVLTree'
 
-   	| aTree |
+```
+   | aTree |
 	aTree := CTAVLTree with: 1.
 	aTree addNode: (CTAVLTree with: 2).
 	aTree := aTree addNode: (CTAVLTree with: 3).
 	aTree sizeOfTree == 3.
 	aTree height == 1.
- 
+```
 
 Implementation Points
 Method add: aData from CTBinarySearch tree shouldn't be used, it doesn't return balanced tree.

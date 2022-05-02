@@ -1,3 +1,12 @@
+"
+I'm a simple binary tree. I have one value held by `object`, two children `leftChild` and `rightChild`, and a reference to my parent. 
+
+To be probably fully rewritten.
+	addNode: is strange
+	sizeOfTree too.
+	
+
+"
 Class {
 	#name : #CTBasicBinaryTree,
 	#superclass : #Object,
@@ -13,12 +22,13 @@ Class {
 { #category : #examples }
 CTBasicBinaryTree class >> binaryTree [
 	<sampleInstance>
-	| aTree  |
-	aTree := CTBasicBinaryTree with: 1.
-	aTree leftChild: (CTBasicBinaryTree with: 2).
-	aTree rightChild: (CTBasicBinaryTree with: 3).
-	aTree leftChild leftChild: (CTBasicBinaryTree with: 4).
-	aTree leftChild rightChild: (CTBasicBinaryTree with: 5).
+	
+	| aTree |
+	aTree := self with: 1.
+	aTree leftChild: (self with: 2).
+	aTree rightChild: (self with: 3).
+	aTree leftChild leftChild: (self with: 4).
+	aTree leftChild rightChild: (self with: 5).
 	^ aTree
 ]
 
@@ -62,10 +72,10 @@ CTBasicBinaryTree >> addNodeWithObject: anObject [
 		findNodeBreadthFirst: [ :x | x hasLeftChild not or: x hasRightChild not ]
 		startingFromANode: self.
 	aParent hasLeftChild
-		ifFalse: [ aParent leftChild: (CTBasicBinaryTree with: anObject).
+		ifFalse: [ aParent leftChild: (self class with: anObject).
 			addedNode := aParent leftChild ].
 	aParent hasRightChild not & addedNode isNil
-		ifTrue: [ aParent rightChild: (CTBasicBinaryTree with: anObject).
+		ifTrue: [ aParent rightChild: (self class with: anObject).
 			addedNode := aParent rightChild ].
 	^ addedNode
 ]
@@ -225,12 +235,6 @@ CTBasicBinaryTree >> hasParent [
 CTBasicBinaryTree >> hasRightChild [
 
 	^ rightChild isNotNil
-]
-
-{ #category : #initialize }
-CTBasicBinaryTree >> initialize [
-
-	super initialize.
 ]
 
 { #category : #testing }
