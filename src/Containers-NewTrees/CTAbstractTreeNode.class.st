@@ -54,7 +54,7 @@ CTAbstractTreeNode >> remove: aData [
 ]
 
 { #category : #operations }
-CTAbstractTreeNode >> sizeOfTree [
+CTAbstractTreeNode >> size [
 	"Answer the number of nodes in a tree"
 	
 	^ self subclassResponsibility

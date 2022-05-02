@@ -151,8 +151,8 @@ CTGeneralTree >> root: aNode [
 ]
 
 { #category : #operations }
-CTGeneralTree >> sizeOfTree [
+CTGeneralTree >> size [
 	"Ansert number of nodes in a tree"
 	
-	^ self root sizeOfTree
+	^ self root size
 ]

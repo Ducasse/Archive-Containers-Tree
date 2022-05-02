@@ -68,15 +68,15 @@ CTBinarySearchTree >> add: aData [
 
 { #category : #'adding/removing' }
 CTBinarySearchTree >> addNode: aNode [
-	"Add node to receiver"
+	"Add aNode to receiver and return the receiver."
 	
 	data isNil 
 		ifTrue: [ data := aNode data ].
-		
 	aNode data < data
 		ifTrue: [ leftChild := leftChild addNode: aNode ].
 	aNode data > data
 		ifTrue: [ rightChild := rightChild addNode: aNode ].
+	
 ]
 
 { #category : #accessing }
@@ -300,8 +300,8 @@ CTBinarySearchTree >> rightmostNode: aNode [
 ]
 
 { #category : #operations }
-CTBinarySearchTree >> sizeOfTree [
+CTBinarySearchTree >> size [
 	"Answer number of nodes in a tree"
 
-	^ 1 + leftChild sizeOfTree + rightChild sizeOfTree 
+	^ 1 + leftChild size + rightChild size 
 ]

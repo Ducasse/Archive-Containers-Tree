@@ -80,6 +80,6 @@ CTAbstractBinarySearchTree >> rightmostNode: aNode [
 ]
 
 { #category : #accessing }
-CTAbstractBinarySearchTree >> sizeOfTree [
+CTAbstractBinarySearchTree >> size [
 	^ self subclassResponsibility
 ]

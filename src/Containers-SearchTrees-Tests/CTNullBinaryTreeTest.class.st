@@ -156,5 +156,5 @@ CTNullBinaryTreeTest >> testSizeOfTree [
 
 	| aTree |
 	aTree := CTNullBinaryTree uniqueInstance.
-	self assert: aTree sizeOfTree equals: 0.
+	self assert: aTree size equals: 0.
 ]

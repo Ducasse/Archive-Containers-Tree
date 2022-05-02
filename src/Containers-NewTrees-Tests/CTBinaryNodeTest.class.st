@@ -219,5 +219,5 @@ CTBinaryNodeTest >> testSizeOfTree [
 
 	| tree |
 	tree := CTGeneralTree binaryTree.
-	self assert: tree root sizeOfTree equals: 5.
+	self assert: tree root size equals: 5.
 ]

@@ -88,7 +88,7 @@ CTNullNode >> remove: aNode [
 ]
 
 { #category : #operations }
-CTNullNode >> sizeOfTree [
+CTNullNode >> size [
 
 	^ 0
 ]

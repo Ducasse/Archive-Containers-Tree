@@ -276,7 +276,7 @@ CTNaryTreeTest >> testSizeOfTree [
 	| aTree |
 	aTree := CTNaryTree ABCtree. 
 	
-	self assert: aTree sizeOfTree equals: 7
+	self assert: aTree size equals: 7
 ]
 
 { #category : #'test testing' }

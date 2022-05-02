@@ -198,7 +198,7 @@ CTBinaryNode >> remove: aData [
 	"Remove a node with passed data. If there are more nodes with same data, only the first such node found using level order traversing will be deleted "
 	| node |
 	
-	self sizeOfTree == 1
+	self size == 1
 		ifTrue: [ ^ CTNullNode uniqueInstance ].
 		
 	node := self findBreadthFirst: [ :n | n data == aData ].
@@ -249,9 +249,9 @@ CTBinaryNode >> rightChild: aNode [
 ]
 
 { #category : #operations }
-CTBinaryNode >> sizeOfTree [
+CTBinaryNode >> size [
 	"Answer number of nodes in a tree"
 
-	^ 1 + leftChild sizeOfTree + rightChild sizeOfTree 
+	^ 1 + leftChild size + rightChild size 
 	
 ]

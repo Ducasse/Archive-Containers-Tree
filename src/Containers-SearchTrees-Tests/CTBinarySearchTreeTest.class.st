@@ -327,5 +327,5 @@ CTBinarySearchTreeTest >> testSizeOfTree [
 
 	| aTree |
 	aTree := CTBinarySearchTree binarySearchTree.
-	self assert: aTree sizeOfTree equals: 5.
+	self assert: aTree size equals: 5.
 ]

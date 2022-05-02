@@ -237,7 +237,7 @@ CTNaryTree >> remove: aCTNaryTree [
 	" Remove passed node from a receiver"
 
 	| leafNode |
-	self sizeOfTree = 1
+	self size = 1
 		ifTrue: [ ^ self data: nil ].
 	
 	aCTNaryTree isLeaf
@@ -255,7 +255,7 @@ CTNaryTree >> remove: aCTNaryTree [
 ]
 
 { #category : #operations }
-CTNaryTree >> sizeOfTree [
+CTNaryTree >> size [
 	"Answer number of nodes in a tree"
 	
 	| queue sum |	

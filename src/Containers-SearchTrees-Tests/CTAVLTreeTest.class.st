@@ -148,7 +148,7 @@ CTAVLTreeTest >> testRemove [
 	aTree := CTAVLTree with: 1.
 	aTree addNode: (CTAVLTree with: 2).
 	aTree := aTree remove: 2.
-	self assert: aTree sizeOfTree equals: 1.
+	self assert: aTree size equals: 1.
 	self assert: aTree data equals: 1.
 ]
 
@@ -217,7 +217,7 @@ CTAVLTreeTest >> testRemoveRightRotate [
 	
 	aTree := aTree remove: 7.
 	
-	self assert: aTree sizeOfTree equals: 3.
+	self assert: aTree size equals: 3.
 	self assert: aTree data equals: 3.
 	self assert: aTree leftChild data equals: 1.
 	self assert: aTree rightChild data equals: 6.

@@ -109,5 +109,5 @@ CTNullNodeTest >> testSizeOfTree [
 
 	| tree |
 	tree := CTGeneralTree emptyTree.
-	self assert: tree root sizeOfTree equals: 0.
+	self assert: tree root size equals: 0.
 ]

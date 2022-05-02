@@ -328,7 +328,7 @@ CTBasicBinaryTree >> rightChild: aTree [
 ]
 
 { #category : #operations }
-CTBasicBinaryTree >> sizeOfTree [
+CTBasicBinaryTree >> size [
 	"Answer number of nodes in a tree"
 	
 	| leftSize rightSize |
@@ -339,10 +339,10 @@ CTBasicBinaryTree >> sizeOfTree [
 		ifTrue: [ ^ 1 ].
 		
 	self hasLeftChild 
-		ifTrue: [ leftSize := leftChild sizeOfTree ].
+		ifTrue: [ leftSize := leftChild size ].
 	
 	self hasRightChild
-		ifTrue: [ rightSize := rightChild sizeOfTree ].
+		ifTrue: [ rightSize := rightChild size ].
 			
 	^ 1 + leftSize + rightSize
 ]
