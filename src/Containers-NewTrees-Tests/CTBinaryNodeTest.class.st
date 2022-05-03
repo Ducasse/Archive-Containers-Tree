@@ -7,7 +7,7 @@ Class {
 { #category : #'adding/removing' }
 CTBinaryNodeTest >> sampleBinaryTree [
 
-	^ CTBinaryNode sampleBinaryTree 
+	^ CTBinaryTree sampleBinaryTree 
 ]
 
 { #category : #'adding/removing' }
@@ -26,7 +26,7 @@ CTBinaryNodeTest >> testAddNode [
 CTBinaryNodeTest >> testData [ 
 
 	| aTree |
-	aTree := CTGeneralTree with: (CTBinaryNode with: 1).
+	aTree := CTGeneralTree with: (CTBinaryTree with: 1).
 	aTree root data: 2.
 	self assert: aTree root data equals: 2.
 ]
@@ -85,7 +85,7 @@ CTBinaryNodeTest >> testInOrderDo [
 CTBinaryNodeTest >> testInitialize [ 
 
 	| aNode |
-	aNode := CTBinaryNode new.
+	aNode := CTBinaryTree new.
 	self assert: aNode data isNil.
 	self assert: aNode leftChild isNullNode.
 	self assert: aNode rightChild isNullNode.
@@ -95,7 +95,7 @@ CTBinaryNodeTest >> testInitialize [
 CTBinaryNodeTest >> testInstantiateWith [
 
 	| aNode |
-	aNode := CTBinaryNode with: 2.
+	aNode := CTBinaryTree with: 2.
 	self assert: aNode data equals: 2.
 ]
 
@@ -103,7 +103,7 @@ CTBinaryNodeTest >> testInstantiateWith [
 CTBinaryNodeTest >> testIsLeaf [
 
 	| aTree |
-	aTree := CTGeneralTree with: (CTBinaryNode with: 1). 
+	aTree := CTGeneralTree with: (CTBinaryTree with: 1). 
 	self assert: aTree root isLeaf.
 ]
 
@@ -111,8 +111,8 @@ CTBinaryNodeTest >> testIsLeaf [
 CTBinaryNodeTest >> testIsNotLeaf [
 
 	| aTree |
-	aTree := CTGeneralTree with: (CTBinaryNode with: 1). 
-	aTree root leftChild: (CTBinaryNode with: 2).
+	aTree := CTGeneralTree with: (CTBinaryTree with: 1). 
+	aTree root leftChild: (CTBinaryTree with: 2).
 	self deny: aTree root isLeaf.
 ]
 
@@ -128,8 +128,8 @@ CTBinaryNodeTest >> testIsNullNode [
 CTBinaryNodeTest >> testLeftChild [ 
 
 	| aTree |
-	aTree := CTGeneralTree with: (CTBinaryNode with: 1).
-	aTree root leftChild: (CTBinaryNode with: 2).
+	aTree := CTGeneralTree with: (CTBinaryTree with: 1).
+	aTree root leftChild: (CTBinaryTree with: 2).
 	self assert: aTree root leftChild data equals: 2.
 ]
 
@@ -197,7 +197,7 @@ CTBinaryNodeTest >> testRemoveNonExistingNode [
 
 	| aTree |
 	aTree := self sampleBinaryTree.
-	aTree remove: (CTBinaryNode with: 7).
+	aTree remove: (CTBinaryTree with: 7).
 	self assert: aTree data equals: 1.
 ]
 
@@ -205,8 +205,8 @@ CTBinaryNodeTest >> testRemoveNonExistingNode [
 CTBinaryNodeTest >> testRightChild [ 
 
 	| aTree |
-	aTree := CTGeneralTree with: (CTBinaryNode with: 1).
-	aTree root rightChild: (CTBinaryNode with: 2).
+	aTree := CTGeneralTree with: (CTBinaryTree with: 1).
+	aTree root rightChild: (CTBinaryTree with: 2).
 	self assert: aTree root rightChild data equals: 2.
 ]
 

@@ -15,7 +15,7 @@ Internal Representation and Key Implementation Points.
 
 "
 Class {
-	#name : #CTBinaryNode,
+	#name : #CTBinaryTree,
 	#superclass : #CTAbstractTreeNode,
 	#instVars : [
 		'leftChild',
@@ -25,8 +25,8 @@ Class {
 	#category : #'Containers-NewTrees'
 }
 
-{ #category : #'instance creation' }
-CTBinaryNode class >> sampleBinaryTree [
+{ #category : #sample }
+CTBinaryTree class >> sampleBinaryTree [
 	<sampleInstance>
 	
 	| aTree |
@@ -38,23 +38,48 @@ CTBinaryNode class >> sampleBinaryTree [
 	^ aTree
 ]
 
+{ #category : #sample }
+CTBinaryTree class >> sampleEmptyBinaryTree [
+	<sampleInstance>
+	
+ 	^ self new
+]
+
 { #category : #'instance creation' }
-CTBinaryNode class >> with: anObject [
+CTBinaryTree class >> with: anObject [
 
 	^ self new data: anObject
 ]
 
 { #category : #'adding/removing' }
-CTBinaryNode >> addNode: aData [
+CTBinaryTree >> addBalancedNode: aData [
 	"Add node in level order making a tree balanced. Modify receiver to contain entire tree with a node added."
 
 	| aParent added |
 	added := false.
 	aParent := self findBreadthFirst: [ :n | n leftChild isNullNode | n rightChild isNullNode ].
 	aParent leftChild isNullNode
-		ifTrue: [  aParent leftChild: (CTBinaryNode with: aData). added := true ].
+		ifTrue: [  aParent leftChild: (CTBinaryTree with: aData). added := true ].
 	aParent rightChild isNullNode & added not
-		ifTrue: [  aParent rightChild: (CTBinaryNode with: aData) ].
+		ifTrue: [  aParent rightChild: (CTBinaryTree with: aData) ].
+	
+	 
+	
+	
+	
+]
+
+{ #category : #'adding/removing' }
+CTBinaryTree >> addNode: aData [
+	"Add node in level order making a tree balanced. Modify receiver to contain entire tree with a node added."
+
+	| aParent added |
+	added := false.
+	aParent := self findBreadthFirst: [ :n | n leftChild isNullNode | n rightChild isNullNode ].
+	aParent leftChild isNullNode
+		ifTrue: [  aParent leftChild: (CTBinaryTree with: aData). added := true ].
+	aParent rightChild isNullNode & added not
+		ifTrue: [  aParent rightChild: (CTBinaryTree with: aData) ].
 	
 	 
 	
@@ -63,19 +88,19 @@ CTBinaryNode >> addNode: aData [
 ]
 
 { #category : #accessing }
-CTBinaryNode >> data [ 
+CTBinaryTree >> data [ 
 
 	^ data
 ]
 
 { #category : #accessing }
-CTBinaryNode >> data: anObject [
+CTBinaryTree >> data: anObject [
 
 	data := anObject
 ]
 
 { #category : #accessing }
-CTBinaryNode >> deepestRightmostNode [
+CTBinaryTree >> deepestRightmostNode [
 	"Answer node that is deepest right child node"
 
 	| queue node |
@@ -93,14 +118,14 @@ CTBinaryNode >> deepestRightmostNode [
 ]
 
 { #category : #operations }
-CTBinaryNode >> depth [
+CTBinaryTree >> depth [
 	"Answer depth of a tree"
 
 	^ self leftChild depth max: self rightChild  depth + 1
 ]
 
 { #category : #traversing }
-CTBinaryNode >> findBreadthFirst: aBlock [
+CTBinaryTree >> findBreadthFirst: aBlock [
 	"Answer a node that matches condition from passed block. The lookup is done in level order manner"
 	
 	| queue |	
@@ -120,7 +145,7 @@ CTBinaryNode >> findBreadthFirst: aBlock [
 ]
 
 { #category : #traversing }
-CTBinaryNode >> findDeepFirst: aBlock [
+CTBinaryTree >> findDeepFirst: aBlock [
 	"Answer a node that matches condition specified in a block. The lookup is done in depth first search manner."
 	
 	| node |
@@ -136,7 +161,7 @@ CTBinaryNode >> findDeepFirst: aBlock [
 ]
 
 { #category : #traversing }
-CTBinaryNode >> inOrderDo: aBlock [
+CTBinaryTree >> inOrderDo: aBlock [
 	"In-order traversing  executing a block on each node"
 
 	self leftChild inOrderDo: aBlock.
@@ -146,7 +171,7 @@ CTBinaryNode >> inOrderDo: aBlock [
 ]
 
 { #category : #initialize }
-CTBinaryNode >> initialize [
+CTBinaryTree >> initialize [
 
 	super initialize.
 	leftChild := CTNullNode uniqueInstance.
@@ -156,32 +181,32 @@ CTBinaryNode >> initialize [
 ]
 
 { #category : #testing }
-CTBinaryNode >> isLeaf [
+CTBinaryTree >> isLeaf [
 
 	^ self leftChild isNullNode & self rightChild isNullNode
 ]
 
 { #category : #testing }
-CTBinaryNode >> isNullNode [
+CTBinaryTree >> isNullNode [
 	
 	^ false
 ]
 
 { #category : #accessing }
-CTBinaryNode >> leftChild [
+CTBinaryTree >> leftChild [
 	
 	^ leftChild
 ]
 
 { #category : #accessing }
-CTBinaryNode >> leftChild: aNode [
+CTBinaryTree >> leftChild: aNode [
 	"comment stating purpose of message"
 
 	leftChild := aNode
 ]
 
 { #category : #traversing }
-CTBinaryNode >> postOrderDo: aBlock [
+CTBinaryTree >> postOrderDo: aBlock [
 	"Post-order traversing  executing a block on each node"
 
 	self leftChild postOrderDo: aBlock.
@@ -190,7 +215,7 @@ CTBinaryNode >> postOrderDo: aBlock [
 ]
 
 { #category : #traversing }
-CTBinaryNode >> preOrderDo: aBlock [
+CTBinaryTree >> preOrderDo: aBlock [
 	"Pre-order traversing  executing a block on each node"
 
 	aBlock value: self.
@@ -200,7 +225,7 @@ CTBinaryNode >> preOrderDo: aBlock [
 ]
 
 { #category : #'adding/removing' }
-CTBinaryNode >> remove: aData [
+CTBinaryTree >> remove: aData [
 	"Remove a node with passed data. If there are more nodes with same data, only the first such node found using level order traversing will be deleted "
 	| node |
 	
@@ -219,7 +244,7 @@ CTBinaryNode >> remove: aData [
 ]
 
 { #category : #'adding/removing' }
-CTBinaryNode >> removeDeepestRightmostNode [
+CTBinaryTree >> removeDeepestRightmostNode [
 
 	| node |
 	
@@ -230,7 +255,7 @@ CTBinaryNode >> removeDeepestRightmostNode [
 ]
 
 { #category : #'adding/removing' }
-CTBinaryNode >> removeLeafNode: aNode [
+CTBinaryTree >> removeLeafNode: aNode [
 
 	| parent |
 
@@ -243,19 +268,19 @@ CTBinaryNode >> removeLeafNode: aNode [
 ]
 
 { #category : #accessing }
-CTBinaryNode >> rightChild [
+CTBinaryTree >> rightChild [
 	
 	^ rightChild
 ]
 
 { #category : #accessing }
-CTBinaryNode >> rightChild: aNode [
+CTBinaryTree >> rightChild: aNode [
 	
 	rightChild := aNode
 ]
 
 { #category : #operations }
-CTBinaryNode >> size [
+CTBinaryTree >> size [
 	"Answer number of nodes in a tree"
 
 	^ 1 + leftChild size + rightChild size 

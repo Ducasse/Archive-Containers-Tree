@@ -44,12 +44,10 @@ CTAVLTree >> addNode: aNode [
 		ifTrue: [ rightChild := rightChild addNode: aNode ].
 		
 	factor := self balanceFactor.
-	
 	factor > 1
 		ifTrue: [ aNode data < leftChild data
 				ifFalse: [ leftChild := leftChild leftRotate ].
 			^ self rightRotate ].
-		
 	factor < -1
 		ifFalse: [ ^ self ].
 	aNode data > rightChild data

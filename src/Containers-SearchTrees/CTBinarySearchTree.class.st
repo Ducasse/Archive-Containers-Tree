@@ -36,10 +36,11 @@ Class {
 }
 
 { #category : #examples }
-CTBinarySearchTree class >> binarySearchTree [
+CTBinarySearchTree class >> sampleBinarySearchTree [
 	<sampleInstance>
+	
 	| aTree |
-	aTree := CTBinarySearchTree with: 8.
+	aTree := self with: 8.
 	aTree add: 3.
 	aTree add: 10.
 	aTree add: 1.

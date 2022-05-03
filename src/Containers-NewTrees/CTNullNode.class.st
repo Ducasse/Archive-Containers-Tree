@@ -29,7 +29,7 @@ CTNullNode class >> uniqueInstance [
 CTNullNode >> addNode: aData [ 
 	"Answer a tree with binary node"
 
-	^ CTBinaryNode with: aData
+	^ CTBinaryTree with: aData
 
 ]
 
