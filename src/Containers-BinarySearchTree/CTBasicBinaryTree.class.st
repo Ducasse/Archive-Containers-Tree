@@ -33,8 +33,22 @@ CTBasicBinaryTree class >> binaryTree [
 ]
 
 { #category : #examples }
-CTBasicBinaryTree class >> binaryTreeEmpty [
+CTBasicBinaryTree class >> sampleBinaryTree [
 	<sampleInstance>
+	
+	| aTree |
+	aTree := self with: 1.
+	aTree leftChild: (self with: 2).
+	aTree rightChild: (self with: 3).
+	aTree leftChild leftChild: (self with: 4).
+	aTree leftChild rightChild: (self with: 5).
+	^ aTree
+]
+
+{ #category : #examples }
+CTBasicBinaryTree class >> sampleEmptyBinaryTree [
+	<sampleInstance>
+	
  	^ self new
 ]
 

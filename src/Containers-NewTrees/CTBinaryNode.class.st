@@ -26,10 +26,22 @@ Class {
 }
 
 { #category : #'instance creation' }
+CTBinaryNode class >> sampleBinaryTree [
+	<sampleInstance>
+	
+	| aTree |
+	aTree := self with: 1.
+	aTree leftChild: (self with: 2).
+	aTree rightChild: (self with: 3).
+	aTree leftChild leftChild: (self with: 4).
+	aTree leftChild rightChild: (self with: 5).
+	^ aTree
+]
+
+{ #category : #'instance creation' }
 CTBinaryNode class >> with: anObject [
 
-	^ self new
-	  data: anObject
+	^ self new data: anObject
 ]
 
 { #category : #'adding/removing' }
@@ -93,21 +105,16 @@ CTBinaryNode >> findBreadthFirst: aBlock [
 	
 	| queue |	
 	queue := OrderedCollection new.
-	
 	queue addLast: self.
-	
 	[ queue isNotEmpty ] whileTrue: [ 
 		| node |
 		node := queue removeFirst.
-		
 		node isNullNode
 			ifTrue: [ ^ node ].
-			
 		(aBlock value: node )
-			ifTrue: [^ node ].
-			
+			ifTrue: [^ node ].		
 		queue addLast: node leftChild.
-		queue addLast: node rightChild ].
+		queue addLast: node rightChild ]
 	
 
 ]
@@ -119,7 +126,6 @@ CTBinaryNode >> findDeepFirst: aBlock [
 	| node |
 	(aBlock value: self)
 		ifTrue: [ ^ self ].
-
 	node := self leftChild findDeepFirst: aBlock.
 
 	(node isNullNode)
