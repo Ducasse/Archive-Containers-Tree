@@ -91,7 +91,7 @@ CTBinaryNodeTest >> testInOrderDo [
 CTBinaryNodeTest >> testInitialize [ 
 
 	| aNode |
-	aNode := CTBinaryTree new.
+	aNode := self binaryTreeClass new.
 	self assert: aNode object isNil.
 	self assert: aNode leftChild isNullNode.
 	self assert: aNode rightChild isNullNode.
@@ -101,7 +101,7 @@ CTBinaryNodeTest >> testInitialize [
 CTBinaryNodeTest >> testInstantiateWith [
 
 	| aNode |
-	aNode := CTBinaryTree with: 2.
+	aNode := self binaryTreeClass with: 2.
 	self assert: aNode object equals: 2.
 ]
 
@@ -134,9 +134,9 @@ CTBinaryNodeTest >> testIsNullNode [
 CTBinaryNodeTest >> testLeftChild [ 
 
 	| aTree |
-	aTree := CTGeneralTree with: (CTBinaryTree with: 1).
-	aTree root leftChild: (CTBinaryTree with: 2).
-	self assert: aTree root leftChild object equals: 2.
+	aTree := self binaryTreeClass with: (self binaryTreeClass with: 1).
+	aTree leftChild: (self binaryTreeClass with: 2).
+	self assert: aTree leftChild object equals: 2.
 ]
 
 { #category : #'test - traversing' }
@@ -203,7 +203,7 @@ CTBinaryNodeTest >> testRemoveNonExistingNode [
 
 	| aTree |
 	aTree := self sampleBinaryTree.
-	aTree remove: (CTBinaryTree with: 7).
+	aTree remove: (self binaryTreeClass with: 7).
 	self assert: aTree object equals: 1.
 ]
 
@@ -211,13 +211,13 @@ CTBinaryNodeTest >> testRemoveNonExistingNode [
 CTBinaryNodeTest >> testRightChild [ 
 
 	| aTree |
-	aTree := CTGeneralTree with: (CTBinaryTree with: 1).
-	aTree root rightChild: (CTBinaryTree with: 2).
-	self assert: aTree root rightChild object equals: 2.
+	aTree := self binaryTreeClass with: (self binaryTreeClass with: 1).
+	aTree rightChild: (self binaryTreeClass with: 2).
+	self assert: aTree rightChild object equals: 2.
 ]
 
 { #category : #'test - operations' }
-CTBinaryNodeTest >> testSizeOfTree [
+CTBinaryNodeTest >> testSize [
 
 	| tree |
 	tree := self sampleBinaryTree.
