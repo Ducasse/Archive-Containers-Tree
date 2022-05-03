@@ -19,9 +19,9 @@ CTBinarySearchTreeTest >> testAdd [
 	aTree add: 10.
 	aTree add: 6.
 
-	self assert: aTree leftChild data equals: 3.
-	self assert: aTree rightChild data equals: 10.
-	self assert: aTree leftChild rightChild data equals: 6
+	self assert: aTree leftChild object equals: 3.
+	self assert: aTree rightChild object equals: 10.
+	self assert: aTree leftChild rightChild object equals: 6
 ]
 
 { #category : #'test adding/removing' }
@@ -32,7 +32,7 @@ CTBinarySearchTreeTest >> testAddDuplicates [
 	aTree add: 3.
 	aTree add: 3.
 
-	self assert: aTree data equals: 3.
+	self assert: aTree object equals: 3.
 	self assert: aTree leftChild isNullNode.
 	self assert: aTree rightChild isNullNode
 ]
@@ -46,9 +46,9 @@ CTBinarySearchTreeTest >> testAddNode [
 	aTree addNode: (self binarySearchTreeClass with: 10).
 	aTree addNode: (self binarySearchTreeClass with: 6).
 
-	self assert: aTree leftChild data equals: 3.
-	self assert: aTree rightChild data equals: 10.
-	self assert: aTree leftChild rightChild data equals: 6
+	self assert: aTree leftChild object equals: 3.
+	self assert: aTree rightChild object equals: 10.
+	self assert: aTree leftChild rightChild object equals: 6
 ]
 
 { #category : #'test adding/removing' }
@@ -58,7 +58,7 @@ CTBinarySearchTreeTest >> testAddToEmptyTree [
 	aTree := self binarySearchTreeClass new.
 	aTree add: 3.
 
-	self assert: aTree data equals: 3
+	self assert: aTree object equals: 3
 ]
 
 { #category : #'test - accessing' }
@@ -66,8 +66,8 @@ CTBinarySearchTreeTest >> testData [
 
 	| aTree |
 	aTree := self binarySearchTreeClass new.
-	aTree data: 1.
-	self assert: aTree data equals: 1
+	aTree object: 1.
+	self assert: aTree object equals: 1
 ]
 
 { #category : #'test - operations' }
@@ -84,8 +84,8 @@ CTBinarySearchTreeTest >> testFindBreadthFirst [
 	| aTree node |
 	aTree := self binarySearchTreeClass sampleBinarySearchTree.
 
-	node := aTree findBreadthFirst: [ :n | n data == 10 ].
-	self assert: node data equals: 10
+	node := aTree findBreadthFirst: [ :n | n object == 10 ].
+	self assert: node object equals: 10
 ]
 
 { #category : #'test - traversing' }
@@ -94,8 +94,8 @@ CTBinarySearchTreeTest >> testFindDeepFirst [
 	| aTree node |
 	aTree := self binarySearchTreeClass sampleBinarySearchTree.
 
-	node := aTree findDeepFirst: [ :n | n data == 6 ].
-	self assert: node data equals: 6
+	node := aTree findDeepFirst: [ :n | n object == 6 ].
+	self assert: node object equals: 6
 ]
 
 { #category : #'test lookup' }
@@ -103,7 +103,7 @@ CTBinarySearchTreeTest >> testFindNode [
 
 	| aTree |
 	aTree := self binarySearchTreeClass sampleBinarySearchTree.
-	self assert: (aTree findNode: 6) data equals: 6
+	self assert: (aTree findNode: 6) object equals: 6
 ]
 
 { #category : #'test lookup' }
@@ -119,7 +119,7 @@ CTBinarySearchTreeTest >> testFindRoot [
 
 	| aTree |
 	aTree := self binarySearchTreeClass with: 1.
-	self assert: (aTree findNode: 1) data equals: 1
+	self assert: (aTree findNode: 1) object equals: 1
 ]
 
 { #category : #'test testing' }
@@ -158,7 +158,7 @@ CTBinarySearchTreeTest >> testInOrderDo [
 	result := OrderedCollection new.
 	testResult := #( 1 3 6 8 10 ) asOrderedCollection.
 
-	aTree inOrderDo: [ :node | result add: node data ].
+	aTree inOrderDo: [ :node | result add: node object ].
 
 	1 to: 5 do: [ :i | 
 	self assert: (testResult at: i) equals: (result at: i) ]
@@ -195,7 +195,7 @@ CTBinarySearchTreeTest >> testLeftChild [
 	| aTree |
 	aTree := self binarySearchTreeClass with: 5.
 	aTree add: 3.
-	self assert: aTree leftChild data equals: 3
+	self assert: aTree leftChild object equals: 3
 ]
 
 { #category : #'test - accessing' }
@@ -203,7 +203,7 @@ CTBinarySearchTreeTest >> testLeftmostNode [
 
 	| aTree |
 	aTree := self binarySearchTreeClass sampleBinarySearchTree.
-	self assert: (aTree leftmostNode: aTree) data equals: 1
+	self assert: (aTree leftmostNode: aTree) object equals: 1
 ]
 
 { #category : #'test - operations' }
@@ -230,7 +230,7 @@ CTBinarySearchTreeTest >> testPostOrderDo [
 	result := OrderedCollection new.
 	testResult := #( 1 6 3 10 8 ) asOrderedCollection.
 
-	aTree postOrderDo: [ :node | result add: node data ].
+	aTree postOrderDo: [ :node | result add: node object ].
 
 	1 to: 5 do: [ :i | 
 	self assert: (testResult at: i) equals: (result at: i) ]
@@ -244,7 +244,7 @@ CTBinarySearchTreeTest >> testPreOrderDo [
 	result := OrderedCollection new.
 	testResult := #( 8 3 1 6 10 ) asOrderedCollection.
 
-	aTree preOrderDo: [ :node | result add: node data ].
+	aTree preOrderDo: [ :node | result add: node object ].
 
 	1 to: 5 do: [ :i | 
 	self assert: (testResult at: i) equals: (result at: i) ]
@@ -257,7 +257,7 @@ CTBinarySearchTreeTest >> testRemove [
 	aTree := self binarySearchTreeClass sampleBinarySearchTree.
 	aTree remove: 3.
 
-	self assert: aTree leftChild data equals: 6.
+	self assert: aTree leftChild object equals: 6.
 	self assert: aTree leftChild rightChild isNullNode
 ]
 
@@ -270,7 +270,7 @@ CTBinarySearchTreeTest >> testRemoveHasOnlyLeftChild [
 
 	aTree := aTree remove: 3.
 
-	self assert: aTree data equals: 1
+	self assert: aTree object equals: 1
 ]
 
 { #category : #'test adding/removing' }
@@ -282,7 +282,7 @@ CTBinarySearchTreeTest >> testRemoveHasOnlyRightChild [
 
 	aTree := aTree remove: 3.
 
-	self assert: aTree data equals: 5
+	self assert: aTree object equals: 5
 ]
 
 { #category : #'test adding/removing' }
@@ -294,7 +294,7 @@ CTBinarySearchTreeTest >> testRemoveLeafNode [
 
 	aTree := aTree remove: 5.
 
-	self assert: aTree data equals: 3
+	self assert: aTree object equals: 3
 ]
 
 { #category : #'test adding/removing' }
@@ -313,7 +313,7 @@ CTBinarySearchTreeTest >> testRightChild [
 	| aTree |
 	aTree := self binarySearchTreeClass with: 5.
 	aTree add: 7.
-	self assert: aTree rightChild data equals: 7
+	self assert: aTree rightChild object equals: 7
 ]
 
 { #category : #'test - accessing' }
@@ -321,7 +321,7 @@ CTBinarySearchTreeTest >> testRightmostNode [
 
 	| aTree |
 	aTree := self binarySearchTreeClass sampleBinarySearchTree.
-	self assert: (aTree rightmostNode: aTree) data equals: 10
+	self assert: (aTree rightmostNode: aTree) object equals: 10
 ]
 
 { #category : #'test - operations' }

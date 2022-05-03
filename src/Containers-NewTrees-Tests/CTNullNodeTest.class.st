@@ -30,7 +30,7 @@ CTNullNodeTest >> testAddNode [
 
 	| node |
 	node := aTree addNode: 6.
-	self assert: node data equals: 6.
+	self assert: node object equals: 6.
 ]
 
 { #category : #'test - operations' }
@@ -43,7 +43,7 @@ CTNullNodeTest >> testDepth [
 CTNullNodeTest >> testFindBreadthFirst [
 
 	| node | 
-	node := aTree findBreadthFirst: [ :n| n data == 6 ].
+	node := aTree findBreadthFirst: [ :n| n object == 6 ].
 	self assert: node isNullNode.
 ]
 
@@ -51,7 +51,7 @@ CTNullNodeTest >> testFindBreadthFirst [
 CTNullNodeTest >> testFindDeepFirst [
 	
 	| node | 
-	node := aTree findDeepFirst: [ :n| n data == 6].
+	node := aTree findDeepFirst: [ :n| n object == 6].
 	self assert: node isNullNode.
 ]
 
@@ -60,7 +60,7 @@ CTNullNodeTest >> testInOrderDo [
 
 	| result |
 	result:= OrderedCollection new.
-	aTree inOrderDo: [:node | result add: node data].
+	aTree inOrderDo: [:node | result add: node object].
 	self assert: result isEmpty. 
 ]
 
@@ -83,7 +83,7 @@ CTNullNodeTest >> testPostOrderDo [
 
 	| result |
 	result:= OrderedCollection new.	
-	aTree postOrderDo: [:node | result add: node data].
+	aTree postOrderDo: [:node | result add: node object].
 	self assert: result isEmpty. 
 
 ]
@@ -93,7 +93,7 @@ CTNullNodeTest >> testPreOrderDo [
 
 	| result |
 	result:= OrderedCollection new.
-	aTree preOrderDo: [:node | result add: node data].
+	aTree preOrderDo: [:node | result add: node object].
 	self assert: result isEmpty. 
 ]
 

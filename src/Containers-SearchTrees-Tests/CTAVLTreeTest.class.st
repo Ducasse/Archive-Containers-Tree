@@ -11,9 +11,9 @@ CTAVLTreeTest >> testAddNode [
 	aTree := CTAVLTree with: 1.
 	aTree addNode: (CTAVLTree with: 2).
 	
-	aTree rightChild data.
+	aTree rightChild object.
 	
-	self assert: aTree rightChild data equals: 2.
+	self assert: aTree rightChild object equals: 2.
 ]
 
 { #category : #'test adding/removing' }
@@ -25,9 +25,9 @@ CTAVLTreeTest >> testAddNodeLeftRightRotate [
 	aTree := aTree addNode: (CTAVLTree with: 2).
 
 	
-	self assert: aTree data equals: 2.
-	self assert: aTree leftChild data equals: 1.
-	self assert: aTree rightChild data equals: 3.
+	self assert: aTree object equals: 2.
+	self assert: aTree leftChild object equals: 1.
+	self assert: aTree rightChild object equals: 3.
 	
 
 ]
@@ -40,9 +40,9 @@ CTAVLTreeTest >> testAddNodeLeftRotate [
 	aTree addNode: (CTAVLTree with: 2).
 	aTree := aTree addNode: (CTAVLTree with: 3).
 	
-	self assert: aTree data equals: 2.
-	self assert: aTree leftChild data equals: 1.
-	self assert: aTree rightChild data equals: 3.
+	self assert: aTree object equals: 2.
+	self assert: aTree leftChild object equals: 1.
+	self assert: aTree rightChild object equals: 3.
 
 ]
 
@@ -54,9 +54,9 @@ CTAVLTreeTest >> testAddNodeRightLeftRotate [
 	aTree addNode: (CTAVLTree with: 3).
 	aTree := aTree addNode: (CTAVLTree with: 2).
 		
-	self assert: aTree data equals: 2.
-	self assert: aTree leftChild data equals: 1.
-	self assert: aTree rightChild data equals: 3.
+	self assert: aTree object equals: 2.
+	self assert: aTree leftChild object equals: 1.
+	self assert: aTree rightChild object equals: 3.
 
 ]
 
@@ -68,9 +68,9 @@ CTAVLTreeTest >> testAddNodeRightRotate [
 	aTree addNode: (CTAVLTree with: 2).
 	aTree := aTree addNode: (CTAVLTree with: 1).
 		
-	self assert: aTree data equals: 2.
-	self assert: aTree leftChild data equals: 1.
-	self assert: aTree rightChild data equals: 3.
+	self assert: aTree object equals: 2.
+	self assert: aTree leftChild object equals: 1.
+	self assert: aTree rightChild object equals: 3.
 
 ]
 
@@ -134,9 +134,9 @@ CTAVLTreeTest >> testLeftRotate [
 	
 	node := aTree leftRotate.
 	
-	self assert: node data equals: 9.
-	self assert: node leftChild data equals: 8.
-	self assert: node rightChild data equals: 10.
+	self assert: node object equals: 9.
+	self assert: node leftChild object equals: 8.
+	self assert: node rightChild object equals: 10.
 
 
 ]
@@ -149,7 +149,7 @@ CTAVLTreeTest >> testRemove [
 	aTree addNode: (CTAVLTree with: 2).
 	aTree := aTree remove: 2.
 	self assert: aTree size equals: 1.
-	self assert: aTree data equals: 1.
+	self assert: aTree object equals: 1.
 ]
 
 { #category : #'test adding/removing' }
@@ -164,9 +164,9 @@ CTAVLTreeTest >> testRemoveLeftRightRotate [
 	aTree := aTree remove: 4.
 
 	
-	self assert: aTree data equals: 2.
-	self assert: aTree leftChild data equals: 1.
-	self assert: aTree rightChild data equals: 3.
+	self assert: aTree object equals: 2.
+	self assert: aTree leftChild object equals: 1.
+	self assert: aTree rightChild object equals: 3.
 	
 
 ]
@@ -182,9 +182,9 @@ CTAVLTreeTest >> testRemoveLeftRotate [
 		
 	aTree := aTree remove: 7.
 	
-	self assert: aTree data equals: 9.
-	self assert: aTree leftChild data equals: 8.
-	self assert: aTree rightChild data equals: 10.
+	self assert: aTree object equals: 9.
+	self assert: aTree leftChild object equals: 8.
+	self assert: aTree rightChild object equals: 10.
 
 
 ]
@@ -200,9 +200,9 @@ CTAVLTreeTest >> testRemoveRightLeftRotate [
 	
 	aTree := aTree remove: 0.
 		
-	self assert: aTree data equals: 2.
-	self assert: aTree leftChild data equals: 1.
-	self assert: aTree rightChild data equals: 3.
+	self assert: aTree object equals: 2.
+	self assert: aTree leftChild object equals: 1.
+	self assert: aTree rightChild object equals: 3.
 
 ]
 
@@ -218,9 +218,9 @@ CTAVLTreeTest >> testRemoveRightRotate [
 	aTree := aTree remove: 7.
 	
 	self assert: aTree size equals: 3.
-	self assert: aTree data equals: 3.
-	self assert: aTree leftChild data equals: 1.
-	self assert: aTree rightChild data equals: 6.
+	self assert: aTree object equals: 3.
+	self assert: aTree leftChild object equals: 1.
+	self assert: aTree rightChild object equals: 6.
 ]
 
 { #category : #'test rotating' }
@@ -233,9 +233,9 @@ CTAVLTreeTest >> testRightRotate [
 	
 	node := aTree rightRotate.
 	
-	self assert: node data equals: 2.
-	self assert: node leftChild data equals: 1.
-	self assert: node rightChild data equals: 3.
+	self assert: node object equals: 2.
+	self assert: node leftChild object equals: 1.
+	self assert: node rightChild object equals: 3.
 
 
 ]

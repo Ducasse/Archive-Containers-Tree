@@ -56,7 +56,7 @@ CTNaryTree class >> with: anObject [
 	"Return a new tree whose data is anObject and no children. 
 	(a Tree is composed of an object and a set of children)."
 	^ self new 
-		data: anObject
+		object: anObject
 ]
 
 { #category : #'adding/removing' }
@@ -77,16 +77,6 @@ CTNaryTree >> children [
 CTNaryTree >> children: aCollection [
 	"Set aCollection as a collection of children of the receiver."
 	children := aCollection
-]
-
-{ #category : #accesing }
-CTNaryTree >> data [
-	^ data
-]
-
-{ #category : #accesing }
-CTNaryTree >> data: anObject [ 
-	data := anObject
 ]
 
 { #category : #operations }
@@ -200,6 +190,16 @@ CTNaryTree >> isLeaf [
 ]
 
 { #category : #accesing }
+CTNaryTree >> object [
+	^ data
+]
+
+{ #category : #accesing }
+CTNaryTree >> object: anObject [ 
+	data := anObject
+]
+
+{ #category : #accesing }
 CTNaryTree >> parent [
 	^ parent
 ]
@@ -238,7 +238,7 @@ CTNaryTree >> remove: aCTNaryTree [
 
 	| leafNode |
 	self size = 1
-		ifTrue: [ ^ self data: nil ].
+		ifTrue: [ ^ self object: nil ].
 	
 	aCTNaryTree isLeaf
 		ifTrue: [ aCTNaryTree parent children remove: aCTNaryTree.
@@ -249,7 +249,7 @@ CTNaryTree >> remove: aCTNaryTree [
 		ifFalse: [ ^ self ].
 		
 	leafNode := self findLeafNode: self.
-	aCTNaryTree data: leafNode data.
+	aCTNaryTree object: leafNode object.
 
 	^ self remove: leafNode
 ]

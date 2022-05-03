@@ -16,10 +16,10 @@ CTBinaryNodeTest >> testAddNode [
 	| aTree parent |
 	aTree := self sampleBinaryTree.
 	aTree addNode: 6.
-	parent := aTree findBreadthFirst: [ :n | n data == 3 ].
+	parent := aTree findBreadthFirst: [ :n | n object == 3 ].
 	
-	self assert: parent leftChild data equals: 6.
-	self assert: aTree data equals: 1.
+	self assert: parent leftChild object equals: 6.
+	self assert: aTree object equals: 1.
 ]
 
 { #category : #'test accessing' }
@@ -27,8 +27,8 @@ CTBinaryNodeTest >> testData [
 
 	| aTree |
 	aTree := CTGeneralTree with: (CTBinaryTree with: 1).
-	aTree root data: 2.
-	self assert: aTree root data equals: 2.
+	aTree root object: 2.
+	self assert: aTree root object equals: 2.
 ]
 
 { #category : #'test accessing' }
@@ -37,7 +37,7 @@ CTBinaryNodeTest >> testDeepestRightmostNode [
 	| aTree node |
 	aTree := self sampleBinaryTree.
 	node := aTree deepestRightmostNode.
-	self assert: node data equals: 5.
+	self assert: node object equals: 5.
 ]
 
 { #category : #'test - operations' }
@@ -54,8 +54,8 @@ CTBinaryNodeTest >> testFindBreadthFirst [
 	| aTree node |
 	aTree := self sampleBinaryTree. 
 
-	node := aTree findBreadthFirst: [ :n| n data == 3 ].
-	self assert: node data equals: 3.
+	node := aTree findBreadthFirst: [ :n| n object == 3 ].
+	self assert: node object equals: 3.
 ]
 
 { #category : #'test - traversing' }
@@ -63,8 +63,8 @@ CTBinaryNodeTest >> testFindDeepFirst [
 
 	| aTree node |
 	aTree := self sampleBinaryTree. 
-	node := aTree findDeepFirst: [ :n| n data == 2 ].
-	self assert: node data equals: 2.
+	node := aTree findDeepFirst: [ :n| n object == 2 ].
+	self assert: node object equals: 2.
 ]
 
 { #category : #'test - traversing' }
@@ -74,7 +74,7 @@ CTBinaryNodeTest >> testInOrderDo [
 	aTree := self sampleBinaryTree.
 	result:= OrderedCollection new.
 	testResult := #(4 2 5 1 3) asOrderedCollection. 
-	aTree inOrderDo: [:node | result add: node data].
+	aTree inOrderDo: [:node | result add: node object].
 	1 to: 5 do:
 		[:i | self 
 						assert: (testResult at:i) 
@@ -86,7 +86,7 @@ CTBinaryNodeTest >> testInitialize [
 
 	| aNode |
 	aNode := CTBinaryTree new.
-	self assert: aNode data isNil.
+	self assert: aNode object isNil.
 	self assert: aNode leftChild isNullNode.
 	self assert: aNode rightChild isNullNode.
 ]
@@ -96,7 +96,7 @@ CTBinaryNodeTest >> testInstantiateWith [
 
 	| aNode |
 	aNode := CTBinaryTree with: 2.
-	self assert: aNode data equals: 2.
+	self assert: aNode object equals: 2.
 ]
 
 { #category : #'test accessing' }
@@ -130,7 +130,7 @@ CTBinaryNodeTest >> testLeftChild [
 	| aTree |
 	aTree := CTGeneralTree with: (CTBinaryTree with: 1).
 	aTree root leftChild: (CTBinaryTree with: 2).
-	self assert: aTree root leftChild data equals: 2.
+	self assert: aTree root leftChild object equals: 2.
 ]
 
 { #category : #'test - traversing' }
@@ -140,7 +140,7 @@ CTBinaryNodeTest >> testPostOrderDo [
 	aTree := self sampleBinaryTree.
 	result:= OrderedCollection new.
 	testResult := #(4 5 2 3 1) asOrderedCollection. 
-	aTree postOrderDo: [:node | result add: node data].
+	aTree postOrderDo: [:node | result add: node object].
 	
 	1 to: 5 do:
 		[:i | self 
@@ -155,7 +155,7 @@ CTBinaryNodeTest >> testPreOrderDo [
 	aTree := self sampleBinaryTree.
 	result:= OrderedCollection new.
 	testResult := #(1 2 4 5 3) asOrderedCollection. 
-	aTree preOrderDo: [:node | result add: node data].
+	aTree preOrderDo: [:node | result add: node object].
 	1 to: 5 do:
 		[:i | self assert: (testResult at:i) equals: (result at:i) ].
 ]
@@ -166,7 +166,7 @@ CTBinaryNodeTest >> testRemove [
 	| aTree |
 	aTree := self sampleBinaryTree.
 	aTree remove: 2.
-	self assert: aTree leftChild data equals: 5.
+	self assert: aTree leftChild object equals: 5.
 	self assert: aTree leftChild rightChild isNullNode.
 ]
 
@@ -185,9 +185,9 @@ CTBinaryNodeTest >> testRemoveLeafNode [
 
 	| aTree node |
 	aTree := self sampleBinaryTree.
-	node := aTree findDeepFirst: [ :n | n data == 4 ].
+	node := aTree findDeepFirst: [ :n | n object == 4 ].
 	aTree removeLeafNode: node.
-	self assert: aTree data equals: 1.
+	self assert: aTree object equals: 1.
 	self assert: aTree leftChild leftChild isNullNode.
 	self deny: aTree leftChild rightChild isNullNode.
 ]
@@ -198,7 +198,7 @@ CTBinaryNodeTest >> testRemoveNonExistingNode [
 	| aTree |
 	aTree := self sampleBinaryTree.
 	aTree remove: (CTBinaryTree with: 7).
-	self assert: aTree data equals: 1.
+	self assert: aTree object equals: 1.
 ]
 
 { #category : #'test accessing' }
@@ -207,7 +207,7 @@ CTBinaryNodeTest >> testRightChild [
 	| aTree |
 	aTree := CTGeneralTree with: (CTBinaryTree with: 1).
 	aTree root rightChild: (CTBinaryTree with: 2).
-	self assert: aTree root rightChild data equals: 2.
+	self assert: aTree root rightChild object equals: 2.
 ]
 
 { #category : #'test - operations' }

@@ -48,7 +48,7 @@ CTBinaryTree class >> sampleEmptyBinaryTree [
 { #category : #'instance creation' }
 CTBinaryTree class >> with: anObject [
 
-	^ self new data: anObject
+	^ self new object: anObject
 ]
 
 { #category : #'adding/removing' }
@@ -85,18 +85,6 @@ CTBinaryTree >> addNode: aData [
 	
 	
 	
-]
-
-{ #category : #accessing }
-CTBinaryTree >> data [ 
-
-	^ data
-]
-
-{ #category : #accessing }
-CTBinaryTree >> data: anObject [
-
-	data := anObject
 ]
 
 { #category : #accessing }
@@ -205,6 +193,18 @@ CTBinaryTree >> leftChild: aNode [
 	leftChild := aNode
 ]
 
+{ #category : #accessing }
+CTBinaryTree >> object [ 
+
+	^ data
+]
+
+{ #category : #accessing }
+CTBinaryTree >> object: anObject [
+
+	data := anObject
+]
+
 { #category : #traversing }
 CTBinaryTree >> postOrderDo: aBlock [
 	"Post-order traversing  executing a block on each node"
@@ -232,14 +232,14 @@ CTBinaryTree >> remove: aData [
 	self size == 1
 		ifTrue: [ ^ CTNullNode uniqueInstance ].
 		
-	node := self findBreadthFirst: [ :n | n data == aData ].
+	node := self findBreadthFirst: [ :n | n object == aData ].
 	node isNullNode
 		ifTrue: [ ^ self ].
 
 	node isLeaf
 		ifTrue: [ ^ self removeLeafNode: node ].
 		
-	node data: self deepestRightmostNode data.
+	node object: self deepestRightmostNode object.
 	self removeDeepestRightmostNode
 ]
 

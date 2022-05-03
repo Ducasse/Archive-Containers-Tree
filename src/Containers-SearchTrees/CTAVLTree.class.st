@@ -36,21 +36,21 @@ CTAVLTree >> addNode: aNode [
 	
 	| factor |
 	data isNil
-		ifTrue: [ data := aNode data ]. 
+		ifTrue: [ data := aNode object ]. 
 		
-	aNode data < data
+	aNode object < data
 		ifTrue: [ leftChild := leftChild addNode: aNode ].
-	aNode data > data
+	aNode object > data
 		ifTrue: [ rightChild := rightChild addNode: aNode ].
 		
 	factor := self balanceFactor.
 	factor > 1
-		ifTrue: [ aNode data < leftChild data
+		ifTrue: [ aNode object < leftChild object
 				ifFalse: [ leftChild := leftChild leftRotate ].
 			^ self rightRotate ].
 	factor < -1
 		ifFalse: [ ^ self ].
-	aNode data > rightChild data
+	aNode object > rightChild object
 		ifFalse: [ rightChild := rightChild rightRotate ].
 	^ self leftRotate
 ]
@@ -114,8 +114,8 @@ CTAVLTree >> remove: aData [
 							ifTrue: [ temporary := rightChild ].
 						self hasBothChildren
 							ifTrue: [ smallestNodeInRightSubtree := rightChild leftmostNode: self.
-							data := smallestNodeInRightSubtree data.
-							rightChild := rightChild remove: smallestNodeInRightSubtree data ]].
+							data := smallestNodeInRightSubtree object.
+							rightChild := rightChild remove: smallestNodeInRightSubtree object ]].
 	
 	factor := self balanceFactor.
 	

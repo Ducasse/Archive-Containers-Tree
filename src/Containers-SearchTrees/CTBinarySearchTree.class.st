@@ -52,7 +52,7 @@ CTBinarySearchTree class >> sampleBinarySearchTree [
 CTBinarySearchTree class >> with: anObject [
 
 	^ self new
-	  data: anObject
+	  object: anObject
 ]
 
 { #category : #'adding/removing' }
@@ -72,22 +72,12 @@ CTBinarySearchTree >> addNode: aNode [
 	"Add aNode to receiver and return the receiver."
 	
 	data isNil 
-		ifTrue: [ data := aNode data ].
-	aNode data < data
+		ifTrue: [ data := aNode object ].
+	aNode object < data
 		ifTrue: [ leftChild := leftChild addNode: aNode ].
-	aNode data > data
+	aNode object > data
 		ifTrue: [ rightChild := rightChild addNode: aNode ].
 	
-]
-
-{ #category : #accessing }
-CTBinarySearchTree >> data [
-	^ data
-]
-
-{ #category : #accessing }
-CTBinarySearchTree >> data: newData [
-	data := newData 
 ]
 
 { #category : #operations }
@@ -223,14 +213,24 @@ CTBinarySearchTree >> leftmostNode: aNode [
 CTBinarySearchTree >> maximumValue [
 	"Answer biggest data value held in a tree"
 
-	^ (self rightmostNode: self) data
+	^ (self rightmostNode: self) object
 ]
 
 { #category : #operations }
 CTBinarySearchTree >> minimumValue [
 	"Answer smallest data value held in tree"
 
-	^ (self leftmostNode: self) data
+	^ (self leftmostNode: self) object
+]
+
+{ #category : #accessing }
+CTBinarySearchTree >> object [
+	^ data
+]
+
+{ #category : #accessing }
+CTBinarySearchTree >> object: newData [
+	data := newData 
 ]
 
 { #category : #traversing }
@@ -277,8 +277,8 @@ CTBinarySearchTree >> remove: aData [
 		ifFalse: [ ^ self ].
 		
 	smallestNodeInRightSubtree := rightChild leftmostNode: self.
-	data := smallestNodeInRightSubtree data.
-	rightChild := rightChild remove: smallestNodeInRightSubtree data
+	data := smallestNodeInRightSubtree object.
+	rightChild := rightChild remove: smallestNodeInRightSubtree object
 ]
 
 { #category : #accessing }

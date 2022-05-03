@@ -10,7 +10,7 @@ CTNaryTreeTest >> testAddNode [
 	| aTree aNode |
 	aTree := CTNaryTree with: 1.
 	aNode := aTree addNode: (CTNaryTree with: 2).
-	self assert: (aTree children at: 1) data equals: 2.
+	self assert: (aTree children at: 1) object equals: 2.
 	self assert: aNode parent equals: aTree.
 	
 ]
@@ -24,9 +24,9 @@ CTNaryTreeTest >> testAddSameNodeMultipleTImes [
 	aTree addNode: (CTNaryTree with: 2).
 	aTree addNode: (CTNaryTree with: 2).
 	self assert: aTree children size equals: 3.
-	self assert: (aTree children at: 1) data equals: 2.
-	self assert: (aTree children at: 2) data equals: 2.
-	self assert: (aTree children at: 3) data equals: 2.
+	self assert: (aTree children at: 1) object equals: 2.
+	self assert: (aTree children at: 2) object equals: 2.
+	self assert: (aTree children at: 3) object equals: 2.
 	
 ]
 
@@ -40,8 +40,8 @@ CTNaryTreeTest >> testChildren [
 	self assert: aTree isLeaf.
 	aTree addNode: (CTNaryTree with: 'b').
 	aTree addNode: (CTNaryTree with: 'c').
-	self assert: (aTree children at: 1) data equals: 'b'.
-	self assert: (aTree children at: 2) data equals: 'c'.
+	self assert: (aTree children at: 1) object equals: 'b'.
+	self assert: (aTree children at: 2) object equals: 'c'.
 	
 ]
 
@@ -50,8 +50,8 @@ CTNaryTreeTest >> testData [
 
 	| aTree |
 	aTree := CTNaryTree with: 1.
-	aTree data: 2.
-	self assert: aTree data equals: 2.
+	aTree object: 2.
+	self assert: aTree object equals: 2.
 ]
 
 { #category : #'test operations' }
@@ -69,8 +69,8 @@ CTNaryTreeTest >> testFindBreadthFirst [
 	| aTree node |
 	aTree := CTNaryTree ABCtree. 
 
-	node := aTree findBreadthFirst: [ :n | n data = 'E' ].
-	self assert: node data equals: 'E'.
+	node := aTree findBreadthFirst: [ :n | n object = 'E' ].
+	self assert: node object equals: 'E'.
 ]
 
 { #category : #'test - traversing' }
@@ -79,7 +79,7 @@ CTNaryTreeTest >> testFindBreadthFirstNonExistingValue [
 	| aTree node |
 	aTree := CTNaryTree ABCtree. 
 
-	node := aTree findBreadthFirst: [ :n | n data = 'S' ].
+	node := aTree findBreadthFirst: [ :n | n object = 'S' ].
 	self assert: node isNil.
 ]
 
@@ -89,8 +89,8 @@ CTNaryTreeTest >> testFindDeepFirst [
 	| aTree node |
 	aTree := CTNaryTree ABCtree. 
 
-	node := aTree findDeepFirst: [ :n | n data = 'E' ].
-	self assert: node data equals: 'E'.
+	node := aTree findDeepFirst: [ :n | n object = 'E' ].
+	self assert: node object equals: 'E'.
 ]
 
 { #category : #'test - traversing' }
@@ -99,7 +99,7 @@ CTNaryTreeTest >> testFindDeepFirstNonExistingValue [
 	| aTree node |
 	aTree := CTNaryTree ABCtree. 
 
-	node := aTree findDeepFirst: [ :n | n data = 'X' ].
+	node := aTree findDeepFirst: [ :n | n object = 'X' ].
 	self assert: node isNil.
 ]
 
@@ -114,7 +114,7 @@ CTNaryTreeTest >> testFindLeafNode [
 	((aTree children at: 1) children at: 1) addNode: (CTNaryTree with: 4).
 	aNode := aTree findLeafNode: aTree.
 	self assert: aNode isLeaf. 
-	self assert: aNode data equals: 4.
+	self assert: aNode object equals: 4.
 ]
 
 { #category : #'test testing' }
@@ -134,7 +134,7 @@ CTNaryTreeTest >> testInOrderDo [
 	result := OrderedCollection new.
 	expectedResult := #('B' 'E' 'C' 'F' 'A' 'G' 'D') asOrderedCollection.
 	
-	aTree inOrderDo: [ :node | result add: node data ].
+	aTree inOrderDo: [ :node | result add: node object ].
 	result.
 	
 	1 to: 7 do: 
@@ -146,7 +146,7 @@ CTNaryTreeTest >> testInitialize [
 
 	| aTree |
 	aTree := CTNaryTree new.
-	self assert: aTree data isNil.
+	self assert: aTree object isNil.
 	self assert: aTree children isEmpty.
 ]
 
@@ -155,7 +155,7 @@ CTNaryTreeTest >> testInstantiateWith [
 
 	| aTree |
 	aTree := CTNaryTree with: 2.
-	self assert: aTree data equals: 2.
+	self assert: aTree object equals: 2.
 ]
 
 { #category : #'test accessing' }
@@ -176,7 +176,7 @@ CTNaryTreeTest >> testPostOrderDo [
 	result := OrderedCollection new.
 	expectedResult := #('B' 'E' 'F' 'C' 'G' 'D' 'A') asOrderedCollection.
 	
-	aTree postOrderDo: [ :node | result add: node data ].
+	aTree postOrderDo: [ :node | result add: node object ].
 	
 	1 to: 7 do: 
 		[:i | self assert: (expectedResult at:i) equals: (result at:i) ].
@@ -190,7 +190,7 @@ CTNaryTreeTest >> testPreOrderDo [
 	result := OrderedCollection new.
 	expectedResult := #('A' 'B' 'C' 'E' 'F' 'D' 'G') asOrderedCollection.
 	
-	aTree preOrderDo: [ :node | result add: node data ].
+	aTree preOrderDo: [ :node | result add: node object ].
 	
 	1 to: 7 do: 
 		[:i | self assert: (expectedResult at:i) equals: (result at:i) ].
@@ -209,7 +209,7 @@ CTNaryTreeTest >> testRemove [
 	aTree remove: aNode.
 	
 	self assert: (aTree children at: 1) children size equals: 1.
-	self assert: (aTree children at: 1) data equals: 4.
+	self assert: (aTree children at: 1) object equals: 4.
 	
 
 
@@ -226,9 +226,9 @@ CTNaryTreeTest >> testRemoveLeaf [
 	aNode := (CTNaryTree with: 3).
 	aTree addNode: aNode.
 	aTree remove: aNode.
-	self assert: aTree data equals: 1.
+	self assert: aTree object equals: 1.
 	self assert: aTree children size equals: 1.
-	self assert: (aTree children at: 1) data equals: 2.
+	self assert: (aTree children at: 1) object equals: 2.
 
 	
 	
@@ -246,7 +246,7 @@ CTNaryTreeTest >> testRemoveRoot [
 	(aTree children at: 1) addNode: (CTNaryTree with: 5).
 	aTree remove: aNode.
 	
-	self assert: aTree data equals: 4.
+	self assert: aTree object equals: 4.
 	self assert: (aTree children at: 1) children size equals: 1.
 
 
@@ -262,7 +262,7 @@ CTNaryTreeTest >> testRemoveTreeWithOneNode [
 	aTree := aNode.
 	aTree remove: aNode.
 	
-	self assert: aTree data isNil.
+	self assert: aTree object isNil.
 
 
 
