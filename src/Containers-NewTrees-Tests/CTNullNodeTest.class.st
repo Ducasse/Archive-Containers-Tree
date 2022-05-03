@@ -92,7 +92,7 @@ CTNullNodeTest >> testPostOrderDo [
 CTNullNodeTest >> testPreOrderDo [
 
 	| result |
-	result:= OrderedCollection new.
+	result := OrderedCollection new.
 	aTree preOrderDo: [:node | result add: node object].
 	self assert: result isEmpty. 
 ]

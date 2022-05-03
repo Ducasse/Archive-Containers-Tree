@@ -5,9 +5,15 @@ Class {
 }
 
 { #category : #'adding/removing' }
+CTBinaryNodeTest >> binaryTreeClass [
+
+	^ CTBinaryTree 
+]
+
+{ #category : #'adding/removing' }
 CTBinaryNodeTest >> sampleBinaryTree [
 
-	^ CTBinaryTree sampleBinaryTree 
+	^ self binaryTreeClass sampleBinaryTree 
 ]
 
 { #category : #'adding/removing' }
@@ -26,9 +32,9 @@ CTBinaryNodeTest >> testAddNode [
 CTBinaryNodeTest >> testData [ 
 
 	| aTree |
-	aTree := CTGeneralTree with: (CTBinaryTree with: 1).
-	aTree root object: 2.
-	self assert: aTree root object equals: 2.
+	aTree := self binaryTreeClass with: (self binaryTreeClass with: 1).
+	aTree object: 2.
+	self assert: aTree object equals: 2.
 ]
 
 { #category : #'test accessing' }
@@ -103,17 +109,17 @@ CTBinaryNodeTest >> testInstantiateWith [
 CTBinaryNodeTest >> testIsLeaf [
 
 	| aTree |
-	aTree := CTGeneralTree with: (CTBinaryTree with: 1). 
-	self assert: aTree root isLeaf.
+	aTree := self binaryTreeClass with: (self binaryTreeClass with: 1). 
+	self assert: aTree isLeaf.
 ]
 
 { #category : #'test accessing' }
 CTBinaryNodeTest >> testIsNotLeaf [
 
 	| aTree |
-	aTree := CTGeneralTree with: (CTBinaryTree with: 1). 
-	aTree root leftChild: (CTBinaryTree with: 2).
-	self deny: aTree root isLeaf.
+	aTree := self binaryTreeClass with: (self binaryTreeClass with: 1). 
+	aTree leftChild: (self binaryTreeClass with: 2).
+	self deny: aTree isLeaf.
 ]
 
 { #category : #'test accessing' }
