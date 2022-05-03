@@ -51,7 +51,7 @@ CTBinaryNodeTest >> testDepth [
 
 	| tree |
 	tree := self sampleBinaryTree.
-	self assert: tree depth equals: 2.
+	self assert: tree depth equals: 3.
 ]
 
 { #category : #'test - traversing' }

@@ -7,7 +7,7 @@ Class {
 { #category : #'test adding/removing' }
 CTNullBinaryTreeTest >> testAdd [ 
 	| aTree |
-	aTree := CTNullBinaryTree new.
+	aTree := CTNullBinarySearchNode new.
 	aTree := aTree add: 4.
 	
 	self assert: aTree object equals: 4.
@@ -16,24 +16,24 @@ CTNullBinaryTreeTest >> testAdd [
 { #category : #'test adding/removing' }
 CTNullBinaryTreeTest >> testAddNode [ 
 	| aTree |
-	aTree := CTNullBinaryTree new.
+	aTree := CTNullBinarySearchNode new.
 	aTree := aTree addNode: (CTBinarySearchTree with: 4).
 	self assert: aTree object equals: 4.
 ]
 
 { #category : #'test operations' }
-CTNullBinaryTreeTest >> testDepth [ 
+CTNullBinaryTreeTest >> testDepth [
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
-	self assert: aTree depth equals: 0.
+	aTree := CTNullBinarySearchNode uniqueInstance.
+	self assert: aTree depth equals: 0
 ]
 
 { #category : #'test - traversing' }
 CTNullBinaryTreeTest >> testFindBreadthFirst [ 
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self assert: (aTree findBreadthFirst: [ :n| n object == 6 ]) isNullNode
 ]
 
@@ -41,7 +41,7 @@ CTNullBinaryTreeTest >> testFindBreadthFirst [
 CTNullBinaryTreeTest >> testFindDeepFirst [ 
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self assert: (aTree findDeepFirst: [ :n| n object == 6 ]) isNullNode
 ]
 
@@ -49,7 +49,7 @@ CTNullBinaryTreeTest >> testFindDeepFirst [
 CTNullBinaryTreeTest >> testFindNode [
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self assert: (aTree findNode: 2) isNullNode.
 ]
 
@@ -57,7 +57,7 @@ CTNullBinaryTreeTest >> testFindNode [
 CTNullBinaryTreeTest >> testHeight [ 
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self assert: aTree height equals: -1.
 ]
 
@@ -65,7 +65,7 @@ CTNullBinaryTreeTest >> testHeight [
 CTNullBinaryTreeTest >> testInOrderDo [
 
 	| aTree result |
-	aTree :=  CTNullBinaryTree uniqueInstance.
+	aTree :=  CTNullBinarySearchNode uniqueInstance.
 	result:= OrderedCollection new.
 	
 	aTree inOrderDo: [:node | result add: node object].
@@ -76,7 +76,7 @@ CTNullBinaryTreeTest >> testInOrderDo [
 CTNullBinaryTreeTest >> testIsLeaf [ 
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self deny: aTree isLeaf
 ]
 
@@ -84,7 +84,7 @@ CTNullBinaryTreeTest >> testIsLeaf [
 CTNullBinaryTreeTest >> testIsNullNode [
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self assert: aTree isNullNode
 ]
 
@@ -92,7 +92,7 @@ CTNullBinaryTreeTest >> testIsNullNode [
 CTNullBinaryTreeTest >> testLeftmostNode [ 
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self assert: (aTree leftmostNode: aTree) isNullNode
 ]
 
@@ -100,7 +100,7 @@ CTNullBinaryTreeTest >> testLeftmostNode [
 CTNullBinaryTreeTest >> testMaximumValue [
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self assert: aTree maximumValue isNil
 ]
 
@@ -108,7 +108,7 @@ CTNullBinaryTreeTest >> testMaximumValue [
 CTNullBinaryTreeTest >> testMinimumValue [
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self assert: aTree minimumValue isNil
 ]
 
@@ -116,7 +116,7 @@ CTNullBinaryTreeTest >> testMinimumValue [
 CTNullBinaryTreeTest >> testPostOrderDo [
 
 	| aTree result |
-	aTree :=  CTNullBinaryTree uniqueInstance.
+	aTree :=  CTNullBinarySearchNode uniqueInstance.
 	result:= OrderedCollection new.
 	
 	aTree postOrderDo: [:node | result add: node object].
@@ -127,7 +127,7 @@ CTNullBinaryTreeTest >> testPostOrderDo [
 CTNullBinaryTreeTest >> testPreOrderDo [
 
 	| aTree result |
-	aTree :=  CTNullBinaryTree uniqueInstance.
+	aTree :=  CTNullBinarySearchNode uniqueInstance.
 	result:= OrderedCollection new.
 	
 	aTree preOrderDo: [:node | result add: node object].
@@ -137,7 +137,7 @@ CTNullBinaryTreeTest >> testPreOrderDo [
 { #category : #'test adding/removing' }
 CTNullBinaryTreeTest >> testRemove [
 	| aTree |
-	aTree := CTNullBinaryTree new.
+	aTree := CTNullBinarySearchNode new.
 	aTree := aTree remove: 4.
 	
 	self assert: aTree isNullNode
@@ -147,7 +147,7 @@ CTNullBinaryTreeTest >> testRemove [
 CTNullBinaryTreeTest >> testRightmostNode [ 
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self assert: (aTree rightmostNode: aTree) isNullNode
 ]
 
@@ -155,6 +155,6 @@ CTNullBinaryTreeTest >> testRightmostNode [
 CTNullBinaryTreeTest >> testSizeOfTree [
 
 	| aTree |
-	aTree := CTNullBinaryTree uniqueInstance.
+	aTree := CTNullBinarySearchNode uniqueInstance.
 	self assert: aTree size equals: 0.
 ]

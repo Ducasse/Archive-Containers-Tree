@@ -75,7 +75,7 @@ CTBinarySearchTreeTest >> testDepth [
 
 	| aTree |
 	aTree := self binarySearchTreeClass sampleBinarySearchTree.
-	self assert: aTree depth equals: 2
+	self assert: aTree depth equals: 3
 ]
 
 { #category : #'test - traversing' }
@@ -233,7 +233,9 @@ CTBinarySearchTreeTest >> testPostOrderDo [
 	aTree postOrderDo: [ :node | result add: node object ].
 
 	1 to: 5 do: [ :i | 
-	self assert: (testResult at: i) equals: (result at: i) ]
+		self 
+			assert: (testResult at: i) 
+			equals: (result at: i) ]
 ]
 
 { #category : #'test - traversing' }
@@ -247,7 +249,9 @@ CTBinarySearchTreeTest >> testPreOrderDo [
 	aTree preOrderDo: [ :node | result add: node object ].
 
 	1 to: 5 do: [ :i | 
-	self assert: (testResult at: i) equals: (result at: i) ]
+		self 
+			assert: (testResult at: i) 
+			equals: (result at: i) ]
 ]
 
 { #category : #'test adding/removing' }
@@ -325,7 +329,7 @@ CTBinarySearchTreeTest >> testRightmostNode [
 ]
 
 { #category : #'test - operations' }
-CTBinarySearchTreeTest >> testSizeOfTree [
+CTBinarySearchTreeTest >> testSize [
 
 	| aTree |
 	aTree := self binarySearchTreeClass sampleBinarySearchTree.

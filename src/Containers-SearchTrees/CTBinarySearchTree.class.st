@@ -30,7 +30,7 @@ Class {
 	#instVars : [
 		'leftChild',
 		'rightChild',
-		'data'
+		'object'
 	],
 	#category : #'Containers-SearchTrees'
 }
@@ -58,12 +58,12 @@ CTBinarySearchTree class >> with: anObject [
 { #category : #'adding/removing' }
 CTBinarySearchTree >> add: aData [
 	"add node with data to receiver"
-	data isNil 
-		ifTrue: [ data := aData ].
-
-	aData < data  
+	
+	object isNil 
+		ifTrue: [ object := aData ].
+	aData < object  
 		ifTrue: [  leftChild := leftChild add: aData ].
-	aData > data
+	aData > object
 		ifTrue: [ rightChild := rightChild add: aData ].
 ]
 
@@ -71,11 +71,11 @@ CTBinarySearchTree >> add: aData [
 CTBinarySearchTree >> addNode: aNode [
 	"Add aNode to receiver and return the receiver."
 	
-	data isNil 
-		ifTrue: [ data := aNode object ].
-	aNode object < data
+	object isNil 
+		ifTrue: [ object := aNode object ].
+	aNode object < object
 		ifTrue: [ leftChild := leftChild addNode: aNode ].
-	aNode object > data
+	aNode object > object
 		ifTrue: [ rightChild := rightChild addNode: aNode ].
 	
 ]
@@ -84,7 +84,7 @@ CTBinarySearchTree >> addNode: aNode [
 CTBinarySearchTree >> depth [
 	"Answer depth of a tree"
 
-	^ self leftChild depth max: self rightChild  depth + 1
+	^ (self leftChild depth max: self rightChild depth) + 1
 ]
 
 { #category : #traversing }
@@ -93,19 +93,14 @@ CTBinarySearchTree >> findBreadthFirst: aBlock [
 	
 	| queue |	
 	queue := OrderedCollection new.
-	
 	queue addLast: self.
-	
 	[ queue isNotEmpty ] whileTrue: [ 
 		| node |
 		node := queue removeFirst.
-		
 		node isNullNode
 			ifTrue: [ ^ node ].
-			
 		(aBlock value: node )
 			ifTrue: [^ node ].
-			
 		queue addLast: node leftChild.
 		queue addLast: node rightChild ].
 	
@@ -119,10 +114,8 @@ CTBinarySearchTree >> findDeepFirst: aBlock [
 	| node |
 	(aBlock value: self)
 		ifTrue: [ ^ self ].
-
 	node := self leftChild findDeepFirst: aBlock.
-
-	(node isNullNode)
+	node isNullNode
 		ifTrue: [ node := self rightChild findDeepFirst: aBlock ].
 		
 	^ node
@@ -133,12 +126,12 @@ CTBinarySearchTree >> findDeepFirst: aBlock [
 CTBinarySearchTree >> findNode: aData [
 	"Answer a node with aData if it exists"
 
-	aData == data   
+	aData == object   
 		ifTrue: [ ^ self ].
-	aData < data  
-		ifTrue: [ ^ (leftChild findNode: aData) ].
-	aData > data   
-		ifTrue: [ ^ (rightChild findNode: aData) ].
+	aData < object  
+		ifTrue: [ ^ leftChild findNode: aData ].
+	aData > object   
+		ifTrue: [ ^ rightChild findNode: aData ].
 
 ]
 
@@ -174,8 +167,8 @@ CTBinarySearchTree >> inOrderDo: aBlock [
 CTBinarySearchTree >> initialize [
 
 	super initialize.
-	leftChild := CTNullBinaryTree uniqueInstance.
-	rightChild := CTNullBinaryTree uniqueInstance.
+	leftChild := CTNullBinarySearchNode uniqueInstance.
+	rightChild := CTNullBinarySearchNode uniqueInstance.
 ]
 
 { #category : #testing }
@@ -225,12 +218,12 @@ CTBinarySearchTree >> minimumValue [
 
 { #category : #accessing }
 CTBinarySearchTree >> object [
-	^ data
+	^ object
 ]
 
 { #category : #accessing }
 CTBinarySearchTree >> object: newData [
-	data := newData 
+	object := newData 
 ]
 
 { #category : #traversing }
@@ -252,21 +245,33 @@ CTBinarySearchTree >> preOrderDo: aBlock [
 	
 ]
 
+{ #category : #printing }
+CTBinarySearchTree >> printOn: aStream [
+
+	super printOn: aStream.
+	aStream nextPutAll: '('.
+	object ifNotNil: [ object printOn: aStream ].
+	aStream nextPutAll: ')'.
+
+
+]
+
 { #category : #'adding/removing' }
 CTBinarySearchTree >> remove: aData [
 	"remove a node with passed data from the reciever"
 	
 	| smallestNodeInRightSubtree |
-	aData < data
+	self flag: #looksStrange.
+	aData < object
 		ifTrue: [ leftChild := leftChild remove: aData ].
-	aData > data
+	aData > object
 		ifTrue: [ rightChild := rightChild remove: aData ].
 		
-	aData == data
+	aData == object
 		ifFalse: [ ^ self ].
 		
 	self isLeaf
-		ifTrue: [ ^ CTNullBinaryTree uniqueInstance ].
+		ifTrue: [ ^ CTNullBinarySearchNode uniqueInstance ].
 		
 	self hasOnlyLeftChild 
 		ifTrue: [ ^ leftChild ].
@@ -277,7 +282,7 @@ CTBinarySearchTree >> remove: aData [
 		ifFalse: [ ^ self ].
 		
 	smallestNodeInRightSubtree := rightChild leftmostNode: self.
-	data := smallestNodeInRightSubtree object.
+	object := smallestNodeInRightSubtree object.
 	rightChild := rightChild remove: smallestNodeInRightSubtree object
 ]
 

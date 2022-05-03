@@ -8,7 +8,7 @@ I answer a CTBinarySearchTree when the `add:` method is called.
 
 "
 Class {
-	#name : #CTNullBinaryTree,
+	#name : #CTNullBinarySearchNode,
 	#superclass : #CTAbstractBinarySearchTree,
 	#classInstVars : [
 		'uniqueInstance'
@@ -17,118 +17,118 @@ Class {
 }
 
 { #category : #accessing }
-CTNullBinaryTree class >> uniqueInstance [ 
+CTNullBinarySearchNode class >> uniqueInstance [ 
 	uniqueInstance ifNil: [ uniqueInstance := self new ].
 	^ uniqueInstance 
 ]
 
 { #category : #'adding/removing' }
-CTNullBinaryTree >> add: aData [
+CTNullBinarySearchNode >> add: aData [
 	"Answer a binary search tree with passed data"
 
 	^ CTBinarySearchTree with: aData
 ]
 
 { #category : #'adding/removing' }
-CTNullBinaryTree >> addNode: aNode [
+CTNullBinarySearchNode >> addNode: aNode [
 	"Answer a binary search tree with passed data"
 
 	^ aNode
 ]
 
 { #category : #operations }
-CTNullBinaryTree >> depth [ 
+CTNullBinarySearchNode >> depth [ 
 
 	^ 0
 ]
 
 { #category : #traversing }
-CTNullBinaryTree >> findBreadthFirst: aBlock [
+CTNullBinarySearchNode >> findBreadthFirst: aBlock [
 
 	^ self
 ]
 
 { #category : #traversing }
-CTNullBinaryTree >> findDeepFirst: aBlock [
+CTNullBinarySearchNode >> findDeepFirst: aBlock [
 
 	^ self
 ]
 
 { #category : #lookup }
-CTNullBinaryTree >> findNode: aData [
+CTNullBinarySearchNode >> findNode: aData [
 
 	^ self
 ]
 
 { #category : #operations }
-CTNullBinaryTree >> height [ 
+CTNullBinarySearchNode >> height [ 
 
 	^ -1
 ]
 
 { #category : #traversing }
-CTNullBinaryTree >> inOrderDo: aBlock [
+CTNullBinarySearchNode >> inOrderDo: aBlock [
 
 	^ nil
 ]
 
 { #category : #testing }
-CTNullBinaryTree >> isLeaf [
+CTNullBinarySearchNode >> isLeaf [
 
 	^ false
 ]
 
 { #category : #testing }
-CTNullBinaryTree >> isNullNode [
+CTNullBinarySearchNode >> isNullNode [
 
 	^ true
 ]
 
 { #category : #accessing }
-CTNullBinaryTree >> leftmostNode: aNode [
+CTNullBinarySearchNode >> leftmostNode: aNode [
 	"Answer passed node"
 	^ aNode
 ]
 
 { #category : #operations }
-CTNullBinaryTree >> maximumValue [
+CTNullBinarySearchNode >> maximumValue [
 
 	^ nil
 ]
 
 { #category : #operations }
-CTNullBinaryTree >> minimumValue [
+CTNullBinarySearchNode >> minimumValue [
 
 	^ nil
 ]
 
 { #category : #traversing }
-CTNullBinaryTree >> postOrderDo: aBlock [
+CTNullBinarySearchNode >> postOrderDo: aBlock [
 
 	^ nil
 ]
 
 { #category : #traversing }
-CTNullBinaryTree >> preOrderDo: aBlock [
+CTNullBinarySearchNode >> preOrderDo: aBlock [
 
 	^ nil
 ]
 
 { #category : #'adding/removing' }
-CTNullBinaryTree >> remove: aData [
+CTNullBinarySearchNode >> remove: aData [
 
 	^ self
 ]
 
 { #category : #accessing }
-CTNullBinaryTree >> rightmostNode: aNode [
+CTNullBinarySearchNode >> rightmostNode: aNode [
 	"Answer passed node"
 	
 	^ aNode
 ]
 
 { #category : #operations }
-CTNullBinaryTree >> size [
+CTNullBinarySearchNode >> size [
 
 	^ 0
 ]

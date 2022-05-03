@@ -107,9 +107,9 @@ CTBinaryTree >> deepestRightmostNode [
 
 { #category : #operations }
 CTBinaryTree >> depth [
-	"Answer depth of a tree"
+	"Answer depth of a tree. For example, root is 0, its children 1, and its grand children 2."
 
-	^ self leftChild depth max: self rightChild  depth + 1
+	^ (self leftChild depth max: self rightChild depth) + 1
 ]
 
 { #category : #traversing }

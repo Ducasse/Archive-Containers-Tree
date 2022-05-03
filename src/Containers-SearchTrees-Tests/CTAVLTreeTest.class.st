@@ -4,238 +4,225 @@ Class {
 	#category : #'Containers-SearchTrees-Tests'
 }
 
+{ #category : #'test operations' }
+CTAVLTreeTest >> avlTreeClass [
+
+	^ CTAVLTree
+]
+
 { #category : #'test adding/removing' }
-CTAVLTreeTest >> testAddNode [ 
+CTAVLTreeTest >> testAddNode [
 
 	| aTree |
-	aTree := CTAVLTree with: 1.
-	aTree addNode: (CTAVLTree with: 2).
-	
+	aTree := self avlTreeClass with: 1.
+	aTree addNode: (self avlTreeClass with: 2).
+
 	aTree rightChild object.
-	
-	self assert: aTree rightChild object equals: 2.
+
+	self assert: aTree rightChild object equals: 2
 ]
 
 { #category : #'test adding/removing' }
-CTAVLTreeTest >> testAddNodeLeftRightRotate [ 
+CTAVLTreeTest >> testAddNodeLeftRightRotate [
 
 	| aTree |
-	aTree := CTAVLTree with: 3.
-	aTree addNode: (CTAVLTree with: 1).
-	aTree := aTree addNode: (CTAVLTree with: 2).
+	aTree := self avlTreeClass with: 3.
+	aTree addNode: (self avlTreeClass with: 1).
+	aTree := aTree addNode: (self avlTreeClass with: 2).
 
-	
+
 	self assert: aTree object equals: 2.
 	self assert: aTree leftChild object equals: 1.
-	self assert: aTree rightChild object equals: 3.
-	
-
+	self assert: aTree rightChild object equals: 3
 ]
 
 { #category : #'test adding/removing' }
-CTAVLTreeTest >> testAddNodeLeftRotate [ 
+CTAVLTreeTest >> testAddNodeLeftRotate [
 
 	| aTree |
-	aTree := CTAVLTree with: 1.
-	aTree addNode: (CTAVLTree with: 2).
-	aTree := aTree addNode: (CTAVLTree with: 3).
-	
+	aTree := self avlTreeClass with: 1.
+	aTree addNode: (self avlTreeClass with: 2).
+	aTree := aTree addNode: (self avlTreeClass with: 3).
+
 	self assert: aTree object equals: 2.
 	self assert: aTree leftChild object equals: 1.
-	self assert: aTree rightChild object equals: 3.
-
+	self assert: aTree rightChild object equals: 3
 ]
 
 { #category : #'test adding/removing' }
-CTAVLTreeTest >> testAddNodeRightLeftRotate [ 
+CTAVLTreeTest >> testAddNodeRightLeftRotate [
 
-	| aTree  |
-	aTree := CTAVLTree with: 1.
-	aTree addNode: (CTAVLTree with: 3).
-	aTree := aTree addNode: (CTAVLTree with: 2).
-		
+	| aTree |
+	aTree := self avlTreeClass with: 1.
+	aTree addNode: (self avlTreeClass with: 3).
+	aTree := aTree addNode: (self avlTreeClass with: 2).
+
 	self assert: aTree object equals: 2.
 	self assert: aTree leftChild object equals: 1.
-	self assert: aTree rightChild object equals: 3.
-
+	self assert: aTree rightChild object equals: 3
 ]
 
 { #category : #'test adding/removing' }
-CTAVLTreeTest >> testAddNodeRightRotate [ 
+CTAVLTreeTest >> testAddNodeRightRotate [
 
-	| aTree  |
-	aTree := CTAVLTree with: 3.
-	aTree addNode: (CTAVLTree with: 2).
-	aTree := aTree addNode: (CTAVLTree with: 1).
-		
+	| aTree |
+	aTree := self avlTreeClass with: 3.
+	aTree addNode: (self avlTreeClass with: 2).
+	aTree := aTree addNode: (self avlTreeClass with: 1).
+
 	self assert: aTree object equals: 2.
 	self assert: aTree leftChild object equals: 1.
-	self assert: aTree rightChild object equals: 3.
-
+	self assert: aTree rightChild object equals: 3
 ]
 
 { #category : #'test operations' }
 CTAVLTreeTest >> testBalanceFactor [
 
 	| aTree |
-	aTree := CTAVLTree with: 3.
-	aTree addNode: (CTAVLTree with: 4).
-	aTree addNode: (CTAVLTree with: 1).
-	aTree addNode: (CTAVLTree with: 2).
-	
+	aTree := self avlTreeClass with: 3.
+	aTree addNode: (self avlTreeClass with: 4).
+	aTree addNode: (self avlTreeClass with: 1).
+	aTree addNode: (self avlTreeClass with: 2).
+
 	self assert: aTree leftChild balanceFactor equals: -1.
-	self assert: aTree balanceFactor equals: 1.
-	
+	self assert: aTree balanceFactor equals: 1
 ]
 
 { #category : #'test operations' }
 CTAVLTreeTest >> testHeight [
 
 	| aTree |
-	aTree := CTAVLTree with: 3.
-	aTree addNode: (CTAVLTree with: 4).
-	aTree addNode: (CTAVLTree with: 1).
-	aTree addNode: (CTAVLTree with: 2).
-		
+	aTree := self avlTreeClass with: 3.
+	aTree addNode: (self avlTreeClass with: 4).
+	aTree addNode: (self avlTreeClass with: 1).
+	aTree addNode: (self avlTreeClass with: 2).
+
 	self assert: aTree rightChild height equals: 0.
-	self assert: aTree height equals: 2.
-	
+	self assert: aTree height equals: 2
 ]
 
 { #category : #'test operations' }
 CTAVLTreeTest >> testHeightRoot [
 
 	| aTree |
-	aTree := CTAVLTree with: 3.
-	
-	self assert: aTree height equals: 0.
-	
-	
+	aTree := self avlTreeClass with: 3.
+	self assert: aTree height equals: 0
 ]
 
 { #category : #'test testing' }
 CTAVLTreeTest >> testIsNodeBalanced [
 
 	| aTree |
-	aTree := CTAVLTree with: 8.
-	aTree addNode: (CTAVLTree with: 3).
-	aTree addNode: (CTAVLTree with: 10).
-	aTree addNode: (CTAVLTree with: 6).
-	self assert: aTree isNodeBalanced 
+	aTree := self avlTreeClass with: 8.
+	aTree addNode: (self avlTreeClass with: 3).
+	aTree addNode: (self avlTreeClass with: 10).
+	aTree addNode: (self avlTreeClass with: 6).
+	self assert: aTree isNodeBalanced
 ]
 
 { #category : #'test rotating' }
 CTAVLTreeTest >> testLeftRotate [
 
 	| aTree node |
-	aTree :=  CTAVLTree with: 8.
+	aTree := self avlTreeClass with: 8.
 	aTree add: 9.
 	aTree add: 10.
-	
+
 	node := aTree leftRotate.
-	
+
 	self assert: node object equals: 9.
 	self assert: node leftChild object equals: 8.
-	self assert: node rightChild object equals: 10.
-
-
+	self assert: node rightChild object equals: 10
 ]
 
 { #category : #'test adding/removing' }
-CTAVLTreeTest >> testRemove [ 
+CTAVLTreeTest >> testRemove [
 
 	| aTree |
-	aTree := CTAVLTree with: 1.
-	aTree addNode: (CTAVLTree with: 2).
+	aTree := self avlTreeClass with: 1.
+	aTree addNode: (self avlTreeClass with: 2).
 	aTree := aTree remove: 2.
 	self assert: aTree size equals: 1.
-	self assert: aTree object equals: 1.
+	self assert: aTree object equals: 1
 ]
 
 { #category : #'test adding/removing' }
-CTAVLTreeTest >> testRemoveLeftRightRotate [ 
+CTAVLTreeTest >> testRemoveLeftRightRotate [
 
 	| aTree |
-	aTree := CTAVLTree with: 3.
-	aTree addNode: (CTAVLTree with: 4).
-	aTree addNode: (CTAVLTree with: 1).
-	aTree addNode: (CTAVLTree with: 2).
-	
+	aTree := self avlTreeClass with: 3.
+	aTree addNode: (self avlTreeClass with: 4).
+	aTree addNode: (self avlTreeClass with: 1).
+	aTree addNode: (self avlTreeClass with: 2).
+
 	aTree := aTree remove: 4.
 
-	
+
 	self assert: aTree object equals: 2.
 	self assert: aTree leftChild object equals: 1.
-	self assert: aTree rightChild object equals: 3.
-	
-
+	self assert: aTree rightChild object equals: 3
 ]
 
 { #category : #'test adding/removing' }
 CTAVLTreeTest >> testRemoveLeftRotate [
 
 	| aTree |
-	aTree :=  CTAVLTree with: 8.
-	aTree addNode: (CTAVLTree with: 7).
-	aTree addNode: (CTAVLTree with: 9).
-	aTree addNode: (CTAVLTree with: 10).
-		
+	aTree := self avlTreeClass with: 8.
+	aTree addNode: (self avlTreeClass with: 7).
+	aTree addNode: (self avlTreeClass with: 9).
+	aTree addNode: (self avlTreeClass with: 10).
+
 	aTree := aTree remove: 7.
-	
+
 	self assert: aTree object equals: 9.
 	self assert: aTree leftChild object equals: 8.
-	self assert: aTree rightChild object equals: 10.
-
-
+	self assert: aTree rightChild object equals: 10
 ]
 
 { #category : #'test adding/removing' }
-CTAVLTreeTest >> testRemoveRightLeftRotate [ 
-
-	| aTree  |
-	aTree := CTAVLTree with: 1.
-	aTree addNode: (CTAVLTree with: 0).
-	aTree addNode: (CTAVLTree with: 3).
-	aTree := aTree addNode: (CTAVLTree with: 2).
-	
-	aTree := aTree remove: 0.
-		
-	self assert: aTree object equals: 2.
-	self assert: aTree leftChild object equals: 1.
-	self assert: aTree rightChild object equals: 3.
-
-]
-
-{ #category : #'test adding/removing' }
-CTAVLTreeTest >> testRemoveRightRotate [ 
+CTAVLTreeTest >> testRemoveRightLeftRotate [
 
 	| aTree |
-	aTree := CTAVLTree with: 6.
-	aTree addNode: (CTAVLTree with: 3).
-	aTree addNode: (CTAVLTree with: 7).
-	aTree addNode: (CTAVLTree with: 1).
-	
+	aTree := self avlTreeClass with: 1.
+	aTree addNode: (self avlTreeClass with: 0).
+	aTree addNode: (self avlTreeClass with: 3).
+	aTree := aTree addNode: (self avlTreeClass with: 2).
+
+	aTree := aTree remove: 0.
+
+	self assert: aTree object equals: 2.
+	self assert: aTree leftChild object equals: 1.
+	self assert: aTree rightChild object equals: 3
+]
+
+{ #category : #'test adding/removing' }
+CTAVLTreeTest >> testRemoveRightRotate [
+
+	| aTree |
+	aTree := self avlTreeClass with: 6.
+	aTree addNode: (self avlTreeClass with: 3).
+	aTree addNode: (self avlTreeClass with: 7).
+	aTree addNode: (self avlTreeClass with: 1).
+
 	aTree := aTree remove: 7.
-	
+
 	self assert: aTree size equals: 3.
 	self assert: aTree object equals: 3.
 	self assert: aTree leftChild object equals: 1.
-	self assert: aTree rightChild object equals: 6.
+	self assert: aTree rightChild object equals: 6
 ]
 
 { #category : #'test rotating' }
 CTAVLTreeTest >> testRightRotate [
 
 	| aTree node |
-	aTree :=  CTAVLTree with: 3.
+	aTree := self avlTreeClass with: 3.
 	aTree add: 2.
 	aTree add: 1.
-	
+
 	node := aTree rightRotate.
-	
+
 	self assert: node object equals: 2.
 	self assert: node leftChild object equals: 1.
-	self assert: node rightChild object equals: 3.
-
-
+	self assert: node rightChild object equals: 3
 ]

@@ -35,12 +35,12 @@ CTAVLTree >> addNode: aNode [
 	"Add a node to AVL tree and rebalance it if neccessary. Answer balanced AVL tree"
 	
 	| factor |
-	data isNil
-		ifTrue: [ data := aNode object ]. 
+	object isNil
+		ifTrue: [ object := aNode object ]. 
 		
-	aNode object < data
+	aNode object < object
 		ifTrue: [ leftChild := leftChild addNode: aNode ].
-	aNode object > data
+	aNode object > object
 		ifTrue: [ rightChild := rightChild addNode: aNode ].
 		
 	factor := self balanceFactor.
@@ -59,7 +59,7 @@ CTAVLTree >> addNode: aNode [
 CTAVLTree >> balanceFactor [
 	"Answer balance factor (left subtree height – right subtree height) of the current node."
 	
-	^ leftChild height - rightChild height
+	^ leftChild depth - rightChild depth
 ]
 
 { #category : #operation }
@@ -73,9 +73,9 @@ CTAVLTree >> height [
 CTAVLTree >> isNodeBalanced [
 	"Answer if the node is balanced. In an AVL tree, node is balanced if the heights of the two child subtrees of any node differ by at most one"
 
-	(leftChild height - rightChild height) abs < 2
-		ifTrue: [ ^ true ]
-		ifFalse: [ ^ false ].
+	^ (leftChild depth - rightChild depth) abs < 2
+		ifTrue: [ true ]
+		ifFalse: [ false ]
 ]
 
 { #category : #rotating }
@@ -98,23 +98,23 @@ CTAVLTree >> remove: aData [
 	"Remove a node containing aData from tree and rebalance it if neccessary. Answer balanced tree"
 	
 	| smallestNodeInRightSubtree factor temporary |
-	aData < data
+	aData < object
 		ifTrue: [ leftChild := leftChild remove: aData ].
-	aData > data
+	aData > object
 		ifTrue: [ rightChild := rightChild remove: aData ].
 
 	temporary := self.	
 		
-	aData == data  
+	aData == object  
 		ifTrue: [ 	self isLeaf
-							ifTrue: [ temporary := CTNullBinaryTree uniqueInstance ].
+							ifTrue: [ temporary := CTNullBinarySearchNode uniqueInstance ].
 						self hasOnlyLeftChild
 							ifTrue: [ temporary := leftChild ].
 						self hasOnlyLeftChild
 							ifTrue: [ temporary := rightChild ].
 						self hasBothChildren
 							ifTrue: [ smallestNodeInRightSubtree := rightChild leftmostNode: self.
-							data := smallestNodeInRightSubtree object.
+							object := smallestNodeInRightSubtree object.
 							rightChild := rightChild remove: smallestNodeInRightSubtree object ]].
 	
 	factor := self balanceFactor.
